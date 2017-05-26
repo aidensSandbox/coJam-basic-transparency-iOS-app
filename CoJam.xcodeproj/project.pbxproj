@@ -14,6 +14,8 @@
 		8C377F021ED8DC9A005251A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C377F001ED8DC9A005251A9 /* LaunchScreen.storyboard */; };
 		8C377F0D1ED8DC9A005251A9 /* CoJamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C377F0C1ED8DC9A005251A9 /* CoJamTests.swift */; };
 		8C377F181ED8DC9A005251A9 /* CoJamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C377F171ED8DC9A005251A9 /* CoJamUITests.swift */; };
+		8C377F2B1ED8DE53005251A9 /* AudioProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C377F281ED8DE53005251A9 /* AudioProcessor.m */; };
+		8C377F2C1ED8DE53005251A9 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C377F291ED8DE53005251A9 /* TPCircularBuffer.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,11 @@
 		8C377F131ED8DC9A005251A9 /* CoJamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoJamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C377F171ED8DC9A005251A9 /* CoJamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoJamUITests.swift; sourceTree = "<group>"; };
 		8C377F191ED8DC9A005251A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C377F261ED8DE52005251A9 /* CoJam-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoJam-Bridging-Header.h"; sourceTree = "<group>"; };
+		8C377F271ED8DE53005251A9 /* AudioProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioProcessor.h; sourceTree = "<group>"; };
+		8C377F281ED8DE53005251A9 /* AudioProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioProcessor.m; sourceTree = "<group>"; };
+		8C377F291ED8DE53005251A9 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
+		8C377F2A1ED8DE53005251A9 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +104,7 @@
 		8C377EF61ED8DC9A005251A9 /* CoJam */ = {
 			isa = PBXGroup;
 			children = (
+				8C377F251ED8DE35005251A9 /* LowLevelAudio */,
 				8C377EF71ED8DC9A005251A9 /* AppDelegate.swift */,
 				8C377EF91ED8DC9A005251A9 /* ViewController.swift */,
 				8C377EFB1ED8DC9A005251A9 /* Main.storyboard */,
@@ -123,6 +131,18 @@
 				8C377F191ED8DC9A005251A9 /* Info.plist */,
 			);
 			path = CoJamUITests;
+			sourceTree = "<group>";
+		};
+		8C377F251ED8DE35005251A9 /* LowLevelAudio */ = {
+			isa = PBXGroup;
+			children = (
+				8C377F271ED8DE53005251A9 /* AudioProcessor.h */,
+				8C377F281ED8DE53005251A9 /* AudioProcessor.m */,
+				8C377F291ED8DE53005251A9 /* TPCircularBuffer.c */,
+				8C377F2A1ED8DE53005251A9 /* TPCircularBuffer.h */,
+				8C377F261ED8DE52005251A9 /* CoJam-Bridging-Header.h */,
+			);
+			name = LowLevelAudio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +214,7 @@
 					8C377EF31ED8DC9A005251A9 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 2WJ6DV6889;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					8C377F071ED8DC9A005251A9 = {
@@ -262,7 +283,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C377F2B1ED8DE53005251A9 /* AudioProcessor.m in Sources */,
 				8C377EFA1ED8DC9A005251A9 /* ViewController.swift in Sources */,
+				8C377F2C1ED8DE53005251A9 /* TPCircularBuffer.c in Sources */,
 				8C377EF81ED8DC9A005251A9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,11 +438,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2WJ6DV6889;
 				INFOPLIST_FILE = CoJam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.CoJam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CoJam/CoJam-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -428,11 +454,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2WJ6DV6889;
 				INFOPLIST_FILE = CoJam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.CoJam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CoJam/CoJam-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
