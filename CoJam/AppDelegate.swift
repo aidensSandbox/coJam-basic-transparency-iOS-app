@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  CoJam
 //
-//  Created by Ahmed Ibrahim on 5/26/17.
+//  Created by Alvaro Raminelli on 5/26/17.
 //  Copyright © 2017 Audesis. All rights reserved.
 //
 
