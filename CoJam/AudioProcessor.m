@@ -133,11 +133,11 @@ static OSStatus playbackCallback(void *inRefCon,
     AudioComponentDescription desc;
     
     //SET VoiceProcessingIO OR REMOTE
-    //desc.componentType = kAudioUnitType_Output; // we want to ouput
-    //desc.componentSubType = kAudioUnitSubType_RemoteIO; // we want in and ouput
-    
     desc.componentType = kAudioUnitType_Output; // we want to ouput
-    desc.componentSubType = kAudioUnitSubType_VoiceProcessingIO; // we want in and ouput
+    desc.componentSubType = kAudioUnitSubType_RemoteIO; // we want in and ouput
+    
+    //desc.componentType = kAudioUnitType_Output; // we want to ouput
+    //desc.componentSubType = kAudioUnitSubType_VoiceProcessingIO; // we want in and ouput
     
     //desc.componentType = kAudioUnitType_Mixer; // we want to ouput
     //desc.componentSubType = kAudioUnitSubType_MultiChannelMixer; // we want in and ouput
