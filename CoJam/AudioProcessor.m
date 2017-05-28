@@ -118,6 +118,11 @@ static OSStatus playbackCallback(void *inRefCon,
                   error:&setCategoryError]) {
         // handle error
     }
+    
+    //SET AVAudioSessionModeVoiceChat OR AVAudioSessionModeDefault
+    //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeVoiceChat error:nil];
+    //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
+    
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     NSLog(@"Latency %f", session.outputLatency);
     NSLog(@"Buffer Duration %f", session.IOBufferDuration);
@@ -127,11 +132,12 @@ static OSStatus playbackCallback(void *inRefCon,
     // We define the audio component
     AudioComponentDescription desc;
     
-    desc.componentType = kAudioUnitType_Output; // we want to ouput
-    desc.componentSubType = kAudioUnitSubType_RemoteIO; // we want in and ouput
-    
+    //SET VoiceProcessingIO OR REMOTE
     //desc.componentType = kAudioUnitType_Output; // we want to ouput
-    //desc.componentSubType = kAudioUnitSubType_VoiceProcessingIO; // we want in and ouput
+    //desc.componentSubType = kAudioUnitSubType_RemoteIO; // we want in and ouput
+    
+    desc.componentType = kAudioUnitType_Output; // we want to ouput
+    desc.componentSubType = kAudioUnitSubType_VoiceProcessingIO; // we want in and ouput
     
     //desc.componentType = kAudioUnitType_Mixer; // we want to ouput
     //desc.componentSubType = kAudioUnitSubType_MultiChannelMixer; // we want in and ouput
