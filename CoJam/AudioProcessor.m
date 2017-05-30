@@ -109,7 +109,7 @@ static OSStatus playbackCallback(void *inRefCon,
     
     NSError *setCategoryError = nil;
     if (![session setCategory:AVAudioSessionCategoryPlayAndRecord
-                  withOptions:AVAudioSessionCategoryOptionMixWithOthers
+                  withOptions: AVAudioSessionCategoryOptionAllowBluetooth| AVAudioSessionCategoryOptionMixWithOthers
                         error:&setCategoryError]) {
         // handle error
     }
@@ -119,9 +119,14 @@ static OSStatus playbackCallback(void *inRefCon,
         // handle error
     }
     
+    
     //SET AVAudioSessionModeVoiceChat OR AVAudioSessionModeDefault
     //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeVoiceChat error:nil];
     //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
+    
+    //AVAudioSessionModeGameChat—For game apps. This mode is set automatically by apps that use a GKVoiceChat object and the AVAudioSessionCategoryPlayAndRecord category. Game chat mode uses the same routing parameters as the video chat mode.
+    
+    //AVAudioSessionModeVideoChat—For video chat apps such as FaceTime. The video chat mode can only be used with the AVAudioSessionCategoryPlayAndRecord category. Signals are optimized for voice through system-supplied signal processing and sets AVAudioSessionCategoryOptionAllowBluetooth and AVAudioSessionCategoryOptionDefaultToSpeaker.
     
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     NSLog(@"Latency %f", session.outputLatency);
@@ -292,13 +297,76 @@ static OSStatus playbackCallback(void *inRefCon,
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     NSError *setCategoryError = nil;
     if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
-                                          withOptions: AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError]) {
+                                          withOptions: AVAudioSessionCategoryOptionAllowBluetooth| AVAudioSessionCategoryOptionMixWithOthers error:&setCategoryError]) {
         // handle error
     }
+    
+    // inquire about all available audio inputs
+    NSLog(@"%@", [AVAudioSession sharedInstance].availableInputs);
+    
+    //using one of the input streams inquired above to get availableDataSources
+    NSLog(@"%@", [AVAudioSession sharedInstance].availableInputs[0].dataSources);
+    
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    
+    // Force Phone Built in Microphone on, doesn't work with bluetooth
+    //AVAudioSessionPortDescription *builtInPort = [AVAudioSession sharedInstance].availableInputs[0];
+    //[[AVAudioSession sharedInstance] setPreferredInput:builtInPort error:nil];
+    
+    //    //Force input to be taken from A SPECIFIC Built-in mic, options ("Back", "Front", or "Bottom")
+    //    AVAudioSessionPortDescription *port = [AVAudioSession sharedInstance].availableInputs[0];
+    //    for (AVAudioSessionDataSourceDescription *source in port.dataSources) {
+    //        if ([source.dataSourceName isEqualToString:@"Front"]) {
+    //            [port setPreferredDataSource:source error:nil];
+    //            //error message, couldn't setup Built-in Mic
+    //            NSLog(@"Couldn't setup built-in mic");
+    //        }
+    //    }
+    
+    // Force Bluetooth headphones to work if available, (forces both BT input and output, can't separate the routes :( )
+    //NSArray* routes = [AVAudioSession sharedInstance].availableInputs;
+    //for (AVAudioSessionPortDescription* route in routes)
+    //{
+    //    if (route.portType == AVAudioSessionPortBluetoothHFP)
+    //    {
+    //        [[AVAudioSession sharedInstance] setPreferredInput:route error:nil];
+    //    }
+        
+    //    if (route.portType == AVAudioSessionPortBluetoothA2DP)
+    //    {
+    //        [[AVAudioSession sharedInstance] setPreferredInput:route error:nil];
+    //    }
+
+    //}
+    
+    // Force Phone Built in Microphone on, doesn't work with bluetooth
+    //AVAudioSessionPortDescription *builtInPort = [AVAudioSession sharedInstance].availableInputs[0];
+    //[[AVAudioSession sharedInstance] setPreferredInput:builtInPort error:nil];
+    
+    // Force Phone Built in Microphone on (only if there is no Bluetooth connected), doesn't work with bluetooth
+    NSArray* routes = [AVAudioSession sharedInstance].availableInputs;
+    AVAudioSessionPortDescription *builtInPort = [AVAudioSession sharedInstance].availableInputs[0];
+    for (AVAudioSessionPortDescription* route in routes)
+    {
+        if (route.portType == AVAudioSessionPortBluetoothHFP || route.portType == AVAudioSessionPortBluetoothA2DP)
+        {
+            // This device has bluetooth headphones, force the route to be BT
+            [[AVAudioSession sharedInstance] setPreferredInput:route error:nil];
+        } else {
+            // This device has no BT headphones, it either has wired headphones or no headphones at all, force Built-in Mic
+            [[AVAudioSession sharedInstance] setPreferredInput:builtInPort error:nil];
+            
+        }
+
+    }
+    
     // start the audio unit. You should hear something, hopefully :)
     OSStatus status = AudioOutputUnitStart(audioUnit);
+
+    
     [self hasError:status:__FILE__:__LINE__];
+
+    
 }
 -(void)stop;
 {

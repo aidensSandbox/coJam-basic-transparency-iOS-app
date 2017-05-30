@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         if onAwareness {
             print("** onAwareness off **")
             onAwareness = false;
-            self.awarenessBtn.setTitleColor(UIColor.blue, for: UIControlState.normal)
+            self.awarenessBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
             //audioProcessor!.stop()
             deactiveAwareness()
         }else{
