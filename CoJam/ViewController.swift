@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var awarenessBtn: UIButton!
     
     var onAwareness = false
-    var gain = 5
+    var gain = 6
     var audioProcessor : AudioProcessor? = nil
     
     override func viewDidLoad() {

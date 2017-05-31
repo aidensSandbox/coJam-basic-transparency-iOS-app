@@ -94,7 +94,7 @@ static OSStatus playbackCallback(void *inRefCon,
 {
     self = [super init];
     if (self) {
-        gain = 5;
+        gain = 6;
         [self initializeAudio];
     }
     NSLog(@"init Started");
@@ -297,7 +297,7 @@ static OSStatus playbackCallback(void *inRefCon,
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     NSError *setCategoryError = nil;
     if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
-                                          withOptions: AVAudioSessionCategoryOptionAllowBluetooth| AVAudioSessionCategoryOptionMixWithOthers error:&setCategoryError]) {
+                                          withOptions: AVAudioSessionCategoryOptionAllowBluetooth| AVAudioSessionCategoryOptionMixWithOthers |AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError]) {
         // handle error
     }
     
@@ -308,6 +308,13 @@ static OSStatus playbackCallback(void *inRefCon,
     NSLog(@"%@", [AVAudioSession sharedInstance].availableInputs[0].dataSources);
     
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    
+    
+    //Ask about latency and real-time audio results
+    AVAudioSession *sessionRT = [AVAudioSession sharedInstance];
+    NSLog(@"Starting Latency %f", sessionRT.outputLatency);
+    NSLog(@"Starting Buffer Duration %f", sessionRT.IOBufferDuration);
+    NSLog(@"Starting Sample Rate %f", sessionRT.sampleRate);
     
     // Force Phone Built in Microphone on, doesn't work with bluetooth
     //AVAudioSessionPortDescription *builtInPort = [AVAudioSession sharedInstance].availableInputs[0];
