@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var downBtn: UIButton!
     @IBOutlet weak var awarenessBtn: UIButton!
     @IBOutlet weak var pauseMusic: UISwitch!
-    @IBOutlet weak var surroundSound: UISwitch!
+    //@IBOutlet weak var surroundSound: UISwitch!
     
     var onAwareness = false
     var gain = 6
@@ -27,8 +27,40 @@ class ViewController: UIViewController {
         
         self.gainValue.text = String(gain)
         audioProcessor = AudioProcessor()
+        audioProcessor?.pauseMusic = self.pauseMusic.isOn;
         UIApplication.shared.isIdleTimerDisabled = true
+        //UIApplication.shared.beginReceivingRemoteControlEvents()
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        do {
+            //try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            try audioSession.setActive(true)
+        } catch {
+            
+        }
+        
+        
+        
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.addTarget { (commandEvent) -> MPRemoteCommandHandlerStatus in
+            print("playCommand")
+            return MPRemoteCommandHandlerStatus.success
+        }
+        
+        commandCenter.pauseCommand.addTarget { (commandEvent) -> MPRemoteCommandHandlerStatus in
+            print("pauseCommand")
+            return MPRemoteCommandHandlerStatus.success
+        }
+        
+        commandCenter.togglePlayPauseCommand.addTarget  { (commandEvent) -> MPRemoteCommandHandlerStatus in
+            print("togglePlayPauseCommand")
+            return MPRemoteCommandHandlerStatus.success
+        }
+
+        
     }
+    
     
     @IBAction func upGain(_ sender: UIButton) {
         gain += 1
@@ -42,7 +74,7 @@ class ViewController: UIViewController {
         self.gainValue.text = String(gain)
     }
     
-    @IBAction func surroundSoundChanged(_ sender: UISwitch) {
+    /*@IBAction func surroundSoundChanged(_ sender: UISwitch) {
         print("Surround Sound Switched")
         print(sender.isOn)
         audioProcessor?.surroundSound = sender.isOn
@@ -51,7 +83,7 @@ class ViewController: UIViewController {
         //    audioProcessor!.stop()
         //    audioProcessor!.start()
        // }
-    }
+    }*/
     
     @IBAction func pauseMusicChanged(_ sender: UISwitch) {
         print("Pause Music Switched")

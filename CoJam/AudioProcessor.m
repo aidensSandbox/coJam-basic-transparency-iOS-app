@@ -97,10 +97,27 @@ static OSStatus playbackCallback(void *inRefCon,
         gain = 6;
         [self initializeAudio];
     }
-    
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    //[[MPRemoteCommandCenter sharedCommandCenter].playCommand addTarget:self action:@selector(togglePlayCommand:)];
+    //[[MPRemoteCommandCenter sharedCommandCenter].pauseCommand addTarget:self action:@selector(togglePauseCommand:)];
+    [[MPRemoteCommandCenter sharedCommandCenter].togglePlayPauseCommand addTarget:self action:@selector(togglePlayPauseCommand:)];
     NSLog(@"init Started");
     return self;
 }
+-(void)togglePlayPauseCommand:(MPRemoteCommand *)cmd{
+    NSLog(@"togglePlayPauseCommandEvent");
+    //[self stop];
+}
+-(void)togglePlayCommand:(MPRemoteCommand *)cmd{
+    NSLog(@"togglePlayCommand");
+}
+-(void)togglePauseCommand:(MPRemoteCommand *)cmd{
+    NSLog(@"togglePauseCommand");
+}
+/*- (void)togglePlayPauseCommandEvent:(id)__unused event
+{
+   NSLog(@"togglePlayPauseCommandEvent");
+}*/
 
 -(void)initializeAudio
 {
@@ -115,24 +132,26 @@ static OSStatus playbackCallback(void *inRefCon,
     if (![session setCategory:AVAudioSessionCategoryPlayAndRecord
                   withOptions: AVAudioSessionCategoryOptionAllowBluetooth| AVAudioSessionCategoryOptionMixWithOthers
                         error:&setCategoryError]) {
-        // handle error
     }
     
     if (![session setPreferredIOBufferDuration:0.001
                   error:&setCategoryError]) {
-        // handle error
     }
     
-    
+    //
     //SET AVAudioSessionModeVoiceChat OR AVAudioSessionModeDefault
     //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeVoiceChat error:nil];
     //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
+    
+    
     
     //AVAudioSessionModeGameChat—For game apps. This mode is set automatically by apps that use a GKVoiceChat object and the AVAudioSessionCategoryPlayAndRecord category. Game chat mode uses the same routing parameters as the video chat mode.
     
     //AVAudioSessionModeVideoChat—For video chat apps such as FaceTime. The video chat mode can only be used with the AVAudioSessionCategoryPlayAndRecord category. Signals are optimized for voice through system-supplied signal processing and sets AVAudioSessionCategoryOptionAllowBluetooth and AVAudioSessionCategoryOptionDefaultToSpeaker.
     
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    
+    
+    //[[AVAudioSession sharedInstance] setActive:YES error:nil];
     NSLog(@"Latency %f", session.outputLatency);
     NSLog(@"Buffer Duration %f", session.IOBufferDuration);
     NSLog(@"Sample Rate %f", session.sampleRate);
@@ -144,13 +163,13 @@ static OSStatus playbackCallback(void *inRefCon,
     //SET VoiceProcessingIO OR REMOTE
     desc.componentType = kAudioUnitType_Output; // we want to ouput
     
-    if(surroundSound){
+    //if(surroundSound){
         NSLog(@"Starting Surround Sound");
         desc.componentSubType = kAudioUnitSubType_RemoteIO; // we want in and ouput
-    }else{
-        NSLog(@"Starting Without Surround Sound");
-        desc.componentSubType = kAudioUnitSubType_VoiceProcessingIO; // we want in and ouput
-    }
+    //}else{
+    //    NSLog(@"Starting Without Surround Sound");
+    //    desc.componentSubType = kAudioUnitSubType_VoiceProcessingIO; // we want in and ouput
+    //}
     //desc.componentType = kAudioUnitType_Output; // we want to ouput
     //desc.componentSubType = kAudioUnitSubType_VoiceProcessingIO; // we want in and ouput
     
@@ -310,29 +329,26 @@ static OSStatus playbackCallback(void *inRefCon,
 {
     //[self initializeAudio];
     
-    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    //[[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
     NSError *setCategoryError = nil;
-    if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
-                                          withOptions: AVAudioSessionCategoryOptionAllowBluetooth| AVAudioSessionCategoryOptionMixWithOthers |AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError]) {
-        // handle error
+    
+    if(pauseMusic){
+        if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+                                              withOptions: AVAudioSessionCategoryOptionAllowBluetooth error:&setCategoryError]) {
+        }
+        //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeSpokenAudio error:nil];
+    }else{
+        if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+                                              withOptions: AVAudioSessionCategoryOptionAllowBluetooth| AVAudioSessionCategoryOptionMixWithOthers |AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError]) {
+        }
     }
-    
-    //withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation
-    //MPMusicPlayerController *playerController = [MPMusicPlayerController systemMusicPlayer];
-    //[playerController stop];
-    
-    
-    
+
     // inquire about all available audio inputs
     NSLog(@"%@", [AVAudioSession sharedInstance].availableInputs);
     
     //using one of the input streams inquired above to get availableDataSources
     NSLog(@"%@", [AVAudioSession sharedInstance].availableInputs[0].dataSources);
-    //if(pauseMusic){
-    //    [[AVAudioSession sharedInstance] setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
-    //}else{
-        [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    //}
+    
     
     //Ask about latency and real-time audio results
     AVAudioSession *sessionRT = [AVAudioSession sharedInstance];
@@ -390,7 +406,7 @@ static OSStatus playbackCallback(void *inRefCon,
         }
 
     }
-    
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     // start the audio unit. You should hear something, hopefully :)
     OSStatus status = AudioOutputUnitStart(audioUnit);
     [self hasError:status:__FILE__:__LINE__];
@@ -402,11 +418,12 @@ static OSStatus playbackCallback(void *inRefCon,
     // stop the audio unit
     OSStatus status = AudioOutputUnitStop(audioUnit);
     [self hasError:status:__FILE__:__LINE__];
-    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation  error:nil];
     
-    AudioOutputUnitStop(audioUnit);
-    AudioComponentInstanceDispose(audioUnit);
-    audioUnit = nil;
+    //AudioOutputUnitStop(audioUnit);
+    //AudioUnitUninitialize(audioUnit);
+    //AudioComponentInstanceDispose(audioUnit);
+    //audioUnit = nil;
     //[[AVAudioSession sharedInstance] setActive:YES error:nil];
 }
 
@@ -512,17 +529,5 @@ static OSStatus playbackCallback(void *inRefCon,
     }
 }
 
-
-+(double) get {
-    MPMusicPlayerController *playerController = [MPMusicPlayerController systemMusicPlayer];
-    id val = [playerController valueForKey: @"volume"];
-    return [val floatValue];
-}
-
-+ (void) set:(double) volume {
-    MPMusicPlayerController *playerController = [MPMusicPlayerController systemMusicPlayer];
-    [playerController setValue:@(volume) forKey:@"volume"];
-    [playerController setValue:@(volume) forKey:@"volumePrivate"];
-}
 
 @end
