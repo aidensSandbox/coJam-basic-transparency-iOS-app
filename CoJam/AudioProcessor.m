@@ -65,7 +65,7 @@ static OSStatus playbackCallback(void *inRefCon,
                                  AudioBufferList *ioData) {
     
     /**
-     This is the reference to the object who owns the callback.
+     This is the reference to the object who owns the callback. Ahmed
      */
     AudioProcessor *audioProcessor = (__bridge AudioProcessor*) inRefCon;
     
