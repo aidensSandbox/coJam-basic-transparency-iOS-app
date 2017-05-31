@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 // return max value for given values
 #define max(a, b) (((a) > (b)) ? (a) : (b))
 // return min value for given values
@@ -30,11 +31,18 @@
     
     // gain
     float gain;
+    
+    Boolean surroundSound;
+    
+    Boolean pauseMusic;
+    
 }
 
 @property (readonly) AudioBuffer audioBuffer;
 @property (readonly) AudioComponentInstance audioUnit;
 @property (nonatomic) float gain;
+@property (nonatomic) Boolean surroundSound;
+@property (nonatomic) Boolean pauseMusic;
 -(AudioProcessor*)init;
 
 -(void)initializeAudio;
@@ -48,8 +56,11 @@
 -(void)setGain:(float)gainValue;
 -(float)getGain;
 
+//pause music
+//-(void)setPauseMusic:(Boolean)pauseMusic;
+//surround sound
+//-(void)setSurroundSound:(Boolean)surroundSound;
 // error managment
 -(void)hasError:(int)statusCode:(char*)file:(int)line;
 
--(void)dealloc;
 @end

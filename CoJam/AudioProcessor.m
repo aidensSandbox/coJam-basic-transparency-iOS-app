@@ -88,7 +88,7 @@ static OSStatus playbackCallback(void *inRefCon,
 #pragma mark objective-c class
 
 @implementation AudioProcessor
-@synthesize audioUnit, audioBuffer, gain;
+@synthesize audioUnit, audioBuffer, gain,pauseMusic,surroundSound;
 
 -(AudioProcessor*)init
 {
@@ -97,6 +97,7 @@ static OSStatus playbackCallback(void *inRefCon,
         gain = 6;
         [self initializeAudio];
     }
+    
     NSLog(@"init Started");
     return self;
 }
@@ -105,7 +106,10 @@ static OSStatus playbackCallback(void *inRefCon,
 {
     OSStatus status;
     
+    //Reset Audio Unit & Audio Buffer
+    
     AVAudioSession *session = [AVAudioSession sharedInstance];
+    
     
     NSError *setCategoryError = nil;
     if (![session setCategory:AVAudioSessionCategoryPlayAndRecord
@@ -139,8 +143,14 @@ static OSStatus playbackCallback(void *inRefCon,
     
     //SET VoiceProcessingIO OR REMOTE
     desc.componentType = kAudioUnitType_Output; // we want to ouput
-    desc.componentSubType = kAudioUnitSubType_RemoteIO; // we want in and ouput
     
+    if(surroundSound){
+        NSLog(@"Starting Surround Sound");
+        desc.componentSubType = kAudioUnitSubType_RemoteIO; // we want in and ouput
+    }else{
+        NSLog(@"Starting Without Surround Sound");
+        desc.componentSubType = kAudioUnitSubType_VoiceProcessingIO; // we want in and ouput
+    }
     //desc.componentType = kAudioUnitType_Output; // we want to ouput
     //desc.componentSubType = kAudioUnitSubType_VoiceProcessingIO; // we want in and ouput
     
@@ -282,9 +292,13 @@ static OSStatus playbackCallback(void *inRefCon,
     audioBuffer.mDataByteSize = 512 * 2 ;
     audioBuffer.mData = malloc( 512 * 2);
     
+    //status = AudioOutputUnitStop(audioUnit);
+    //[self hasError:status:__FILE__:__LINE__];
+    
     // Initialize the Audio Unit and cross fingers =)
     status = AudioUnitInitialize(audioUnit);
     [self hasError:status:__FILE__:__LINE__];
+    
     
     NSLog(@"Started");
     
@@ -294,6 +308,8 @@ static OSStatus playbackCallback(void *inRefCon,
 
 -(void)start;
 {
+    //[self initializeAudio];
+    
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     NSError *setCategoryError = nil;
     if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
@@ -301,14 +317,22 @@ static OSStatus playbackCallback(void *inRefCon,
         // handle error
     }
     
+    //withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation
+    //MPMusicPlayerController *playerController = [MPMusicPlayerController systemMusicPlayer];
+    //[playerController stop];
+    
+    
+    
     // inquire about all available audio inputs
     NSLog(@"%@", [AVAudioSession sharedInstance].availableInputs);
     
     //using one of the input streams inquired above to get availableDataSources
     NSLog(@"%@", [AVAudioSession sharedInstance].availableInputs[0].dataSources);
-    
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    
+    //if(pauseMusic){
+    //    [[AVAudioSession sharedInstance] setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+    //}else{
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    //}
     
     //Ask about latency and real-time audio results
     AVAudioSession *sessionRT = [AVAudioSession sharedInstance];
@@ -369,8 +393,6 @@ static OSStatus playbackCallback(void *inRefCon,
     
     // start the audio unit. You should hear something, hopefully :)
     OSStatus status = AudioOutputUnitStart(audioUnit);
-
-    
     [self hasError:status:__FILE__:__LINE__];
 
     
@@ -381,6 +403,10 @@ static OSStatus playbackCallback(void *inRefCon,
     OSStatus status = AudioOutputUnitStop(audioUnit);
     [self hasError:status:__FILE__:__LINE__];
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    
+    AudioOutputUnitStop(audioUnit);
+    AudioComponentInstanceDispose(audioUnit);
+    audioUnit = nil;
     //[[AVAudioSession sharedInstance] setActive:YES error:nil];
 }
 
@@ -394,6 +420,16 @@ static OSStatus playbackCallback(void *inRefCon,
 {
     return gain;
 }
+
+-(void)setPauseMusic:(Boolean)pauseMusicValue
+{
+    pauseMusic = pauseMusicValue;
+}
+-(void)setSurroundSound:(Boolean)surroundSoundValue
+{
+    surroundSound = surroundSoundValue;
+}
+
 
 #pragma mark processing
 
@@ -476,5 +512,17 @@ static OSStatus playbackCallback(void *inRefCon,
     }
 }
 
+
++(double) get {
+    MPMusicPlayerController *playerController = [MPMusicPlayerController systemMusicPlayer];
+    id val = [playerController valueForKey: @"volume"];
+    return [val floatValue];
+}
+
++ (void) set:(double) volume {
+    MPMusicPlayerController *playerController = [MPMusicPlayerController systemMusicPlayer];
+    [playerController setValue:@(volume) forKey:@"volume"];
+    [playerController setValue:@(volume) forKey:@"volumePrivate"];
+}
 
 @end

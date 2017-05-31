@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var upBtn: UIButton!
     @IBOutlet weak var downBtn: UIButton!
     @IBOutlet weak var awarenessBtn: UIButton!
+    @IBOutlet weak var pauseMusic: UISwitch!
+    @IBOutlet weak var surroundSound: UISwitch!
     
     var onAwareness = false
     var gain = 6
@@ -40,6 +42,22 @@ class ViewController: UIViewController {
         self.gainValue.text = String(gain)
     }
     
+    @IBAction func surroundSoundChanged(_ sender: UISwitch) {
+        print("Surround Sound Switched")
+        print(sender.isOn)
+        audioProcessor?.surroundSound = sender.isOn
+        
+        //if onAwareness {
+        //    audioProcessor!.stop()
+        //    audioProcessor!.start()
+       // }
+    }
+    
+    @IBAction func pauseMusicChanged(_ sender: UISwitch) {
+        print("Pause Music Switched")
+        print(sender.isOn)
+        audioProcessor?.pauseMusic = sender.isOn
+    }
     @IBAction func awarenessAction(_ sender: UIButton) {
         //code to enable touch of button "touch"
         if onAwareness {
