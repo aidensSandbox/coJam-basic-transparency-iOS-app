@@ -103,19 +103,33 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pause Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yo7-Jw-emY">
-                                <rect key="frame" x="139" y="511" width="97" height="21"/>
+                                <rect key="frame" x="231" y="509" width="97" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bhq-Io-yi9">
-                                <rect key="frame" x="163" y="472" width="51" height="31"/>
+                                <rect key="frame" x="255" y="472" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="pauseMusicChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="PLz-ng-sbG"/>
                                 </connections>
                             </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SKv-8k-QgR">
+                                <rect key="frame" x="69" y="472" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="surroundSoundChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Dnj-bm-lI2"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Surround" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWT-qL-EeW">
+                                <rect key="frame" x="58" y="509" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -124,6 +138,7 @@
                         <outlet property="downBtn" destination="EZ5-2F-e0B" id="yTw-14-gY2"/>
                         <outlet property="gainValue" destination="9m0-hh-dfe" id="9ej-DG-iQc"/>
                         <outlet property="pauseMusic" destination="bhq-Io-yi9" id="eLC-Aw-fk0"/>
+                        <outlet property="surroundSound" destination="SKv-8k-QgR" id="iSG-Gh-Vt7"/>
                         <outlet property="upBtn" destination="4Kq-QC-k4C" id="mfA-B2-2Us"/>
                     </connections>
                 </viewController>

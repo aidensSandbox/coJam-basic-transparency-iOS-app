@@ -97,10 +97,10 @@ static OSStatus playbackCallback(void *inRefCon,
         gain = 6;
         [self initializeAudio];
     }
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    //[[AVAudioSession sharedInstance] setActive:YES error:nil];
     //[[MPRemoteCommandCenter sharedCommandCenter].playCommand addTarget:self action:@selector(togglePlayCommand:)];
     //[[MPRemoteCommandCenter sharedCommandCenter].pauseCommand addTarget:self action:@selector(togglePauseCommand:)];
-    [[MPRemoteCommandCenter sharedCommandCenter].togglePlayPauseCommand addTarget:self action:@selector(togglePlayPauseCommand:)];
+    //[[MPRemoteCommandCenter sharedCommandCenter].togglePlayPauseCommand addTarget:self action:@selector(togglePlayPauseCommand:)];
     NSLog(@"init Started");
     return self;
 }
@@ -336,13 +336,17 @@ static OSStatus playbackCallback(void *inRefCon,
         if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
                                               withOptions: AVAudioSessionCategoryOptionAllowBluetooth error:&setCategoryError]) {
         }
-        //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeSpokenAudio error:nil];
     }else{
         if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
                                               withOptions: AVAudioSessionCategoryOptionAllowBluetooth| AVAudioSessionCategoryOptionMixWithOthers |AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError]) {
         }
     }
-
+    if(surroundSound){
+        [[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
+    }else{
+        [[AVAudioSession sharedInstance] setMode:AVAudioSessionModeVoiceChat error:nil];
+    }
+    
     // inquire about all available audio inputs
     NSLog(@"%@", [AVAudioSession sharedInstance].availableInputs);
     
