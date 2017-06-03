@@ -384,9 +384,9 @@ static OSStatus playbackCallback(void *inRefCon,
         }
     }
     if(surroundSound){
-        [[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
-    }else{
         [[AVAudioSession sharedInstance] setMode:AVAudioSessionModeVoiceChat error:nil];
+    }else{
+        [[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
     }
     
     // inquire about all available audio inputs
