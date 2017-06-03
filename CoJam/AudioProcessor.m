@@ -8,8 +8,29 @@
 
 #import <Foundation/Foundation.h>
 #import "AudioProcessor.h"
+#import <UIKit/UIGestureRecognizerSubclass.h>
 
 #pragma mark Recording callback
+
+#define UISHORT_TAP_MAX_DELAY 0.2
+@interface UIShortTapGestureRecognizer : UITapGestureRecognizer
+
+@end
+@implementation UIShortTapGestureRecognizer
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(UISHORT_TAP_MAX_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+                   {
+                       // Enough time has passed and the gesture was not recognized -> It has failed.
+                       if  (self.state != UIGestureRecognizerStateRecognized)
+                       {
+                           self.state = UIGestureRecognizerStateFailed;
+                       }
+                   });
+}
+@end
 
 static OSStatus recordingCallback(void *inRefCon,
                                   AudioUnitRenderActionFlags *ioActionFlags,
@@ -97,13 +118,40 @@ static OSStatus playbackCallback(void *inRefCon,
         gain = 6;
         [self initializeAudio];
     }
+    
+    //[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions: AVAudioSessionCategoryOptionAllowBluetooth error:nil];
     //[[AVAudioSession sharedInstance] setActive:YES error:nil];
     //[[MPRemoteCommandCenter sharedCommandCenter].playCommand addTarget:self action:@selector(togglePlayCommand:)];
     //[[MPRemoteCommandCenter sharedCommandCenter].pauseCommand addTarget:self action:@selector(togglePauseCommand:)];
     //[[MPRemoteCommandCenter sharedCommandCenter].togglePlayPauseCommand addTarget:self action:@selector(togglePlayPauseCommand:)];
     NSLog(@"init Started");
+    
+    /*UIViewController *objViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    doubleTapRecognizer.numberOfTapsRequired = 2;
+    doubleTapRecognizer.numberOfTouchesRequired = 1;
+    doubleTapRecognizer.delegate = self;
+    
+    UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    singleTapRecognizer.numberOfTapsRequired = 1;
+    singleTapRecognizer.numberOfTouchesRequired = 1;
+    singleTapRecognizer.delegate = self;
+    
+    [singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];*/
+    //
     return self;
 }
+-(void)tap:(UITapGestureRecognizer*)sender{
+    NSLog(@"tap:%@",sender);
+}
+
+ -(BOOL)canBecomeFirstResponder{return YES;}
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event {
+    NSLog(@"togglePlayCommand");
+}
+
 -(void)togglePlayPauseCommand:(MPRemoteCommand *)cmd{
     NSLog(@"togglePlayPauseCommandEvent");
     //[self stop];
@@ -138,19 +186,13 @@ static OSStatus playbackCallback(void *inRefCon,
                   error:&setCategoryError]) {
     }
     
-    //
-    //SET AVAudioSessionModeVoiceChat OR AVAudioSessionModeDefault
-    //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeVoiceChat error:nil];
-    //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
-    
-    
     
     //AVAudioSessionModeGameChat—For game apps. This mode is set automatically by apps that use a GKVoiceChat object and the AVAudioSessionCategoryPlayAndRecord category. Game chat mode uses the same routing parameters as the video chat mode.
     
     //AVAudioSessionModeVideoChat—For video chat apps such as FaceTime. The video chat mode can only be used with the AVAudioSessionCategoryPlayAndRecord category. Signals are optimized for voice through system-supplied signal processing and sets AVAudioSessionCategoryOptionAllowBluetooth and AVAudioSessionCategoryOptionDefaultToSpeaker.
     
     
-    
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     //[[AVAudioSession sharedInstance] setActive:YES error:nil];
     NSLog(@"Latency %f", session.outputLatency);
     NSLog(@"Buffer Duration %f", session.IOBufferDuration);
@@ -410,6 +452,9 @@ static OSStatus playbackCallback(void *inRefCon,
         }
 
     }
+    if (![[AVAudioSession sharedInstance] setPreferredIOBufferDuration:0.001
+                                         error:&setCategoryError]) {
+    }
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     // start the audio unit. You should hear something, hopefully :)
     OSStatus status = AudioOutputUnitStart(audioUnit);
@@ -422,6 +467,7 @@ static OSStatus playbackCallback(void *inRefCon,
     // stop the audio unit
     OSStatus status = AudioOutputUnitStop(audioUnit);
     [self hasError:status:__FILE__:__LINE__];
+    
     [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation  error:nil];
     
     //AudioOutputUnitStop(audioUnit);

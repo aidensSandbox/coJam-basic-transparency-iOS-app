@@ -30,10 +30,73 @@ class ViewController: UIViewController {
         audioProcessor?.pauseMusic = self.pauseMusic.isOn;
         audioProcessor?.surroundSound = self.surroundSound.isOn;
         UIApplication.shared.isIdleTimerDisabled = true
+        
         //UIApplication.shared.beginReceivingRemoteControlEvents()
+        //if UIApplication.shared.canBecomeFirstResponder {
+        //  UIApplication.shared.becomeFirstResponder()
+        //}
+        
+        // Remote Control from Headphones
+        /*let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryAmbient)
+            try audioSession.setActive(true)
+        }
+        catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
+        
+        let scc = MPRemoteCommandCenter.shared()
+        scc.togglePlayPauseCommand.isEnabled = true
+        scc.togglePlayPauseCommand.addTarget(self, action: #selector(doPlayPause))*/
+        
+        /*let singleTap = UITapGestureRecognizer(target: self, action:#selector(singleTapAction))
+        singleTap.numberOfTapsRequired = 1
+        view.addGestureRecognizer(singleTap)*/
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action:#selector(doubleTapAction))
+        doubleTap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(doubleTap)
+        
+        //singleTap.require(toFail: doubleTap)
+        UIApplication.shared.isIdleTimerDisabled = true
+        //UIScreen.main.brightness = CGFloat(0.0)
         
     }
     
+    func doubleTapAction() {
+        // do something cool here
+        print("doubleTapAction")
+        if onAwareness {
+            print("** onAwareness off **")
+            
+            //audioProcessor!.stop()
+            deactiveAwareness()
+        }else{
+            print("** onAwareness on **")
+            activeAwareness()
+            
+        }
+    }
+    
+    deinit {
+        //let scc = MPRemoteCommandCenter.shared()
+        //scc.togglePlayPauseCommand.removeTarget(self)
+    }
+
+    
+    func doPlayPause(_ event:MPRemoteCommandEvent) {
+        if onAwareness {
+            print("** onAwareness off **")
+            
+            //audioProcessor!.stop()
+            deactiveAwareness()
+        }else{
+            print("** onAwareness on **")
+            activeAwareness()
+            
+        }
+    }
     
     @IBAction func upGain(_ sender: UIButton) {
         gain += 1
@@ -67,20 +130,19 @@ class ViewController: UIViewController {
         //code to enable touch of button "touch"
         if onAwareness {
             print("** onAwareness off **")
-            onAwareness = false;
-            self.awarenessBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+            
             //audioProcessor!.stop()
             deactiveAwareness()
         }else{
-            onAwareness = true;
             print("** onAwareness on **")
-            self.awarenessBtn.setTitleColor(UIColor.red, for: UIControlState.normal)
             activeAwareness()
             
         }
     }
     
     func activeAwareness() {
+        onAwareness = true;
+        self.awarenessBtn.setTitleColor(UIColor.red, for: UIControlState.normal)
         self.surroundSound.isEnabled = false;
         self.pauseMusic.isEnabled = false;
         audioProcessor!.start()
@@ -88,6 +150,8 @@ class ViewController: UIViewController {
     
     
     func deactiveAwareness(){
+        onAwareness = false;
+        self.awarenessBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
         self.surroundSound.isEnabled = true;
         self.pauseMusic.isEnabled = true;
         audioProcessor!.stop()
