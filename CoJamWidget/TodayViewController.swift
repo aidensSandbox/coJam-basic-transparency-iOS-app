@@ -13,6 +13,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBOutlet weak var widgetAwarenessBtn: UIButton!
     
+    var widgetOnAwareness = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
@@ -36,8 +38,35 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   
     @IBAction func widgetAwarenessAction(_ sender: UIButton) {
         
-        print("***user touched awareness button***")
+        //code to enable touch of button "touch"
+        if widgetOnAwareness {
+            print("** Widget - onAwareness off **")
+            
+            //audioProcessor!.stop()
+            deactiveAwareness()
+        }else{
+            print("** Widget -onAwareness on **")
+            activeAwareness()
+            
+        }
         
+    }
+    
+    func activeAwareness() {
+        widgetOnAwareness = true;
+        self.widgetAwarenessBtn.setTitleColor(UIColor.red, for: UIControlState.normal)
+        //self.surroundSound.isEnabled = false;
+        //self.pauseMusic.isEnabled = false;
+        //audioProcessor!.start()
+    }
+    
+    
+    func deactiveAwareness(){
+        widgetOnAwareness = false;
+        self.widgetAwarenessBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        //self.surroundSound.isEnabled = true;
+        //self.pauseMusic.isEnabled = true;
+        //audioProcessor!.stop()
     }
     
     
