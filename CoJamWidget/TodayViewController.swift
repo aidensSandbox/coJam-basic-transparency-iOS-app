@@ -10,7 +10,9 @@ import UIKit
 import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-        
+    
+    @IBOutlet weak var widgetAwarenessBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
@@ -30,5 +32,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         completionHandler(NCUpdateResult.newData)
     }
+    
+  
+    @IBAction func widgetAwarenessAction(_ sender: UIButton) {
+        
+        print("***user touched awareness button***")
+        
+    }
+    
     
 }
