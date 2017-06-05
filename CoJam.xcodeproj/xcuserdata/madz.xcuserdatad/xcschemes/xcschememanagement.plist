@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>CoJamWidget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>8C377F121ED8DC9A005251A9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8C6EB66E1EE4D38A00A0910D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -16,6 +16,10 @@
 		8C377F181ED8DC9A005251A9 /* CoJamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C377F171ED8DC9A005251A9 /* CoJamUITests.swift */; };
 		8C377F2B1ED8DE53005251A9 /* AudioProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C377F281ED8DE53005251A9 /* AudioProcessor.m */; };
 		8C377F2C1ED8DE53005251A9 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C377F291ED8DE53005251A9 /* TPCircularBuffer.c */; };
+		8C6EB6721EE4D38A00A0910D /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6EB6711EE4D38A00A0910D /* NotificationCenter.framework */; };
+		8C6EB6751EE4D38A00A0910D /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6EB6741EE4D38A00A0910D /* TodayViewController.swift */; };
+		8C6EB6781EE4D38A00A0910D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6EB6761EE4D38A00A0910D /* MainInterface.storyboard */; };
+		8C6EB67C1EE4D38A00A0910D /* CoJamWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C6EB66F1EE4D38A00A0910D /* CoJamWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +37,28 @@
 			remoteGlobalIDString = 8C377EF31ED8DC9A005251A9;
 			remoteInfo = CoJam;
 		};
+		8C6EB67A1EE4D38A00A0910D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C377EEC1ED8DC9A005251A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C6EB66E1EE4D38A00A0910D;
+			remoteInfo = CoJamWidget;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8C6EB6801EE4D38A00A0910D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8C6EB67C1EE4D38A00A0910D /* CoJamWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8C377EF41ED8DC9A005251A9 /* CoJam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoJam.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +79,11 @@
 		8C377F281ED8DE53005251A9 /* AudioProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioProcessor.m; sourceTree = "<group>"; };
 		8C377F291ED8DE53005251A9 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
 		8C377F2A1ED8DE53005251A9 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
+		8C6EB66F1EE4D38A00A0910D /* CoJamWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CoJamWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C6EB6711EE4D38A00A0910D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		8C6EB6741EE4D38A00A0910D /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		8C6EB6771EE4D38A00A0910D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		8C6EB6791EE4D38A00A0910D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +108,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C6EB66C1EE4D38A00A0910D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C6EB6721EE4D38A00A0910D /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,6 +125,8 @@
 				8C377EF61ED8DC9A005251A9 /* CoJam */,
 				8C377F0B1ED8DC9A005251A9 /* CoJamTests */,
 				8C377F161ED8DC9A005251A9 /* CoJamUITests */,
+				8C6EB6731EE4D38A00A0910D /* CoJamWidget */,
+				8C6EB6701EE4D38A00A0910D /* Frameworks */,
 				8C377EF51ED8DC9A005251A9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,6 +137,7 @@
 				8C377EF41ED8DC9A005251A9 /* CoJam.app */,
 				8C377F081ED8DC9A005251A9 /* CoJamTests.xctest */,
 				8C377F131ED8DC9A005251A9 /* CoJamUITests.xctest */,
+				8C6EB66F1EE4D38A00A0910D /* CoJamWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,6 +186,24 @@
 			name = LowLevelAudio;
 			sourceTree = "<group>";
 		};
+		8C6EB6701EE4D38A00A0910D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C6EB6711EE4D38A00A0910D /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C6EB6731EE4D38A00A0910D /* CoJamWidget */ = {
+			isa = PBXGroup;
+			children = (
+				8C6EB6741EE4D38A00A0910D /* TodayViewController.swift */,
+				8C6EB6761EE4D38A00A0910D /* MainInterface.storyboard */,
+				8C6EB6791EE4D38A00A0910D /* Info.plist */,
+			);
+			path = CoJamWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,10 +214,12 @@
 				8C377EF01ED8DC9A005251A9 /* Sources */,
 				8C377EF11ED8DC9A005251A9 /* Frameworks */,
 				8C377EF21ED8DC9A005251A9 /* Resources */,
+				8C6EB6801EE4D38A00A0910D /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8C6EB67B1EE4D38A00A0910D /* PBXTargetDependency */,
 			);
 			name = CoJam;
 			productName = CoJam;
@@ -201,6 +262,23 @@
 			productReference = 8C377F131ED8DC9A005251A9 /* CoJamUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8C6EB66E1EE4D38A00A0910D /* CoJamWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C6EB67F1EE4D38A00A0910D /* Build configuration list for PBXNativeTarget "CoJamWidget" */;
+			buildPhases = (
+				8C6EB66B1EE4D38A00A0910D /* Sources */,
+				8C6EB66C1EE4D38A00A0910D /* Frameworks */,
+				8C6EB66D1EE4D38A00A0910D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoJamWidget;
+			productName = CoJamWidget;
+			productReference = 8C6EB66F1EE4D38A00A0910D /* CoJamWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -229,6 +307,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8C377EF31ED8DC9A005251A9;
 					};
+					8C6EB66E1EE4D38A00A0910D = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = Q6BCWKCPY5;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 8C377EEF1ED8DC9A005251A9 /* Build configuration list for PBXProject "CoJam" */;
@@ -247,6 +330,7 @@
 				8C377EF31ED8DC9A005251A9 /* CoJam */,
 				8C377F071ED8DC9A005251A9 /* CoJamTests */,
 				8C377F121ED8DC9A005251A9 /* CoJamUITests */,
+				8C6EB66E1EE4D38A00A0910D /* CoJamWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -273,6 +357,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C6EB66D1EE4D38A00A0910D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C6EB6781EE4D38A00A0910D /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +398,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C6EB66B1EE4D38A00A0910D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C6EB6751EE4D38A00A0910D /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -318,6 +418,11 @@
 			isa = PBXTargetDependency;
 			target = 8C377EF31ED8DC9A005251A9 /* CoJam */;
 			targetProxy = 8C377F141ED8DC9A005251A9 /* PBXContainerItemProxy */;
+		};
+		8C6EB67B1EE4D38A00A0910D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C6EB66E1EE4D38A00A0910D /* CoJamWidget */;
+			targetProxy = 8C6EB67A1EE4D38A00A0910D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -336,6 +441,14 @@
 				8C377F011ED8DC9A005251A9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8C6EB6761EE4D38A00A0910D /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C6EB6771EE4D38A00A0910D /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -437,6 +550,7 @@
 		8C377F1D1ED8DC9A005251A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -457,6 +571,7 @@
 		8C377F1E1ED8DC9A005251A9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -531,6 +646,32 @@
 			};
 			name = Release;
 		};
+		8C6EB67D1EE4D38A00A0910D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = Q6BCWKCPY5;
+				INFOPLIST_FILE = CoJamWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.cojamlistening.CoJamWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		8C6EB67E1EE4D38A00A0910D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = Q6BCWKCPY5;
+				INFOPLIST_FILE = CoJamWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.cojamlistening.CoJamWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -569,6 +710,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		8C6EB67F1EE4D38A00A0910D /* Build configuration list for PBXNativeTarget "CoJamWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C6EB67D1EE4D38A00A0910D /* Debug */,
+				8C6EB67E1EE4D38A00A0910D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
