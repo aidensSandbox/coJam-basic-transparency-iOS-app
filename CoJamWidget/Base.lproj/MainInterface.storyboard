@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,8 +22,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rny-lt-xjy">
-                                <rect key="frame" x="16" y="5" width="288" height="70"/>
-                                <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="60" y="15" width="200" height="50"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="RhV-x4-Q7z"/>
+                                </constraints>
                                 <state key="normal" title="Tap here to chat!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -34,10 +36,9 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="rny-lt-xjy" secondAttribute="bottom" constant="5" id="LFd-1X-zML"/>
-                            <constraint firstItem="rny-lt-xjy" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="5" id="YLp-1i-Jcb"/>
-                            <constraint firstItem="rny-lt-xjy" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="thg-lC-bug"/>
-                            <constraint firstItem="rny-lt-xjy" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" id="xKZ-c6-nEV"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="rny-lt-xjy" secondAttribute="bottom" constant="15" id="LFd-1X-zML"/>
+                            <constraint firstItem="rny-lt-xjy" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="15" id="YLp-1i-Jcb"/>
+                            <constraint firstItem="rny-lt-xjy" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="x94-uR-jFf"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>

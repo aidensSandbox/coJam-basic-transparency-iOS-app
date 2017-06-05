@@ -6,6 +6,7 @@
 //  Copyright © 2017 Audesis. All rights reserved.
 //
 
+import AVFoundation
 import UIKit
 import NotificationCenter
 
@@ -14,9 +15,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var widgetAwarenessBtn: UIButton!
     
     var widgetOnAwareness = false
-    
+    var audioProcessor : AudioProcessor? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        audioProcessor = AudioProcessor()
+        audioProcessor?.pauseMusic = true;
+        audioProcessor?.surroundSound = true;
+        
         // Do any additional setup after loading the view from its nib.
     }
     
