@@ -119,12 +119,31 @@ static OSStatus playbackCallback(void *inRefCon,
         [self initializeAudio];
     }
     
+    //[UIAccelerometer sharedAccelerometer];
+    
     //[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions: AVAudioSessionCategoryOptionAllowBluetooth error:nil];
     //[[AVAudioSession sharedInstance] setActive:YES error:nil];
     //[[MPRemoteCommandCenter sharedCommandCenter].playCommand addTarget:self action:@selector(togglePlayCommand:)];
     //[[MPRemoteCommandCenter sharedCommandCenter].pauseCommand addTarget:self action:@selector(togglePauseCommand:)];
     //[[MPRemoteCommandCenter sharedCommandCenter].togglePlayPauseCommand addTarget:self action:@selector(togglePlayPauseCommand:)];
     NSLog(@"init Started");
+   /* CMMotionManager* motionManager;
+    if (motionManager ==nil) {
+        motionManager= [[CMMotionManager alloc]init];
+    }
+    
+    if ([motionManager isAccelerometerAvailable] == YES){
+        NSLog(@"isAccelerometerAvailable");
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [motionManager startAccelerometerUpdates];
+    
+    [motionManager startAccelerometerUpdatesToQueue:queue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+        NSLog(@"X: %i, Y: %i, Z: %i", accelerometerData.acceleration.x, accelerometerData.acceleration.y,accelerometerData.acceleration.z);
+    }];
+    }else{
+        NSLog(@"No isAccelerometerAvailable");
+    }*/
     
     /*UIViewController *objViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     
@@ -140,8 +159,70 @@ static OSStatus playbackCallback(void *inRefCon,
     
     [singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];*/
     //
+    /*[[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(volumeChanged:)
+                                                 name:@"AVSystemController_SystemVolumeDidChangeNotification"
+                                               object:nil];*/
+    //[[AVAudioSession sharedInstance] addObserver:self forKeyPath:@"outputVolume" options:NSKeyValueObservingOptionNew context:nil];
+
     return self;
 }
+/*- (void)volumeChanged:(NSNotification*)notification
+{
+    NSLog(@"volumeChanged");
+    if([[notification.userInfo objectForKey:@"AVSystemController_AudioVolumeChangeReasonNotificationParameter"] isEqualToString:@"ExplicitVolumeChange"])
+    {
+        float volume = [[[notification userInfo]
+                         objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"]
+                        floatValue];
+    }
+}*/
+
+/*- (void)accelerometer:(UIAccelerometer *)accelerometer
+        didAccelerate:(UIAcceleration *)acceleration
+{
+    NSLog(@"accelerometer");
+
+    if (pause)
+    {
+        return;
+    }
+    if (handModeOn == NO)
+    {
+        if(pocketFlag == NO)
+            return;
+    }
+    
+    
+    
+    //  float accelZ = 0.0;
+    //  float accelX = 0.0;
+    //  float accelY = 0.0;
+    
+    rollingX = (acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
+    rollingY = (acceleration.y * kFilteringFactor) + (rollingY * (1.0 - kFilteringFactor));
+    rollingZ = (acceleration.z * kFilteringFactor) + (rollingZ * (1.0 - kFilteringFactor));
+    
+    float accelX = acceleration.x - rollingX;
+    float accelY = acceleration.y - rollingY;
+    float accelZ = acceleration.z - rollingZ;
+    
+    if((-accelZ >= [senstivity floatValue] && timerFlag) || (-accelZ <= -[senstivity floatValue] && timerFlag)|| (-accelX >= [senstivity floatValue] && timerFlag) || (-accelX <= -[senstivity floatValue] && timerFlag) || (-accelY >= [senstivity floatValue] && timerFlag) || (-accelY <= -[senstivity floatValue] && timerFlag))
+    {
+        timerFlag = false;
+        addValueFlag = true;
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
+    }
+    
+    if(addValueFlag)
+    {
+        [self.accArray addObject:[NSNumber numberWithFloat:-accelX]];
+        [self.accArray addObject:[NSNumber numberWithFloat:-accelY]];
+        [self.accArray addObject:[NSNumber numberWithFloat:-accelZ]];
+    }
+}*/
+
+
 -(void)tap:(UITapGestureRecognizer*)sender{
     NSLog(@"tap:%@",sender);
 }

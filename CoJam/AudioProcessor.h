@@ -10,6 +10,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <CoreMotion/CMMotionManager.h>
 // return max value for given values
 #define max(a, b) (((a) > (b)) ? (a) : (b))
 // return min value for given values
