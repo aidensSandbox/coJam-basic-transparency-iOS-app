@@ -92,30 +92,12 @@ class ViewController: UIViewController {
             manager.deviceMotionUpdateInterval = motionUpdateInterval // seconds
             print("isDeviceMotionAvailable")
             manager.startDeviceMotionUpdates(to: OperationQueue(), withHandler: { [weak self] (data, error) in
-                // ...
-                //print("deviceMotion")
-                //print(String(format: "X: %.4f",(data?.userAcceleration.x)!))
-                //print(String(format: "Y: %.4f",(data?.userAcceleration.y)!))
-                //print(String(format: "Z: %.4f",(data?.userAcceleration.z)!))
-                //print(data?.userAcceleration.z)
                 
-                /*DispatchQueue.global(qos: .userInitiated).async {
-                    // Background Thread
-                    DispatchQueue.main.async {
-                        // Run UI Updates
-                        print(String(format: "X: %.4f",(data?.userAcceleration.x)!))
-                        print(String(format: "Y: %.4f",(data?.userAcceleration.y)!))
-                        print(String(format: "Z: %.4f",(data?.userAcceleration.z)!))
-                    }
-                }*/
                 DispatchQueue.global(qos: .background).async {
                     DispatchQueue.main.async {
-                        // do something
-                        //print(String(format: "X: %.4f",(data?.userAcceleration.x)!))
-                        //print(String(format: "Y: %.4f",(data?.userAcceleration.y)!))
-                        //print(String(format: "Z: %.4f",(data?.userAcceleration.z)!))
-                        
-                        
+                        // >>>>>>>
+                        // HERE IS THE TRICK FOR DOUBLE TAP
+                        //<<<<<<<<<
                         if (fabs((data?.userAcceleration.z)!) > Double(0.5)){
                             
                             // Check for double knock
