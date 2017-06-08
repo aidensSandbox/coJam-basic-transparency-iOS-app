@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     var window: UIWindow?
     
     let manager = CMMotionManager()
-    let motionUpdateInterval : Double = 0.2
+    let motionUpdateInterval : Double = 0.1
     var knockReset : Double = 2.0
     
     //let notificationCenter = NotificationCenter.defaultCenter()
@@ -131,7 +131,7 @@ class ViewController: UIViewController {
                         //print(String(format: "M-Y: %.4f",(data?.magneticField.y)!))
                         //print(String(format: "M-Z: %.4f",(data?.magneticField.z)!))
                         
-                        if (fabs((data?.userAcceleration.y)!) > Double(0.25)) && (fabs((data?.userAcceleration.z)!) < Double(0.5)){
+                        if (fabs((data?.userAcceleration.y)!) > Double(0.4)) && (fabs((data?.userAcceleration.z)!) < Double(0.2)){
                             
                             // Check for double knock
                             if self?.knocked == false {
