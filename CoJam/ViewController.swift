@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     var window: UIWindow?
     
     let manager = CMMotionManager()
-    let motionUpdateInterval : Double = 0.1
+    let motionUpdateInterval : Double = 0.2
     var knockReset : Double = 2.0
     
     //let notificationCenter = NotificationCenter.defaultCenter()
@@ -107,9 +107,9 @@ class ViewController: UIViewController {
                         //<<<<<<<<<
                         
                         //Read Accelerometer values (m/s^2)
-                        print(String(format: "A-X: %.4f",(data?.userAcceleration.x)!))
-                        print(String(format: "A-Y: %.4f",(data?.userAcceleration.y)!))
-                        print(String(format: "A-Z: %.4f",(data?.userAcceleration.z)!))
+                        //print(String(format: "A-X: %.4f",(data?.userAcceleration.x)!))
+                        //print(String(format: "A-Y: %.4f",(data?.userAcceleration.y)!))
+                        //print(String(format: "A-Z: %.4f",(data?.userAcceleration.z)!))
 
                         //Read Rotation Rate (Gyroscope) (rad/s)
                         //print(String(format: "G-X: %.4f",(data?.rotationRate.x)!))
@@ -117,7 +117,7 @@ class ViewController: UIViewController {
                         //print(String(format: "G-Z: %.4f",(data?.rotationRate.z)!))
                         
                         //Read attitude (Yaw, pitch, roll)
-                        //print(String(format: "Yaw: %.4f",(data?.attitude.yaw)!))
+                        print(String(format: "Yaw: %.4f",(data?.attitude.yaw)!))
                         //print(String(format: "Pitch: %.4f",(data?.attitude.pitch)!))
                         //print(String(format: "Roll: %.4f",(data?.attitude.roll)!))
                         
@@ -131,7 +131,8 @@ class ViewController: UIViewController {
                         //print(String(format: "M-Y: %.4f",(data?.magneticField.y)!))
                         //print(String(format: "M-Z: %.4f",(data?.magneticField.z)!))
                         
-                        if (fabs((data?.userAcceleration.y)!) > Double(0.4)) && (fabs((data?.userAcceleration.z)!) < Double(0.2)){
+                        //if (fabs((data?.userAcceleration.y)!) > Double(0.4)) && (fabs((data?.userAcceleration.z)!) < Double(0.2)){
+                        if (fabs((data?.attitude.yaw)!) > Double(0.8)){
                             
                             // Check for double knock
                             if self?.knocked == false {
