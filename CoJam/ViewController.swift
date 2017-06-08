@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     var window: UIWindow?
     
     let manager = CMMotionManager()
-    let motionUpdateInterval : Double = 0.05
+    let motionUpdateInterval : Double = 0.1
     var knockReset : Double = 2.0
     
     //let notificationCenter = NotificationCenter.defaultCenter()
@@ -93,26 +93,67 @@ class ViewController: UIViewController {
             print("isDeviceMotionAvailable")
             manager.startDeviceMotionUpdates(to: OperationQueue(), withHandler: { [weak self] (data, error) in
                 
+                // ...
+                //print("deviceMotion")
+                //print(String(format: "X: %.4f",(data?.userAcceleration.x)!))
+                //print(String(format: "Y: %.4f",(data?.userAcceleration.y)!))
+                //print(String(format: "Z: %.4f",(data?.userAcceleration.z)!))
+
+                
                 DispatchQueue.global(qos: .background).async {
                     DispatchQueue.main.async {
                         // >>>>>>>
-                        // HERE IS THE TRICK FOR DOUBLE TAP
+                        // !!!!MOTION SENSOR TRIGGER CODE GOES HERE!!!
                         //<<<<<<<<<
-                        if (fabs((data?.userAcceleration.z)!) > Double(0.5)){
+                        
+                        //Read Accelerometer values (m/s^2)
+                        //print(String(format: "A-X: %.4f",(data?.userAcceleration.x)!))
+                        print(String(format: "A-Y: %.4f",(data?.userAcceleration.y)!))
+                        //print(String(format: "A-Z: %.4f",(data?.userAcceleration.z)!))
+
+                        //Read Rotation Rate (Gyroscope) (rad/s)
+                        //print(String(format: "G-X: %.4f",(data?.rotationRate.x)!))
+                        //print(String(format: "G-Y: %.4f",(data?.rotationRate.y)!))
+                        //print(String(format: "G-Z: %.4f",(data?.rotationRate.z)!))
+                        
+                        //Read attitude (Yaw, pitch, roll)
+                        //print(String(format: "Yaw: %.4f",(data?.attitude.yaw)!))
+                        //print(String(format: "Pitch: %.4f",(data?.attitude.pitch)!))
+                        //print(String(format: "Roll: %.4f",(data?.attitude.roll)!))
+                        
+                        //Read gravity (phone's tilt and position)
+                        //print(String(format: "T-X: %.4f",(data?.gravity.x)!))
+                        //print(String(format: "T-Y: %.4f",(data?.gravity.y)!))
+                        //print(String(format: "T-Z: %.4f",(data?.gravity.z)!))
+                        
+                        //Read Magnetic field
+                        //print(String(format: "M-X: %.4f",(data?.magneticField.x)!))
+                        //print(String(format: "M-Y: %.4f",(data?.magneticField.y)!))
+                        //print(String(format: "M-Z: %.4f",(data?.magneticField.z)!))
+                        
+                        if (fabs((data?.userAcceleration.y)!) > Double(0.35)) && (fabs((data?.userAcceleration.z)!) < Double(0.2)){
                             
                             // Check for double knock
                             if self?.knocked == false {
                                 // First knock
                                 print("First Knock")
+                                //Read Accelerometer values
+                                print(String(format: "A-X: %.4f",(data?.userAcceleration.x)!))
+                                print(String(format: "A-Y: %.4f",(data?.userAcceleration.y)!))
+                                print(String(format: "A-Z: %.4f",(data?.userAcceleration.z)!))
+
                                 self?.knocked = true
                                 
                             }else{
                                 // Second knock
                                 print("Double Knocked")
                                 self?.knocked = false
-                                self?.knockReset = 2.0
                                 // Action:
-                                self?.doubleTapAction()
+                                self?.toggleAwareness()
+                                //self?.knockReset = 0.1
+                                self?.knockReset = 2.0
+                                print("Reset 2.0")
+                                
                             }
                             
                         }
@@ -124,7 +165,7 @@ class ViewController: UIViewController {
                         }else if self?.knocked == true {
                             self?.knocked = false
                             self?.knockReset = 2.0
-                            print("Reset")
+                            print("Reset 2.0")
                         }
                         
                     }
@@ -185,6 +226,21 @@ class ViewController: UIViewController {
     }
 
     func doubleTapAction() {
+        // do something cool here
+        print("doubleTapAction")
+        if onAwareness {
+            print("** onAwareness off **")
+            
+            //audioProcessor!.stop()
+            deactiveAwareness()
+        }else{
+            print("** onAwareness on **")
+            activeAwareness()
+            
+        }
+    }
+    
+    func toggleAwareness() {
         // do something cool here
         print("doubleTapAction")
         if onAwareness {
