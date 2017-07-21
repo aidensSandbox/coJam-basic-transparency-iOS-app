@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1EFB2C1F216C1B001ACD25 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB2B1F216C1B001ACD25 /* Account.swift */; };
+		4B1EFB381F216C3A001ACD25 /* CodeJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB301F216C3A001ACD25 /* CodeJam.swift */; };
+		4B1EFB391F216C3A001ACD25 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB311F216C3A001ACD25 /* Configs.swift */; };
+		4B1EFB3A1F216C3A001ACD25 /* Jam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB321F216C3A001ACD25 /* Jam.swift */; };
+		4B1EFB3B1F216C3A001ACD25 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB331F216C3A001ACD25 /* Login.swift */; };
+		4B1EFB3C1F216C3A001ACD25 /* NewRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB341F216C3A001ACD25 /* NewRoom.swift */; };
+		4B1EFB3D1F216C3A001ACD25 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB351F216C3A001ACD25 /* Settings.swift */; };
+		4B1EFB3E1F216C3A001ACD25 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB361F216C3A001ACD25 /* Signup.swift */; };
+		4B1EFB3F1F216C3A001ACD25 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB371F216C3A001ACD25 /* Users.swift */; };
+		4B1EFB411F216C72001ACD25 /* Facebook in Resources */ = {isa = PBXBuildFile; fileRef = 4B1EFB401F216C72001ACD25 /* Facebook */; };
+		4B1EFB431F216CF7001ACD25 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1EFB421F216CF7001ACD25 /* Parse.framework */; };
+		4B1EFB451F216CFB001ACD25 /* ParseLiveQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1EFB441F216CFB001ACD25 /* ParseLiveQuery.framework */; };
+		4B1EFB471F216D1C001ACD25 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1EFB461F216D1C001ACD25 /* ParseFacebookUtilsV4.framework */; };
+		4B54DC231F2263C700781894 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B54DC221F2263C700781894 /* FBSDKShareKit.framework */; };
+		4B54DC251F2263C900781894 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B54DC241F2263C900781894 /* FBSDKLoginKit.framework */; };
+		4B54DC271F2263CB00781894 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B54DC261F2263CB00781894 /* FBSDKCoreKit.framework */; };
+		58F557E199B6465A9256546B /* Pods_CoJam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B20BD567DF17BC3614B56DD /* Pods_CoJam.framework */; };
 		8C377EF81ED8DC9A005251A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C377EF71ED8DC9A005251A9 /* AppDelegate.swift */; };
 		8C377EFA1ED8DC9A005251A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C377EF91ED8DC9A005251A9 /* ViewController.swift */; };
 		8C377EFD1ED8DC9A005251A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C377EFB1ED8DC9A005251A9 /* Main.storyboard */; };
@@ -63,6 +80,26 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2835C5168983203445234437 /* Pods_CoJamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoJamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38708042755B23C613778548 /* Pods-CoJam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoJam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoJam/Pods-CoJam.debug.xcconfig"; sourceTree = "<group>"; };
+		4B1EFB2B1F216C1B001ACD25 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		4B1EFB2F1F216C3A001ACD25 /* CodeJam.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = CodeJam.entitlements; sourceTree = "<group>"; };
+		4B1EFB301F216C3A001ACD25 /* CodeJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeJam.swift; sourceTree = "<group>"; };
+		4B1EFB311F216C3A001ACD25 /* Configs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
+		4B1EFB321F216C3A001ACD25 /* Jam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jam.swift; sourceTree = "<group>"; };
+		4B1EFB331F216C3A001ACD25 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		4B1EFB341F216C3A001ACD25 /* NewRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoom.swift; sourceTree = "<group>"; };
+		4B1EFB351F216C3A001ACD25 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		4B1EFB361F216C3A001ACD25 /* Signup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		4B1EFB371F216C3A001ACD25 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		4B1EFB401F216C72001ACD25 /* Facebook */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Facebook; sourceTree = "<group>"; };
+		4B1EFB421F216CF7001ACD25 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../Library/Developer/Xcode/DerivedData/CoJam-fqsdqzfioxbwolgcwepjjgtopnju/Build/Products/Debug-iphonesimulator/Parse/Parse.framework"; sourceTree = "<group>"; };
+		4B1EFB441F216CFB001ACD25 /* ParseLiveQuery.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseLiveQuery.framework; path = "../../../Library/Developer/Xcode/DerivedData/CoJam-fqsdqzfioxbwolgcwepjjgtopnju/Build/Products/Debug-iphonesimulator/ParseLiveQuery/ParseLiveQuery.framework"; sourceTree = "<group>"; };
+		4B1EFB461F216D1C001ACD25 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = CoJam/Facebook/ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		4B54DC221F2263C700781894 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = CoJam/Facebook/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		4B54DC241F2263C900781894 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = CoJam/Facebook/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		4B54DC261F2263CB00781894 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = CoJam/Facebook/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		5B20BD567DF17BC3614B56DD /* Pods_CoJam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoJam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C377EF41ED8DC9A005251A9 /* CoJam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoJam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C377EF71ED8DC9A005251A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C377EF91ED8DC9A005251A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +128,9 @@
 		8CB7D28A1EE4ED7900F55896 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
 		8CB7D28B1EE4ED7900F55896 /* AudioProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioProcessor.h; sourceTree = "<group>"; };
 		8CB7D28E1EE4EDCD00F55896 /* CoJamWidget-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoJamWidget-Bridging-Header.h"; sourceTree = "<group>"; };
+		A49DBE0A1EFA3C2126DEC746 /* Pods_CoJamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoJamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B667DC91D606E023E983D297 /* Pods_CoJamWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoJamWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3A231F8653C23138AFC9038 /* Pods-CoJam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoJam.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoJam/Pods-CoJam.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +138,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B1EFB471F216D1C001ACD25 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				4B54DC271F2263CB00781894 /* FBSDKCoreKit.framework in Frameworks */,
+				4B54DC251F2263C900781894 /* FBSDKLoginKit.framework in Frameworks */,
+				4B54DC231F2263C700781894 /* FBSDKShareKit.framework in Frameworks */,
+				4B1EFB451F216CFB001ACD25 /* ParseLiveQuery.framework in Frameworks */,
+				4B1EFB431F216CF7001ACD25 /* Parse.framework in Frameworks */,
+				58F557E199B6465A9256546B /* Pods_CoJam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +182,7 @@
 				8C377F161ED8DC9A005251A9 /* CoJamUITests */,
 				8C6EB6701EE4D38A00A0910D /* Frameworks */,
 				8C377EF51ED8DC9A005251A9 /* Products */,
+				C45FF5F7C29BD9331BFE41E2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,6 +202,17 @@
 			children = (
 				8C377F251ED8DE35005251A9 /* LowLevelAudio */,
 				8C377EF71ED8DC9A005251A9 /* AppDelegate.swift */,
+				4B1EFB401F216C72001ACD25 /* Facebook */,
+				4B1EFB2F1F216C3A001ACD25 /* CodeJam.entitlements */,
+				4B1EFB301F216C3A001ACD25 /* CodeJam.swift */,
+				4B1EFB311F216C3A001ACD25 /* Configs.swift */,
+				4B1EFB321F216C3A001ACD25 /* Jam.swift */,
+				4B1EFB331F216C3A001ACD25 /* Login.swift */,
+				4B1EFB341F216C3A001ACD25 /* NewRoom.swift */,
+				4B1EFB351F216C3A001ACD25 /* Settings.swift */,
+				4B1EFB361F216C3A001ACD25 /* Signup.swift */,
+				4B1EFB371F216C3A001ACD25 /* Users.swift */,
+				4B1EFB2B1F216C1B001ACD25 /* Account.swift */,
 				8C377EF91ED8DC9A005251A9 /* ViewController.swift */,
 				8C377EFB1ED8DC9A005251A9 /* Main.storyboard */,
 				8C377EFE1ED8DC9A005251A9 /* Assets.xcassets */,
@@ -196,7 +255,17 @@
 		8C6EB6701EE4D38A00A0910D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B54DC261F2263CB00781894 /* FBSDKCoreKit.framework */,
+				4B54DC241F2263C900781894 /* FBSDKLoginKit.framework */,
+				4B54DC221F2263C700781894 /* FBSDKShareKit.framework */,
+				4B1EFB461F216D1C001ACD25 /* ParseFacebookUtilsV4.framework */,
+				4B1EFB441F216CFB001ACD25 /* ParseLiveQuery.framework */,
+				4B1EFB421F216CF7001ACD25 /* Parse.framework */,
 				8C6EB6711EE4D38A00A0910D /* NotificationCenter.framework */,
+				5B20BD567DF17BC3614B56DD /* Pods_CoJam.framework */,
+				A49DBE0A1EFA3C2126DEC746 /* Pods_CoJamTests.framework */,
+				2835C5168983203445234437 /* Pods_CoJamUITests.framework */,
+				B667DC91D606E023E983D297 /* Pods_CoJamWidget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -216,6 +285,15 @@
 			path = CoJamWidget;
 			sourceTree = SOURCE_ROOT;
 		};
+		C45FF5F7C29BD9331BFE41E2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				38708042755B23C613778548 /* Pods-CoJam.debug.xcconfig */,
+				E3A231F8653C23138AFC9038 /* Pods-CoJam.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,10 +301,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C377F1C1ED8DC9A005251A9 /* Build configuration list for PBXNativeTarget "CoJam" */;
 			buildPhases = (
+				E7A75285B9FF1601CBE04D21 /* [CP] Check Pods Manifest.lock */,
 				8C377EF01ED8DC9A005251A9 /* Sources */,
 				8C377EF11ED8DC9A005251A9 /* Frameworks */,
 				8C377EF21ED8DC9A005251A9 /* Resources */,
 				8C6EB6801EE4D38A00A0910D /* Embed App Extensions */,
+				19AB2010E7F075CC34B76221 /* [CP] Embed Pods Frameworks */,
+				1AFB0A5CB6E2E41FB38628FE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -355,6 +436,7 @@
 			files = (
 				8C377F021ED8DC9A005251A9 /* LaunchScreen.storyboard in Resources */,
 				8C377EFF1ED8DC9A005251A9 /* Assets.xcassets in Resources */,
+				4B1EFB411F216C72001ACD25 /* Facebook in Resources */,
 				8C377EFD1ED8DC9A005251A9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,12 +465,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		19AB2010E7F075CC34B76221 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoJam/Pods-CoJam-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1AFB0A5CB6E2E41FB38628FE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoJam/Pods-CoJam-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7A75285B9FF1601CBE04D21 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8C377EF01ED8DC9A005251A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B1EFB2C1F216C1B001ACD25 /* Account.swift in Sources */,
+				4B1EFB3B1F216C3A001ACD25 /* Login.swift in Sources */,
+				4B1EFB391F216C3A001ACD25 /* Configs.swift in Sources */,
+				4B1EFB381F216C3A001ACD25 /* CodeJam.swift in Sources */,
 				8C377F2B1ED8DE53005251A9 /* AudioProcessor.m in Sources */,
+				4B1EFB3A1F216C3A001ACD25 /* Jam.swift in Sources */,
+				4B1EFB3F1F216C3A001ACD25 /* Users.swift in Sources */,
+				4B1EFB3D1F216C3A001ACD25 /* Settings.swift in Sources */,
+				4B1EFB3E1F216C3A001ACD25 /* Signup.swift in Sources */,
+				4B1EFB3C1F216C3A001ACD25 /* NewRoom.swift in Sources */,
 				8C377EFA1ED8DC9A005251A9 /* ViewController.swift in Sources */,
 				8C377F2C1ED8DE53005251A9 /* TPCircularBuffer.c in Sources */,
 				8C377EF81ED8DC9A005251A9 /* AppDelegate.swift in Sources */,
@@ -564,12 +703,17 @@
 		};
 		8C377F1D1ED8DC9A005251A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38708042755B23C613778548 /* Pods-CoJam.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Q6BCWKCPY5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CoJam/Facebook",
+				);
 				INFOPLIST_FILE = CoJam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -585,12 +729,17 @@
 		};
 		8C377F1E1ED8DC9A005251A9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3A231F8653C23138AFC9038 /* Pods-CoJam.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Q6BCWKCPY5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CoJam/Facebook",
+				);
 				INFOPLIST_FILE = CoJam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
