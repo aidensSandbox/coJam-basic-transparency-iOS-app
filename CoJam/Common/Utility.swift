@@ -140,8 +140,18 @@ class Utility: NSObject {
         
         panelController.delegate = controller as! SRFSurfboardDelegate
         controller.present(panelController, animated: true, completion: nil)
-        
-        
+    }
+    
+    /**
+     Method to send analytics of user triggered mic.
+     */
+    class func sendSelfInterruptionAnalytics() {
+        let event = User.shared.awarenessMode ? AnalyticsEvent.selfInteruptionOn : AnalyticsEvent.selfInteruptionOff
+        let params = [
+            AnalyticsParameter.username: PFUser.current()!.username ?? "",
+            AnalyticsParameter.email: PFUser.current()!.email ?? ""
+        ]
+        Utility.sendEvent(name: event, param: params)
     }
 }
 

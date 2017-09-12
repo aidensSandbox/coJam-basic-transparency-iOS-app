@@ -1,30 +1,37 @@
 [
  {
- "text" : "WELCOME TO COJAM \nThe hub where headphone users effortlessly communicate with peers & friends.",
+ "title" : "WELCOME TO COJAM",
+ "text" : "\nThe hub that allows headphone users to effortlessly communicate with peers & friends.\n\nWe believe that music is life and it’s about time we can listen to it without hurting our communication!",
  "screen" : "Screen1"
  },
  {
- "text" : "DO IT WITH YOUR HEADPHONES ON \nMusic is life and it’s about time we can listen to music without hurting our communication! \nWe allow you to comfortably hear the outside without taking your headphones off or even pause your music. Tap your picture and sound from the outside amplifies through your headphones.",
+ "title" : "HEAR THE OUTSIDE WITH HEADPHONES ON",
+ "text" : "\nTap your picture and sound from the outside amplifies through your headphones.\n\nYou’ll comfortably hear the outside without taking your headphones off or even pausing your music, and much clearer than you would with your naked ear.",
  "screen" : "Screen2"
  },
  {
- "text" : "COJAM WITH A GROUP \nDon’t let your headphones get in the way of your teamwork or being there for loved ones. \nCreate a group then add friends or family around that you want to interrupt or get interrupted from. Even those who don’t use headphones can use it to interrupt you.",
+ "title" : "LET OTHERS GRAB YOUR ATTENTION",
+ "text" : "\nNo more “what?”, “Sorry?” or “Say that again...” when you have headphones on at the office or around your friends! They simply tap your picture on their CoJam app to lower your music and make you hear the outside to talk to you.\n\nYou’ll spare them all the waving, awkward shoulder tapping and throwing stuff at you. Win for everyone!",
  "screen" : "Screen3"
  },
  {
- "text" : "TAP THEM TO CHAT \nNo more waving at people, throwing stuff at them or tapping their shoulders. Whenever you need to interrupt a headphone user, you simply click their picture and talk and they’ll hear you through their headphones even better than they do with their naked ears.",
+ "title" : "CREATE OR JOIN A GROUP TO START",
+ "text" : "\nCreate a group to allow people around to talk to you when you have headphones on.\n\nYou can also add those who don’t use headphones to the group.",
  "screen" : "Screen4"
  },
  {
- "text" : "GO RED TO ZONE OUT \nGot a few hours before your deadline? Swipe your picture left to block out any interruption, and show everyone you’re busy. \nSwipe back right when you’re ready to be sociable again.",
+ "title" : "GO RED TO ZONE OUT",
+ "text" : "\nGot a few hours before your deadline? Swipe left on your picture to block out any interruption, and show everyone you’re busy.\n\nSwipe right when you’re ready to interact again.",
  "screen" : "Screen5"
  },
  {
- "text" : "CAN’T FIND FRIENDS? \nIf you can’t find your friends on the user list, you can simply invite them to download CoJam using the “Invite Friends” button at the bottom of the user list. \nYou can email them, message them or even post it on Facebook!",
+ "title" : "EASILY INVITE OTHERS TO COJAM",
+ "text" : "\nThe more CoJam users around you the longer you can keep your headphones on without hurting your communication.\n\nInvite your friends and peers to CoJam directly from the app by email, message, or a post on Facebook!",
  "screen" : "Screen6"
  },
  {
- "text" : "WE’RE ONE BUTTON AWAY \nWe would love to hear your feedback, good or bad and as many times as you want. Simply go to settings and tap “Send Feedback” to pour your heart out. \nTap the “Ask for help” button and we’ll reach out to you in no time to give you 1-on-1 support with anything.",
+ "title" : "TELL US WHAT TO ADD OR FIX",
+ "text" : "\nAs a beta tester, you will be shaping this app with every comment and feedback you give. We placed an instant feedback button in the settings for you. \n\nAlso, tap the “Ask for help” button and we’ll reach out to you shortly to give you 1-on-1 support with any issues.",
  "screen" : "Screen7",
  "button" : "Done!"
  }

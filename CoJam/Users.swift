@@ -187,6 +187,7 @@ class Users: UIViewController, UITableViewDelegate, UITableViewDataSource, UISea
                 self.addedUser = user
                 self.roomObj.add(user, forKey: ROOM_MEMBERS)
                 self.roomObj.saveInBackground()
+                self.sendUserAddedAnalytics(user: user)
                 self.closeWith(user: user)
             } else {
                 print("\(error!.localizedDescription)")
@@ -198,6 +199,20 @@ class Users: UIViewController, UITableViewDelegate, UITableViewDataSource, UISea
         Utility.showAlertWith(message: "\(user.username ?? "") has been added to this group.", type: Theme.success)
         self.delegate?.didAddedNewMember(self.addedUser)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    /**
+     Send user added to group analytics.
+     - Parameter user: The user which is added to the group.
+     */
+    fileprivate func sendUserAddedAnalytics(user: PFUser) {
+        let analyticsData = [
+            AnalyticsParameter.groupName: roomObj[ROOMS_NAME],
+            AnalyticsParameter.username: user.username ?? "",
+            AnalyticsParameter.email: user.email ?? ""
+        ]
+        Utility.sendEvent(name: AnalyticsEvent.addedToNewGroup, param: analyticsData)
     }
     
     // CREATE ROOM BUTTON -> SAVE IT TO PARSE DATABASE

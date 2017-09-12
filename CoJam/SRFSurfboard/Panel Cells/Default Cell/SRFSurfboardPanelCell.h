@@ -16,6 +16,12 @@
  */
 
 @property (weak, nonatomic) IBOutlet UILabel *textView;
+    
+    /**
+     *  An outlet for the title text view.
+     */
+    @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
+    
 
 /**
  *  An outlet for the image view.

@@ -38,10 +38,11 @@
 
 - (void)prepareForReuse
 {
-    
+    [super prepareForReuse];
     //  Set the title text.
-    //self.textView.text = self.panel.text;
-    self.textView.attributedText = [self customizeText:self.panel.text];//self.panel.text;
+    self.textView.text = self.panel.text;
+    self.labelTitle.text = self.panel.title;
+    //self.textView.text = [self customizeText:self.panel.text];
     
     //  Add the image, tinted
     self.imageView.image = self.panel.image;
@@ -79,6 +80,7 @@
     self.actionButton.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
     
     self.textView.textColor = self.tintColor;
+    self.labelTitle.textColor = self.tintColor;
     
     if(self.panel.showsDevice == YES)
     {
@@ -95,7 +97,7 @@
 /**
  Customize the title text.
  */
-- (NSAttributedString*) customizeText:(NSString*) text{
+- (NSString*) customizeText:(NSString*) text {
     NSArray* arrayStrings = [text componentsSeparatedByString:@"\n"];
     NSMutableAttributedString* attributedTitle = [[NSMutableAttributedString alloc] initWithString:text];
     NSInteger titleLength = [[arrayStrings firstObject] length];

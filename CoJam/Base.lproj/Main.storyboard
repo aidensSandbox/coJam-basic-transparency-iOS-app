@@ -607,7 +607,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tua-5L-Hkp">
-                                                <rect key="frame" x="30" y="335" width="315" height="44"/>
+                                                <rect key="frame" x="30" y="317" width="315" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="tua-5L-Hkp" secondAttribute="height" multiplier="315:44" id="jQO-hA-ZLO"/>
@@ -622,7 +622,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QM0-B2-l2c">
-                                                <rect key="frame" x="30" y="387" width="315" height="44"/>
+                                                <rect key="frame" x="30" y="369" width="315" height="44"/>
                                                 <color key="backgroundColor" red="0.1764705882" green="0.27058823529999998" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="QM0-B2-l2c" secondAttribute="height" multiplier="315:44" id="W46-mt-Eu4"/>
@@ -639,7 +639,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLX-ES-8eE" userLabel="Username View">
-                                                <rect key="frame" x="33" y="223" width="308" height="31"/>
+                                                <rect key="frame" x="33" y="205" width="308" height="31"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zLr-nT-vAk">
                                                         <rect key="frame" x="28" y="0.0" width="280" height="30"/>
@@ -683,7 +683,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSf-kQ-oLo" userLabel="Password View">
-                                                <rect key="frame" x="33" y="279" width="308" height="31"/>
+                                                <rect key="frame" x="33" y="261" width="308" height="31"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUt-6R-SrC">
                                                         <rect key="frame" x="28" y="0.0" width="280" height="30"/>
@@ -727,7 +727,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eS1-uE-VzF">
-                                                <rect key="frame" x="33" y="439" width="312" height="44"/>
+                                                <rect key="frame" x="33" y="421" width="312" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="eS1-uE-VzF" secondAttribute="height" multiplier="78:11" id="ozf-tN-M4y"/>
                                                 </constraints>
@@ -741,7 +741,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ya2-ma-dff">
-                                                <rect key="frame" x="125" y="483" width="125" height="35"/>
+                                                <rect key="frame" x="125" y="465" width="125" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="125" id="C89-5B-x6Q"/>
                                                     <constraint firstAttribute="height" constant="35" id="yb9-ox-PeM"/>
@@ -755,8 +755,8 @@
                                                     <action selector="resetPasswButt:" destination="1On-sU-fQ8" eventType="touchUpInside" id="cvN-Dy-5je"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep your headphones on and ask them to CoJam." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-2H-fuQ">
-                                                <rect key="frame" x="15" y="159" width="345" height="36"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do More With Your Headphones On." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-2H-fuQ">
+                                                <rect key="frame" x="15" y="159" width="345" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.39461016409999999" green="0.39461016409999999" blue="0.39461016409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -875,7 +875,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.1824207165" green="0.2145885287" blue="0.25577965559999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="next"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="oHb-o3-nC6" id="N7d-as-0hb"/>
                                                 </connections>
@@ -1530,7 +1530,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Tlb-NA-U9E" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="whz-ls-Qp3"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hmc-oI-D60">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Hmc-oI-D60">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1552,7 +1552,7 @@
             <objects>
                 <navigationController storyboardIdentifier="UsersNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3tf-0L-DBI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Szr-1w-Sz8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Szr-1w-Sz8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

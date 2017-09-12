@@ -16,7 +16,7 @@ let kSpaceBetweenCellRow = 10
 let kAwarenessIconBorderWidth = CGFloat(1.5)
 /*Audio*/
 let kDefaultAudioGain = 5
-let kMaxGainInHearVoices = 20
+let kMaxGainInHearVoices = 30
 let kMaxGainInHearEverything = 10
 
 /*Status messages*/
@@ -55,7 +55,7 @@ let kHelpMailSubject = "\(APP_NAME) - Help Needed"
 let kHelpMailBody = "Tell us what the problem is and we will contact you shortly to help you resolve it..."
 
 //MARK:- Invite
-let kMessageInviteText = "Hey, join me on the chat group I created on CoJam App and never let headphones hurt your communication with others again. Download the free app from their website \(APP_SITE). "
+let kMessageInviteText = "Hey, join me on the chat group I created on CoJam App and never let headphones hurt your communication with others again. Download the free app from their website \(APP_INVITE_URL). "
 
 //MARK:- Analytics
 /**
@@ -66,10 +66,16 @@ struct AnalyticsEvent {
     static let addedToNewGroup = "Added To New Group"
     static let foreGroundTime = "Foregorund Time"
     static let backGroundTime = "Background Time"
-    static let availableTime = "Available Time"
-    static let busyTime = "Busy Time"
-    static let changedStatus = "Changed Status"
-    static let userActive = "User_Active"
+    static let soloAvailableTime = "Solo Available Time"
+    static let soloBusyTime = "Solo Busy Time"
+    static let groupAvailableTime = "Group Available Time"
+    static let groupBusyTime = "Group Busy Time"
+    static let selfInteruptionOn = "Self Interruption On"
+    static let selfInteruptionOff = "Self Interruption Off"
+    static let userInterruptionOn = "User Interrruption On"
+    static let userInterruptionOff = "User Interrruption Off"
+    static let cojamAllOn = "CoJam All On"
+    static let cojamAllOff = "CoJam All Off"
 }
 
 struct AnalyticsParameter {
@@ -77,6 +83,7 @@ struct AnalyticsParameter {
     static let groupName = "groupName"
     static let email = "email"
     static let time = "time"
+    static let triggeringUsername = "tirggeredBy"
 }
 
 

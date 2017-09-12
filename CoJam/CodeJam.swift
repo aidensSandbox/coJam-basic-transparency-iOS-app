@@ -105,8 +105,8 @@ class CodeJam: UIViewController,
                 }
             })
             
-            User.shared.audioProcessor?.surroundSound = UserDefaults.standard.value(forKey: kSurroundVoice) as? Bool ?? false
-            User.shared.audioProcessor?.pauseMusic = UserDefaults.standard.value(forKey: kPlayMusic) as? Bool ?? false
+            User.shared.audioProcessor?.surroundSound = UserDefaults.standard.value(forKey: kSurroundVoice) as? Bool ?? true
+            User.shared.audioProcessor?.pauseMusic = UserDefaults.standard.value(forKey: kPlayMusic) as? Bool ?? true
             
             if(User.shared.currentRoom != nil){
                 self.joinInRoom()
@@ -129,14 +129,11 @@ class CodeJam: UIViewController,
     }
     
     /**
-     This method is called when user initial login.
+     This method is called when user initial login. Used to show the tutorial screen
      */
     @objc fileprivate func checkAndShowTutorial() {
         //Check to is tutorial already
-//        let isTutorialCompleted = UserDefaults.standard.bool(forKey: kTutorialCompletedKey)
-//        if !isTutorialCompleted {
         Utility.showTutorialScreen(on: self)
-        //}
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -236,7 +233,6 @@ class CodeJam: UIViewController,
         
         saveUserLimbo(status: status)
         NotificationCenter.default.post(name: kNotificationHeadphoneChanged, object: nil)
-        
     }
     
     /**
@@ -338,13 +334,6 @@ class CodeJam: UIViewController,
     
     fileprivate func invitationAcceptFor(room: PFObject) {
         if let currentUser = PFUser.current() {
-            let analyticsData = [
-                AnalyticsParameter.groupName: room[ROOMS_NAME],
-                AnalyticsParameter.username: PFUser.current()!.username ?? "",
-                AnalyticsParameter.email: PFUser.current()!.email ?? ""
-            ]
-            Utility.sendEvent(name: AnalyticsEvent.addedToNewGroup, param: analyticsData)
-            
             room.add(currentUser, forKey: ROOM_MEMBERS)
             room.saveInBackground()
         }
@@ -470,6 +459,8 @@ class CodeJam: UIViewController,
             self.profileImg.transform = CGAffineTransform.identity
             self.viewActivityContainer?.transform = self.profileImg.transform
         })
+        
+        Utility.sendSelfInterruptionAnalytics()
     }
     
     /**
@@ -577,10 +568,15 @@ class CodeJam: UIViewController,
         }
     }
     
+    //MARK:- ANALYTICS
     /**
      This function is used to send the user available and busy state time
+     - Parameter isCurrentStatus: This parameter is used to determine, should pass the current status or not.
      */
-    fileprivate func sendUserStatusAnalytics(isLogout: Bool = false) {
+    fileprivate func sendUserStatusAnalytics(isCurrentStatus: Bool = false) {
+        if User.shared.isUserStatusLimbo {
+            return
+        }
         if User.shared.status == STATUS_AVAILABLE {
             // send busy time if not logout else available time.
             // his/her previous state is busy.
@@ -591,7 +587,7 @@ class CodeJam: UIViewController,
                     AnalyticsParameter.time: Utility.stringFromTime(interval: timeInterval),
                     AnalyticsParameter.username: PFUser.current()!.username ?? ""
                 ]
-                let event = isLogout ? AnalyticsEvent.availableTime : AnalyticsEvent.busyTime
+                let event = isCurrentStatus ? AnalyticsEvent.soloAvailableTime : AnalyticsEvent.soloBusyTime
                 Utility.sendEvent(name: event, value: timeInterval/60, param: data)
             }
             
@@ -606,19 +602,19 @@ class CodeJam: UIViewController,
                     AnalyticsParameter.time: Utility.stringFromTime(interval: timeInterval),
                     AnalyticsParameter.username: PFUser.current()!.username ?? ""
                 ]
-                let event = isLogout ? AnalyticsEvent.busyTime : AnalyticsEvent.availableTime
+                let event = isCurrentStatus ? AnalyticsEvent.soloBusyTime : AnalyticsEvent.soloAvailableTime
                 Utility.sendEvent(name: event, value: timeInterval/60, param: data)
             }
         }
         // reset the new time
-        if !isLogout {
+        if !isCurrentStatus {
             PFUser.current()![USER_STATUS_TIME] = Date()
             PFUser.current()?.saveInBackground()
         }
     }
     
     /**
-     This method is used to send the current analytics when the user enter Limbo mode.
+     This method is used to send the current analytics when the user enter to Limbo mode.
      */
     fileprivate func sendAnalyticsWhenUserLimbo() {
         if User.shared.status == STATUS_AVAILABLE {
@@ -628,7 +624,8 @@ class CodeJam: UIViewController,
                     AnalyticsParameter.time: Utility.stringFromTime(interval: timeInterval),
                     AnalyticsParameter.username: PFUser.current()!.username ?? ""
                 ]
-                Utility.sendEvent(name: AnalyticsEvent.availableTime, value: timeInterval/60, param: data)
+                let event = User.shared.currentRoom == nil ? AnalyticsEvent.soloAvailableTime : AnalyticsEvent.groupAvailableTime
+                Utility.sendEvent(name: event, value: timeInterval/60, param: data)
             }
         }
         else{
@@ -638,7 +635,8 @@ class CodeJam: UIViewController,
                     AnalyticsParameter.time: Utility.stringFromTime(interval: timeInterval),
                     AnalyticsParameter.username: PFUser.current()!.username ?? ""
                 ]
-                Utility.sendEvent(name: AnalyticsEvent.busyTime, value: timeInterval/60, param: data)
+                let event = User.shared.currentRoom == nil ? AnalyticsEvent.soloBusyTime : AnalyticsEvent.groupBusyTime
+                Utility.sendEvent(name: event, value: timeInterval/60, param: data)
             }
         }
         
@@ -683,7 +681,7 @@ class CodeJam: UIViewController,
         
         let ok = UIAlertAction(title: "Logout", style: .default, handler: { (action) -> Void in
             self.showHUD()
-            self.sendUserStatusAnalytics(isLogout: true)
+            self.sendUserStatusAnalytics(isCurrentStatus: true)
             self.removeNotification()
             self.resetUser()
             // reset the new time
@@ -817,6 +815,14 @@ class CodeJam: UIViewController,
         updatedUser[USER_CURRENTROOM] = User.shared.currentRoom
         updatedUser.saveInBackground { (success, error) -> Void in
             if error == nil {
+                //Send room enter analytics SOLO STATE.
+                self.sendUserStatusAnalytics(isCurrentStatus: true)
+                /*Reset the time while entering the group.*/
+                if !User.shared.isUserStatusLimbo {
+                    PFUser.current()?.setObject(Date(), forKey: USER_STATUS_TIME)
+                    PFUser.current()?.saveInBackground()
+                }
+                
                 self.joinInRoom()
             } else {
                 print(error?.localizedDescription ?? "")

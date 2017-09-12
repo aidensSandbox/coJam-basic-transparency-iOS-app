@@ -208,6 +208,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //ONLINE
         scheduleOnlineTimer()
         
+        //SETTING APP ENTER FORGROUND TIME
+        forgroundTime = Date()
+        
         return true
     }
     
@@ -283,12 +286,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        forgroundTime = Date()
         FBSDKAppEvents.activateApp()
-        
-        // Send the background time
-        sendBackgroundTime()
-        backgroundTime = nil
         
         let installation = PFInstallation.current()
         print("BADGE: \(installation!.badge)")
@@ -312,10 +310,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        // send the forground time
-        sendForgroundTime()
-        forgroundTime = nil
-        
         /*
         myTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self,
                                        selector: #selector(self.timerMethod(sender:)), userInfo: nil, repeats: true)
@@ -333,17 +327,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         //self.endBackgroundTask()
+        
         backgroundTime = Date()
+        // send Analytics: forground time
+        sendForgroundTime()
+        forgroundTime = nil
         UserDefaults.standard.setValue(backgroundTime, forKey: kApplicationBackgroundTime)
         UserDefaults.standard.synchronize()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        forgroundTime = Date()
+        // Send Analytics: background time
+        sendBackgroundTime()
+        backgroundTime = nil
+        print("applicationWillEnterForeground")
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:
+        sendBackgroundTime()
+        backgroundTime = nil
     }
     
     
@@ -353,8 +357,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      */
     func sendBackgroundTime() {
         backgroundTime = UserDefaults.standard.object(forKey: kApplicationBackgroundTime) as? Date
-        if let bgTime = backgroundTime {
-            print("BackgroundTime: ", backgroundTime)
+        if let bgTime = backgroundTime, PFUser.current() != nil {
             let timeDifference = Date().timeIntervalSince(bgTime)
             let data = [
                 AnalyticsParameter.time: Utility.stringFromTime(interval: timeDifference),
@@ -368,7 +371,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      This method is used to send foreground time
      */
     func sendForgroundTime() {
-        if let fgTime = forgroundTime {
+        if let fgTime = forgroundTime, PFUser.current() != nil {
             let timeDifference = Date().timeIntervalSince(fgTime)
             let data = [
                 AnalyticsParameter.time: Utility.stringFromTime(interval: timeDifference),

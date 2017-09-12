@@ -90,8 +90,8 @@ class Account: UIViewController,
             switchPlayMusic.isEnabled = true
         }
         
-        switchSurroundVoice.isOn = (User.shared.audioProcessor?.surroundSound ?? false)
-        switchPlayMusic.isOn = (User.shared.audioProcessor?.pauseMusic ?? false)
+        switchSurroundVoice.isOn = (User.shared.audioProcessor?.surroundSound ?? true)
+        switchPlayMusic.isOn = (User.shared.audioProcessor?.pauseMusic ?? true)
     }
     
     /**

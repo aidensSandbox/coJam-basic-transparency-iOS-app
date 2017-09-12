@@ -25,6 +25,7 @@
 
     if (self)
     {
+        _title = configuration[@"title"];
         _text = configuration[@"text"];
         _image = [[UIImage imageNamed:configuration[@"image"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         

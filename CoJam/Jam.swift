@@ -344,28 +344,33 @@ class Jam: UIViewController,
         }
         else if User.shared.status == STATUS_AVAILABLE {
             currentHeaderIndex = 0
-            self.profileImg.layer.borderColor = UIColor.green.cgColor
-            self.labelStatus.text = availableTitle.capitalized
-            self.labelStatusMessage.text = socialInfoMessage
-            self.labelStatusMessage.updateConstraintsIfNeeded()
-            
-            if animate {
-                UIView.animate(withDuration: TimeInterval(1.0), animations: {
-                    self.viewStatusInfoMessage.alpha = 1
-                })
+            DispatchQueue.main.async {
+                self.profileImg.layer.borderColor = UIColor.green.cgColor
+                self.labelStatus.text = availableTitle.capitalized
+                self.labelStatusMessage.text = socialInfoMessage
+                self.labelStatusMessage.updateConstraintsIfNeeded()
+                
+                if animate {
+                    UIView.animate(withDuration: TimeInterval(1.0), animations: {
+                        self.viewStatusInfoMessage.alpha = 1
+                    })
+                }
             }
+            
             
         } else{
             currentHeaderIndex = 1
-            self.profileImg.layer.borderColor = UIColor.red.cgColor
-            self.labelStatus.text = busyTitle.capitalized
-            self.labelStatusMessage.text = busyInfoMessage
-            self.labelStatusMessage.updateConstraintsIfNeeded()
-            
-            if animate {
-                UIView.animate(withDuration: TimeInterval(1.0), animations: {
-                    self.viewStatusInfoMessage.alpha = 1
-                })
+            DispatchQueue.main.async {
+                self.profileImg.layer.borderColor = UIColor.red.cgColor
+                self.labelStatus.text = busyTitle.capitalized
+                self.labelStatusMessage.text = busyInfoMessage
+                self.labelStatusMessage.updateConstraintsIfNeeded()
+                
+                if animate {
+                    UIView.animate(withDuration: TimeInterval(1.0), animations: {
+                        self.viewStatusInfoMessage.alpha = 1
+                    })
+                }
             }
         }
         setRoomAwarenessDispaly()
@@ -476,35 +481,38 @@ class Jam: UIViewController,
          This is used to reset the forced awareness.
          FORCED_AWARENESS_OFF set to true when group is in CoJam mode and need to disable the awareness.
          */
-        _ = try? PFUser.current()?.fetch()
-        let forcedAwareness = PFUser.current()![FORCED_AWARENESS_OFF] as? Bool ?? false
-        let roomAwareness = codejamObj[AWARENESS] as? Bool ?? false
-        if !forcedAwareness && roomAwareness {
-            PFUser.current()?[FORCED_AWARENESS_OFF] = true
-            PFUser.current()?.saveInBackground()
-        }
-        //Reset the triggeredBy user
-        PFUser.current()?["triggeredBy"] = NSNull()
-        updateCurrentUserAwareness()
-        
-        var enabledMembers: [PFUser] = self.codejamObj[ROOM_MEMBERS_AWARENESS_ENABLED] as? [PFUser] ?? []
-        if enabledMembers.contains(where: { (members) -> Bool in
-            return members.objectId! == PFUser.current()!.objectId!
-        }) {
-            if let itemIndex = enabledMembers.index(where: { (user: PFUser) -> Bool in
-                return user.objectId! == PFUser.current()!.objectId!
-            }) {
-                enabledMembers.remove(at: itemIndex)
-                self.codejamObj[ROOM_MEMBERS_AWARENESS_ENABLED] = enabledMembers
-                self.codejamObj.saveInBackground()
+        PFUser.current()?.fetchInBackground(block: { (object, error) in
+            
+            let forcedAwareness = PFUser.current()![FORCED_AWARENESS_OFF] as? Bool ?? false
+            let roomAwareness = self.codejamObj[AWARENESS] as? Bool ?? false
+            if !forcedAwareness && roomAwareness {
+                PFUser.current()?[FORCED_AWARENESS_OFF] = true
+                PFUser.current()?.saveInBackground()
             }
-        }
-        profileImg.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        viewContainerIndicator.transform = profileImg.transform
-        UIView.animate(withDuration: TimeInterval(0.5), animations: {
-            self.profileImg.transform = CGAffineTransform.identity
+            //Reset the triggeredBy user
+            PFUser.current()?["triggeredBy"] = NSNull()
+            self.updateCurrentUserAwareness()
+            
+            var enabledMembers: [PFUser] = self.codejamObj[ROOM_MEMBERS_AWARENESS_ENABLED] as? [PFUser] ?? []
+            if enabledMembers.contains(where: { (members) -> Bool in
+                return members.objectId! == PFUser.current()!.objectId!
+            }) {
+                if let itemIndex = enabledMembers.index(where: { (user: PFUser) -> Bool in
+                    return user.objectId! == PFUser.current()!.objectId!
+                }) {
+                    enabledMembers.remove(at: itemIndex)
+                    self.codejamObj[ROOM_MEMBERS_AWARENESS_ENABLED] = enabledMembers
+                    self.codejamObj.saveInBackground()
+                }
+            }
+            self.profileImg.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             self.viewContainerIndicator.transform = self.profileImg.transform
+            UIView.animate(withDuration: TimeInterval(0.5), animations: {
+                self.profileImg.transform = CGAffineTransform.identity
+                self.viewContainerIndicator.transform = self.profileImg.transform
+            })
         })
+        
     }
     
     fileprivate func updateCurrentUserAwareness() {
@@ -528,6 +536,8 @@ class Jam: UIViewController,
                 self.pushEvent(event: "refresh")
             }
         }
+        
+        Utility.sendSelfInterruptionAnalytics()
     }
     
     
@@ -568,13 +578,20 @@ class Jam: UIViewController,
         buttonCoJamAll.isUserInteractionEnabled = false
         PFCloud.callFunction(inBackground: "cojamAll", withParameters: params) { (response, error) in
             self.buttonCoJamAll.isUserInteractionEnabled = true
+            DispatchQueue.main.async {
+                self.activityIndicatorCoJamAll.stopAnimating()
+            }
             if error == nil {
-                print(response)
+                //print(response)
+                //Cojam All Analytics.
+                let event = awareness ? AnalyticsEvent.cojamAllOn : AnalyticsEvent.cojamAllOff
+                let params = [
+                    AnalyticsParameter.username: PFUser.current()!.username ?? "",
+                    AnalyticsParameter.email: PFUser.current()!.email ?? ""
+                ]
+                Utility.sendEvent(name: event, param: params)
             }
             else {
-                DispatchQueue.main.async {
-                    self.activityIndicatorCoJamAll.stopAnimating()
-                }
                 print(error)
             }
         }
@@ -587,7 +604,6 @@ class Jam: UIViewController,
     func validateUserTriggerStatus()
     {
 
-        //_ = try? PFUser.current()?.fetch()
         let result = Bool(self.codejamObj[AWARENESS] as? NSNumber ?? 0)
         var memberAwareness = false
         /**Members whose awareness enabled in the current room.*/
@@ -600,6 +616,7 @@ class Jam: UIViewController,
         else {
             memberAwareness = false
         }
+        _ = try? PFUser.current()?.fetchIfNeeded()
         let userAwareness = Bool(PFUser.current()![AWARENESS] as? NSNumber ?? 0)
         
         self.roomAwarenessMode = (result || userAwareness || memberAwareness) && Utility.isHeadphoneConnected()
@@ -746,6 +763,9 @@ class Jam: UIViewController,
                 self.dismiss(animated: true, completion: nil)
             }
         }
+        
+        //Analytics: Group Available or Busy time.
+        sendUserStatusAnalytics(isCurrentState: true)
     }
 
     //let CODEJAM_INVITE_CLASS_NAME = "CodeJamInvite"
@@ -1049,6 +1069,7 @@ class Jam: UIViewController,
         }
         else if usersArray.count > 0 && indexPath.row != 0 {
             let user = usersArray[(indexPath as NSIndexPath).row - 1] as! PFUser
+            user.fetchInBackground()
             let imageFile = user[USER_AVATAR] as? PFFile
             cell.setProfile(image: imageFile)
             cell.labelUsername?.text = user.username
@@ -1138,8 +1159,15 @@ class Jam: UIViewController,
                         if error == nil {
                             cell.setRooom(awareness: self.getTriggerStatus(user: selectedUser))
                             self.validateAndReleaseTriggerCurrentUserAwareness()
+                            
+                            //Tiggering analytics: remove other user
+                            let params: [String: Any] = [
+                                AnalyticsParameter.username: selectedUser.username ?? "",
+                                AnalyticsParameter.email: selectedUser.email ?? "",
+                                AnalyticsParameter.triggeringUsername: PFUser.current()!.username ?? ""
+                            ]
+                            Utility.sendEvent(name: AnalyticsEvent.userInterruptionOff, param: params)
                         }
-                        
                     })
                     
 //                    self.checkAndTriggerCurrentUser(isTriggering: false)
@@ -1155,6 +1183,14 @@ class Jam: UIViewController,
                     cell.isDataSaving = false
                     if error == nil {
                         cell.setRooom(awareness: self.getTriggerStatus(user: selectedUser))
+                        
+                        //Tiggering analytics: add other user
+                        let params: [String: Any] = [
+                            AnalyticsParameter.username: selectedUser.username ?? "",
+                            AnalyticsParameter.email: selectedUser.email ?? "",
+                            AnalyticsParameter.triggeringUsername: PFUser.current()!.username ?? ""
+                        ]
+                        Utility.sendEvent(name: AnalyticsEvent.userInterruptionOn, param: params)
                     }
                 })
                 
@@ -1219,10 +1255,15 @@ extension Jam {
         }
     }
     
+    //MARK:- ANALYTICS
     /**
      This function is used to send the user available and busy state time
+     - Parameter isCurrentState: control variable to should send current state or previous state.
      */
-    fileprivate func sendUserStatusAnalytics() {
+    fileprivate func sendUserStatusAnalytics(isCurrentState: Bool = false) {
+        if User.shared.isUserStatusLimbo {
+            return
+        }
         if User.shared.status == STATUS_AVAILABLE {
             // send busy time
             // his/her previous state is busy.
@@ -1232,9 +1273,9 @@ extension Jam {
                     AnalyticsParameter.time: Utility.stringFromTime(interval: timeInterval),
                     AnalyticsParameter.username: PFUser.current()!.username ?? ""
                 ]
-                Utility.sendEvent(name: AnalyticsEvent.busyTime, value: timeInterval/60, param: data)
+                let event = isCurrentState ? AnalyticsEvent.groupAvailableTime : AnalyticsEvent.groupBusyTime
+                Utility.sendEvent(name: event, value: timeInterval/60, param: data)
             }
-            
         }
         else{
             // send available time
@@ -1245,12 +1286,14 @@ extension Jam {
                     AnalyticsParameter.time: Utility.stringFromTime(interval: timeInterval),
                     AnalyticsParameter.username: PFUser.current()!.username ?? ""
                 ]
-                Utility.sendEvent(name: AnalyticsEvent.availableTime, value: timeInterval/60, param: data)
+                let event = isCurrentState ? AnalyticsEvent.groupBusyTime : AnalyticsEvent.groupAvailableTime
+                Utility.sendEvent(name: event, value: timeInterval/60, param: data)
             }
         }
-        // reset the new time
+        // reset the new time.
         PFUser.current()![USER_STATUS_TIME] = Date()
         PFUser.current()?.saveInBackground()
+        
     }
 }
 
