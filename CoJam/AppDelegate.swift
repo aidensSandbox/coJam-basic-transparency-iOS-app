@@ -21,11 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let motionMgr = CMMotionManager()
     var notificationShown = false
+    var forgroundTime: Date?
+    var backgroundTime: Date?
+    
     
     var backgroundTaskIdentifier: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     
     var myTimer: Timer?
     var notificationTimer: Timer?
+    var onlineTimer: Timer?
     
     func isMultitaskingSupported() -> Bool
     {
@@ -117,6 +121,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    //Mark:- Online
+    /**
+     This method initialize and schedule timer to ping user to server. This helps to know the user is online.
+     */
+    func scheduleOnlineTimer() {
+        if onlineTimer == nil {
+            updateOnlineStatus()
+        }
+        onlineTimer = Timer.scheduledTimer(timeInterval: REFRESH_TIME, target: self,
+                                           selector: #selector(self.updateOnlineStatus), userInfo: nil, repeats: true)
+    }
+    
+    /**
+     This method is used to reset and invalidate onlineTimer.
+     */
+    func resetOnlineTimer() {
+        onlineTimer?.invalidate()
+        onlineTimer = nil
+    }
+    
+    /**
+     This method make network request to show user is alive.
+     Ping to the server.
+     */
+    func updateOnlineStatus() {
+        if PFUser.current() == nil {
+            return
+        }
+        PFCloud.callFunction(inBackground: "stayAlive", withParameters: nil) { (response, error) in
+            if error != nil {
+                print("PingError: ", error?.localizedDescription ?? "")
+            }
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         
@@ -135,7 +174,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Live Query
         
         // User Status
-        
         
         
         // REGISTER FOR PUSH NOTIFICATIONS
@@ -167,6 +205,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else { /* Fallback on earlier versions */ }
         
         
+        //ONLINE
+        scheduleOnlineTimer()
         
         return true
     }
@@ -237,16 +277,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
-    
-    
     // MARK: - DELEGATES FOR FACEBOOK LOGIN
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        
+        forgroundTime = Date()
         FBSDKAppEvents.activateApp()
+        
+        // Send the background time
+        sendBackgroundTime()
+        backgroundTime = nil
         
         let installation = PFInstallation.current()
         print("BADGE: \(installation!.badge)")
@@ -262,9 +304,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    
-    
-    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -273,21 +312,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
+        // send the forground time
+        sendForgroundTime()
+        forgroundTime = nil
+        
+        /*
         myTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self,
                                        selector: #selector(self.timerMethod(sender:)), userInfo: nil, repeats: true)
-        
+        */
+ 
         
         backgroundTaskIdentifier = application.beginBackgroundTask(expirationHandler: {
             self.endBackgroundTask()
         })
-        
-        
+        print("--- APPLICATION ENTERED INACTIVE ---")
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        print("--- APPLICATION ENTERED BACKGROUD ---")
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        self.endBackgroundTask()
+        //self.endBackgroundTask()
+        backgroundTime = Date()
+        UserDefaults.standard.setValue(backgroundTime, forKey: kApplicationBackgroundTime)
+        UserDefaults.standard.synchronize()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -298,6 +346,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    
+    //MARK:- ANALYTICS
+    /**
+     This method is used to send background time
+     */
+    func sendBackgroundTime() {
+        backgroundTime = UserDefaults.standard.object(forKey: kApplicationBackgroundTime) as? Date
+        if let bgTime = backgroundTime {
+            print("BackgroundTime: ", backgroundTime)
+            let timeDifference = Date().timeIntervalSince(bgTime)
+            let data = [
+                AnalyticsParameter.time: Utility.stringFromTime(interval: timeDifference),
+                AnalyticsParameter.username: PFUser.current()?.username ?? ""
+            ]
+            Utility.sendEvent(name: AnalyticsEvent.backGroundTime, value: timeDifference/60, param: data)
+        }
+    }
+    
+    /**
+     This method is used to send foreground time
+     */
+    func sendForgroundTime() {
+        if let fgTime = forgroundTime {
+            let timeDifference = Date().timeIntervalSince(fgTime)
+            let data = [
+                AnalyticsParameter.time: Utility.stringFromTime(interval: timeDifference),
+                AnalyticsParameter.username: PFUser.current()?.username ?? ""
+            ]
+            Utility.sendEvent(name: AnalyticsEvent.foreGroundTime, value:timeDifference/60, param: data)
+        }
+    }
     
 }
 

@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (4.5.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
   - Bolts-Swift (1.3.0)
   - Bolts/Tasks (1.8.4)
   - Parse (1.14.4):
@@ -8,17 +11,23 @@ PODS:
     - Parse (~> 1.14.2)
     - Starscream (= 2.0.3)
   - Starscream (2.0.3)
+  - SwiftMessages (3.4.0)
 
 DEPENDENCIES:
+  - AlamofireImage (~> 3.2)
   - ParseLiveQuery
+  - SwiftMessages
 
 SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Bolts-Swift: fa98d1b59fc1acea9b21a21306dcdca1c85e3737
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseLiveQuery: 38fb42e4b8611ecfcb199d47e48aeaf6879f8560
   Starscream: 3fdd5c277e57cca6b5c406d274e3f34a7c88f2ce
+  SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
 
-PODFILE CHECKSUM: 54615af68c6be0ccba6ae4c72aa071b49097f2e4
+PODFILE CHECKSUM: 4699a9001375cbd314d73387bc547840072c7632
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

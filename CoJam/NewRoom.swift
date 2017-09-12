@@ -90,6 +90,7 @@ func imagePickerController(_ picker: UIImagePickerController, didFinishPickingIm
     
         // Save PFUser as a Pointer
         roomsClass[ROOMS_USER_POINTER] = currentUser
+        roomsClass.add(currentUser!, forKey: ROOM_MEMBERS)
     
         // Save data
         roomsClass[ROOMS_NAME] = nameTxt.text!.uppercased()
@@ -104,6 +105,13 @@ func imagePickerController(_ picker: UIImagePickerController, didFinishPickingIm
         // Saving block
         roomsClass.saveInBackground { (success, error) -> Void in
             if error == nil {
+                
+                let analyticsData = [
+                    AnalyticsParameter.groupName: roomsClass[ROOMS_NAME],
+                    AnalyticsParameter.username: PFUser.current()!.username ?? "",
+                    AnalyticsParameter.email: PFUser.current()!.email ?? ""
+                ]
+                Utility.sendEvent(name: AnalyticsEvent.newGroup, param: analyticsData)
                 self.simpleAlert("Your new room has been created!")
                 self.hideHUD()
                 self.dismiss(animated: true, completion: nil)

@@ -11,7 +11,8 @@ import UIKit
 import ParseLiveQuery
 
 // EDIT THE RED STRING BELOW ACCORDINGLY TO THE NEW NAME YOU'LL GIVE TO THIS APP
-let APP_NAME = "CodeJam"
+let APP_NAME = "CoJam"
+let APP_SITE = "https://audesis.com/"
 
 
 // YOU CAN CHANGE THE VALUE OF THE MAX. DURATION OF A RECORDING (PLEASE NOTE THAT HIGHER VALUES MAY AFFET THE LOADING TIME OF POSTS)
@@ -20,7 +21,7 @@ let RECORD_MAX_DURATION: TimeInterval = 10.0
 
 
 // YOU CAN CHANGE THE TIME WHEN THE APP WILL REFRESH THE CHATS (PLEASE NOTE THAT A LOW VALUE MAY AFFECT THE STABILITY OF THE APP, WE THINK 30 seconds A GOOD MINIMUM REFRESH TIME)
-let REFRESH_TIME: TimeInterval = 10.0
+let REFRESH_TIME: TimeInterval = 20.0
 
 
 
@@ -92,6 +93,10 @@ let USER_USERNAME = "username"
 let USER_AVATAR = "avatar"
 let USER_CURRENTROOM = "currentRoom"
 let USER_STATUS = "status"
+let USER_STATUS_TIME = "userStatusTime"
+let IS_LIMBO = "isLimbo"
+let FORCED_AWARENESS_OFF = "forcedAwarenessOff"
+
 
 let CHAT_CLASS_NAME = "ChatRooms"
 let CHAT_USER_POINTER = "userPointer"
@@ -105,6 +110,9 @@ let ROOMS_CLASS_NAME = "Rooms"
 let ROOMS_NAME = "name"
 let ROOMS_IMAGE = "image"
 let ROOMS_USER_POINTER = "userPointer"
+let ROOM_MEMBERS = "roomMembersArray"
+let ROOM_MEMBERS_AWARENESS_ENABLED = "membersAwarenessEnbaled"
+
 
 let CODEJAM_CLASS_NAME = "CodeJam"
 let CODEJAM_NAME = "name"
@@ -127,71 +135,8 @@ let AWARENESS = "awareness"
 let liveQueryClient: Client = ParseLiveQuery.Client(server: "wss://audesis.back4app.io", applicationId:PARSE_APP_KEY, clientKey:PARSE_CLIENT_KEY)
 
 
-// EXTENSION TO SHOW TIME AGO DATES
-extension UIViewController {
-    func timeAgoSinceDate(_ date:Date,currentDate:Date, numericDates:Bool) -> String {
-        let calendar = Calendar.current
-        let now = currentDate
-        let earliest = (now as NSDate).earlierDate(date)
-        let latest = (earliest == now) ? date : now
-        let components:DateComponents = (calendar as NSCalendar).components([NSCalendar.Unit.minute , NSCalendar.Unit.hour , NSCalendar.Unit.day , NSCalendar.Unit.weekOfYear , NSCalendar.Unit.month , NSCalendar.Unit.year , NSCalendar.Unit.second], from: earliest, to: latest, options: NSCalendar.Options())
-        
-        if (components.year! >= 2) {
-            return "\(components.year!) years ago"
-        } else if (components.year! >= 1){
-            if (numericDates){
-                return "1 year ago"
-            } else {
-                return "Last year"
-            }
-        } else if (components.month! >= 2) {
-            return "\(components.month!) months ago"
-        } else if (components.month! >= 1){
-            if (numericDates){
-                return "1 month ago"
-            } else {
-                return "Last month"
-            }
-        } else if (components.weekOfYear! >= 2) {
-            return "\(components.weekOfYear!) weeks ago"
-        } else if (components.weekOfYear! >= 1){
-            if (numericDates){
-                return "1 week ago"
-            } else {
-                return "Last week"
-            }
-        } else if (components.day! >= 2) {
-            return "\(components.day!) days ago"
-        } else if (components.day! >= 1){
-            if (numericDates){
-                return "1 day ago"
-            } else {
-                return "Yesterday"
-            }
-        } else if (components.hour! >= 2) {
-            return "\(components.hour!) hours ago"
-        } else if (components.hour! >= 1){
-            if (numericDates){
-                return "1 hour ago"
-            } else {
-                return "An hour ago"
-            }
-        } else if (components.minute! >= 2) {
-            return "\(components.minute!) minutes ago"
-        } else if (components.minute! >= 1){
-            if (numericDates){
-                return "1 minute ago"
-            } else {
-                return "A minute ago"
-            }
-        } else if (components.second! >= 3) {
-            return "\(components.second!) seconds ago"
-        } else {
-            return "Just now"
-        }
-        
-    }
-}
+
+
 
 
 

@@ -7,6 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02224784C1A39F68EC4C2C7B /* Pods_CoJam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90BE145F67F89C0A7276935E /* Pods_CoJam.framework */; };
+		1832E8CE1F39D3F000696774 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E8CD1F39D3F000696774 /* Constants.swift */; };
+		1832E8D31F39D44D00696774 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1832E8D21F39D44D00696774 /* Utility.swift */; };
+		189A83041F46B7FD0068CF74 /* CustomRoomUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A83031F46B7FD0068CF74 /* CustomRoomUserCell.swift */; };
+		18A018F91F38428B00990D2F /* RoomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A018F81F38428B00990D2F /* RoomCollectionViewCell.swift */; };
+		18C35B271F4D8AA000A1B962 /* BebasNeue.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18C35B261F4D8AA000A1B962 /* BebasNeue.otf */; };
+		18C35B291F4DC90F00A1B962 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C35B281F4DC90F00A1B962 /* Extensions.swift */; };
+		209282111F57F14000EB8668 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092820A1F57F14000EB8668 /* Alamofire.framework */; };
+		209282121F57F14000EB8668 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092820B1F57F14000EB8668 /* AlamofireImage.framework */; };
+		209282131F57F14000EB8668 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092820C1F57F14000EB8668 /* Bolts.framework */; };
+		209282141F57F14000EB8668 /* BoltsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092820D1F57F14000EB8668 /* BoltsSwift.framework */; };
+		209282151F57F14000EB8668 /* ParseLiveQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092820E1F57F14000EB8668 /* ParseLiveQuery.framework */; };
+		209282161F57F14000EB8668 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092820F1F57F14000EB8668 /* Starscream.framework */; };
+		209282171F57F14000EB8668 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209282101F57F14000EB8668 /* SwiftMessages.framework */; };
+		209282211F57F30F00EB8668 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092821A1F57F30F00EB8668 /* FBSDKCoreKit.framework */; };
+		209282221F57F30F00EB8668 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092821B1F57F30F00EB8668 /* FBSDKLoginKit.framework */; };
+		209282231F57F30F00EB8668 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092821C1F57F30F00EB8668 /* FBSDKShareKit.framework */; };
+		209282241F57F30F00EB8668 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092821D1F57F30F00EB8668 /* ParseFacebookUtilsV4.framework */; };
+		209282251F57F30F00EB8668 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2092821F1F57F30F00EB8668 /* Bolts.framework */; };
+		209282261F57F30F00EB8668 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209282201F57F30F00EB8668 /* Parse.framework */; };
+		209282551F58037900EB8668 /* UIButton+IndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 209282461F58037900EB8668 /* UIButton+IndexPath.m */; };
+		209282561F58037900EB8668 /* SRFSurfboardPanelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 209282491F58037900EB8668 /* SRFSurfboardPanelCell.m */; };
+		209282571F58037900EB8668 /* SRFSurfboardPanelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2092824A1F58037900EB8668 /* SRFSurfboardPanelCell.xib */; };
+		209282581F58037900EB8668 /* SRFSurfboardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2092824D1F58037900EB8668 /* SRFSurfboardPanel.m */; };
+		209282591F58037900EB8668 /* SRFSurfboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209282541F58037900EB8668 /* SRFSurfboardViewController.m */; };
+		209282631F58156500EB8668 /* panels.json in Resources */ = {isa = PBXBuildFile; fileRef = 2092825E1F58156500EB8668 /* panels.json */; };
+		20DAC6901F584C3F008575FF /* Tutorial.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DAC68F1F584C3F008575FF /* Tutorial.xcassets */; };
 		4B1EFB2C1F216C1B001ACD25 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB2B1F216C1B001ACD25 /* Account.swift */; };
 		4B1EFB381F216C3A001ACD25 /* CodeJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB301F216C3A001ACD25 /* CodeJam.swift */; };
 		4B1EFB391F216C3A001ACD25 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB311F216C3A001ACD25 /* Configs.swift */; };
@@ -16,14 +43,7 @@
 		4B1EFB3D1F216C3A001ACD25 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB351F216C3A001ACD25 /* Settings.swift */; };
 		4B1EFB3E1F216C3A001ACD25 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB361F216C3A001ACD25 /* Signup.swift */; };
 		4B1EFB3F1F216C3A001ACD25 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB371F216C3A001ACD25 /* Users.swift */; };
-		4B1EFB411F216C72001ACD25 /* Facebook in Resources */ = {isa = PBXBuildFile; fileRef = 4B1EFB401F216C72001ACD25 /* Facebook */; };
-		4B1EFB431F216CF7001ACD25 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1EFB421F216CF7001ACD25 /* Parse.framework */; };
-		4B1EFB451F216CFB001ACD25 /* ParseLiveQuery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1EFB441F216CFB001ACD25 /* ParseLiveQuery.framework */; };
 		4B1EFB471F216D1C001ACD25 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1EFB461F216D1C001ACD25 /* ParseFacebookUtilsV4.framework */; };
-		4B54DC231F2263C700781894 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B54DC221F2263C700781894 /* FBSDKShareKit.framework */; };
-		4B54DC251F2263C900781894 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B54DC241F2263C900781894 /* FBSDKLoginKit.framework */; };
-		4B54DC271F2263CB00781894 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B54DC261F2263CB00781894 /* FBSDKCoreKit.framework */; };
-		58F557E199B6465A9256546B /* Pods_CoJam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B20BD567DF17BC3614B56DD /* Pods_CoJam.framework */; };
 		8C377EF81ED8DC9A005251A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C377EF71ED8DC9A005251A9 /* AppDelegate.swift */; };
 		8C377EFA1ED8DC9A005251A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C377EF91ED8DC9A005251A9 /* ViewController.swift */; };
 		8C377EFD1ED8DC9A005251A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C377EFB1ED8DC9A005251A9 /* Main.storyboard */; };
@@ -80,7 +100,40 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2835C5168983203445234437 /* Pods_CoJamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoJamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1832E8CD1F39D3F000696774 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Common/Constants.swift; sourceTree = "<group>"; };
+		1832E8D21F39D44D00696774 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = Common/Utility.swift; sourceTree = "<group>"; };
+		189A83031F46B7FD0068CF74 /* CustomRoomUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRoomUserCell.swift; sourceTree = "<group>"; };
+		18A018F81F38428B00990D2F /* RoomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCollectionViewCell.swift; sourceTree = "<group>"; };
+		18C35B261F4D8AA000A1B962 /* BebasNeue.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BebasNeue.otf; sourceTree = "<group>"; };
+		18C35B281F4DC90F00A1B962 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Common/Extensions.swift; sourceTree = "<group>"; };
+		209282081F57EFD200EB8668 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse/Parse.framework"; sourceTree = "<group>"; };
+		2092820A1F57F14000EB8668 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/CoJam-diatwsuwmeaucddlukgagcwxlynx/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		2092820B1F57F14000EB8668 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/CoJam-diatwsuwmeaucddlukgagcwxlynx/Build/Products/Debug-iphonesimulator/AlamofireImage/AlamofireImage.framework"; sourceTree = "<group>"; };
+		2092820C1F57F14000EB8668 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/CoJam-diatwsuwmeaucddlukgagcwxlynx/Build/Products/Debug-iphonesimulator/Bolts/Bolts.framework"; sourceTree = "<group>"; };
+		2092820D1F57F14000EB8668 /* BoltsSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoltsSwift.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/CoJam-diatwsuwmeaucddlukgagcwxlynx/Build/Products/Debug-iphonesimulator/Bolts-Swift/BoltsSwift.framework"; sourceTree = "<group>"; };
+		2092820E1F57F14000EB8668 /* ParseLiveQuery.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseLiveQuery.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/CoJam-diatwsuwmeaucddlukgagcwxlynx/Build/Products/Debug-iphonesimulator/ParseLiveQuery/ParseLiveQuery.framework"; sourceTree = "<group>"; };
+		2092820F1F57F14000EB8668 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/CoJam-diatwsuwmeaucddlukgagcwxlynx/Build/Products/Debug-iphonesimulator/Starscream/Starscream.framework"; sourceTree = "<group>"; };
+		209282101F57F14000EB8668 /* SwiftMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftMessages.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/CoJam-diatwsuwmeaucddlukgagcwxlynx/Build/Products/Debug-iphonesimulator/SwiftMessages/SwiftMessages.framework"; sourceTree = "<group>"; };
+		2092821A1F57F30F00EB8668 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		2092821B1F57F30F00EB8668 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		2092821C1F57F30F00EB8668 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		2092821D1F57F30F00EB8668 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		2092821F1F57F30F00EB8668 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		209282201F57F30F00EB8668 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		209282451F58037900EB8668 /* UIButton+IndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+IndexPath.h"; sourceTree = "<group>"; };
+		209282461F58037900EB8668 /* UIButton+IndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+IndexPath.m"; sourceTree = "<group>"; };
+		209282481F58037900EB8668 /* SRFSurfboardPanelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRFSurfboardPanelCell.h; sourceTree = "<group>"; };
+		209282491F58037900EB8668 /* SRFSurfboardPanelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRFSurfboardPanelCell.m; sourceTree = "<group>"; };
+		2092824A1F58037900EB8668 /* SRFSurfboardPanelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRFSurfboardPanelCell.xib; sourceTree = "<group>"; };
+		2092824C1F58037900EB8668 /* SRFSurfboardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRFSurfboardPanel.h; sourceTree = "<group>"; };
+		2092824D1F58037900EB8668 /* SRFSurfboardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRFSurfboardPanel.m; sourceTree = "<group>"; };
+		2092824E1F58037900EB8668 /* SRFSurfboardPanelType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRFSurfboardPanelType.h; sourceTree = "<group>"; };
+		2092824F1F58037900EB8668 /* SRFSurfboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRFSurfboard.h; sourceTree = "<group>"; };
+		209282511F58037900EB8668 /* SRFSurfboardDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRFSurfboardDelegate.h; sourceTree = "<group>"; };
+		209282531F58037900EB8668 /* SRFSurfboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRFSurfboardViewController.h; sourceTree = "<group>"; };
+		209282541F58037900EB8668 /* SRFSurfboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRFSurfboardViewController.m; sourceTree = "<group>"; };
+		2092825E1F58156500EB8668 /* panels.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = panels.json; sourceTree = "<group>"; };
+		20DAC68F1F584C3F008575FF /* Tutorial.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Tutorial.xcassets; sourceTree = "<group>"; };
 		38708042755B23C613778548 /* Pods-CoJam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoJam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoJam/Pods-CoJam.debug.xcconfig"; sourceTree = "<group>"; };
 		4B1EFB2B1F216C1B001ACD25 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		4B1EFB2F1F216C3A001ACD25 /* CodeJam.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = CodeJam.entitlements; sourceTree = "<group>"; };
@@ -92,14 +145,10 @@
 		4B1EFB351F216C3A001ACD25 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		4B1EFB361F216C3A001ACD25 /* Signup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
 		4B1EFB371F216C3A001ACD25 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
-		4B1EFB401F216C72001ACD25 /* Facebook */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Facebook; sourceTree = "<group>"; };
-		4B1EFB421F216CF7001ACD25 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../Library/Developer/Xcode/DerivedData/CoJam-fqsdqzfioxbwolgcwepjjgtopnju/Build/Products/Debug-iphonesimulator/Parse/Parse.framework"; sourceTree = "<group>"; };
-		4B1EFB441F216CFB001ACD25 /* ParseLiveQuery.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseLiveQuery.framework; path = "../../../Library/Developer/Xcode/DerivedData/CoJam-fqsdqzfioxbwolgcwepjjgtopnju/Build/Products/Debug-iphonesimulator/ParseLiveQuery/ParseLiveQuery.framework"; sourceTree = "<group>"; };
 		4B1EFB461F216D1C001ACD25 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = CoJam/Facebook/ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		4B54DC221F2263C700781894 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = CoJam/Facebook/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		4B54DC241F2263C900781894 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = CoJam/Facebook/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		4B54DC261F2263CB00781894 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = CoJam/Facebook/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		5B20BD567DF17BC3614B56DD /* Pods_CoJam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoJam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C377EF41ED8DC9A005251A9 /* CoJam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoJam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C377EF71ED8DC9A005251A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C377EF91ED8DC9A005251A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,8 +177,7 @@
 		8CB7D28A1EE4ED7900F55896 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
 		8CB7D28B1EE4ED7900F55896 /* AudioProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioProcessor.h; sourceTree = "<group>"; };
 		8CB7D28E1EE4EDCD00F55896 /* CoJamWidget-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoJamWidget-Bridging-Header.h"; sourceTree = "<group>"; };
-		A49DBE0A1EFA3C2126DEC746 /* Pods_CoJamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoJamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B667DC91D606E023E983D297 /* Pods_CoJamWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoJamWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90BE145F67F89C0A7276935E /* Pods_CoJam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoJam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A231F8653C23138AFC9038 /* Pods-CoJam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoJam.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoJam/Pods-CoJam.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,13 +186,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				209282111F57F14000EB8668 /* Alamofire.framework in Frameworks */,
+				209282121F57F14000EB8668 /* AlamofireImage.framework in Frameworks */,
+				209282131F57F14000EB8668 /* Bolts.framework in Frameworks */,
+				209282141F57F14000EB8668 /* BoltsSwift.framework in Frameworks */,
+				209282261F57F30F00EB8668 /* Parse.framework in Frameworks */,
+				209282151F57F14000EB8668 /* ParseLiveQuery.framework in Frameworks */,
+				209282211F57F30F00EB8668 /* FBSDKCoreKit.framework in Frameworks */,
+				209282161F57F14000EB8668 /* Starscream.framework in Frameworks */,
+				209282171F57F14000EB8668 /* SwiftMessages.framework in Frameworks */,
+				209282231F57F30F00EB8668 /* FBSDKShareKit.framework in Frameworks */,
+				209282221F57F30F00EB8668 /* FBSDKLoginKit.framework in Frameworks */,
 				4B1EFB471F216D1C001ACD25 /* ParseFacebookUtilsV4.framework in Frameworks */,
-				4B54DC271F2263CB00781894 /* FBSDKCoreKit.framework in Frameworks */,
-				4B54DC251F2263C900781894 /* FBSDKLoginKit.framework in Frameworks */,
-				4B54DC231F2263C700781894 /* FBSDKShareKit.framework in Frameworks */,
-				4B1EFB451F216CFB001ACD25 /* ParseLiveQuery.framework in Frameworks */,
-				4B1EFB431F216CF7001ACD25 /* Parse.framework in Frameworks */,
-				58F557E199B6465A9256546B /* Pods_CoJam.framework in Frameworks */,
+				02224784C1A39F68EC4C2C7B /* Pods_CoJam.framework in Frameworks */,
+				209282241F57F30F00EB8668 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				209282251F57F30F00EB8668 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +229,140 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1832E8CC1F39D3C700696774 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4B1EFB311F216C3A001ACD25 /* Configs.swift */,
+				1832E8D21F39D44D00696774 /* Utility.swift */,
+				1832E8CD1F39D3F000696774 /* Constants.swift */,
+				18C35B281F4DC90F00A1B962 /* Extensions.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		189A83051F46B8EF0068CF74 /* Jam */ = {
+			isa = PBXGroup;
+			children = (
+				4B1EFB321F216C3A001ACD25 /* Jam.swift */,
+				189A83031F46B7FD0068CF74 /* CustomRoomUserCell.swift */,
+			);
+			name = Jam;
+			sourceTree = "<group>";
+		};
+		18A018F71F38425C00990D2F /* RoomCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				18A018F81F38428B00990D2F /* RoomCollectionViewCell.swift */,
+			);
+			name = RoomCollectionCell;
+			sourceTree = "<group>";
+		};
+		209281ED1F57EEED00EB8668 /* External Library */ = {
+			isa = PBXGroup;
+			children = (
+				209282421F58037900EB8668 /* SRFSurfboard */,
+				209282191F57F30F00EB8668 /* Facebook */,
+				2092821E1F57F30F00EB8668 /* Parse */,
+			);
+			name = "External Library";
+			sourceTree = "<group>";
+		};
+		209282191F57F30F00EB8668 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				2092821A1F57F30F00EB8668 /* FBSDKCoreKit.framework */,
+				2092821B1F57F30F00EB8668 /* FBSDKLoginKit.framework */,
+				2092821C1F57F30F00EB8668 /* FBSDKShareKit.framework */,
+				2092821D1F57F30F00EB8668 /* ParseFacebookUtilsV4.framework */,
+			);
+			path = Facebook;
+			sourceTree = "<group>";
+		};
+		2092821E1F57F30F00EB8668 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				2092821F1F57F30F00EB8668 /* Bolts.framework */,
+				209282201F57F30F00EB8668 /* Parse.framework */,
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
+		209282421F58037900EB8668 /* SRFSurfboard */ = {
+			isa = PBXGroup;
+			children = (
+				209282431F58037900EB8668 /* Panel Cells */,
+				2092824B1F58037900EB8668 /* Panel Data Model */,
+				2092824F1F58037900EB8668 /* SRFSurfboard.h */,
+				209282501F58037900EB8668 /* Surfboard Delegate Protocol */,
+				209282521F58037900EB8668 /* Surfboard View Controller */,
+			);
+			path = SRFSurfboard;
+			sourceTree = "<group>";
+		};
+		209282431F58037900EB8668 /* Panel Cells */ = {
+			isa = PBXGroup;
+			children = (
+				209282441F58037900EB8668 /* Button Extension */,
+				209282471F58037900EB8668 /* Default Cell */,
+			);
+			path = "Panel Cells";
+			sourceTree = "<group>";
+		};
+		209282441F58037900EB8668 /* Button Extension */ = {
+			isa = PBXGroup;
+			children = (
+				209282451F58037900EB8668 /* UIButton+IndexPath.h */,
+				209282461F58037900EB8668 /* UIButton+IndexPath.m */,
+			);
+			path = "Button Extension";
+			sourceTree = "<group>";
+		};
+		209282471F58037900EB8668 /* Default Cell */ = {
+			isa = PBXGroup;
+			children = (
+				209282481F58037900EB8668 /* SRFSurfboardPanelCell.h */,
+				209282491F58037900EB8668 /* SRFSurfboardPanelCell.m */,
+				2092824A1F58037900EB8668 /* SRFSurfboardPanelCell.xib */,
+			);
+			path = "Default Cell";
+			sourceTree = "<group>";
+		};
+		2092824B1F58037900EB8668 /* Panel Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				2092824C1F58037900EB8668 /* SRFSurfboardPanel.h */,
+				2092824D1F58037900EB8668 /* SRFSurfboardPanel.m */,
+				2092824E1F58037900EB8668 /* SRFSurfboardPanelType.h */,
+			);
+			path = "Panel Data Model";
+			sourceTree = "<group>";
+		};
+		209282501F58037900EB8668 /* Surfboard Delegate Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				209282511F58037900EB8668 /* SRFSurfboardDelegate.h */,
+			);
+			path = "Surfboard Delegate Protocol";
+			sourceTree = "<group>";
+		};
+		209282521F58037900EB8668 /* Surfboard View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				209282531F58037900EB8668 /* SRFSurfboardViewController.h */,
+				209282541F58037900EB8668 /* SRFSurfboardViewController.m */,
+			);
+			path = "Surfboard View Controller";
+			sourceTree = "<group>";
+		};
+		2092825D1F58156500EB8668 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				20DAC68F1F584C3F008575FF /* Tutorial.xcassets */,
+				2092825E1F58156500EB8668 /* panels.json */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
 		8C377EEB1ED8DC9A005251A9 = {
 			isa = PBXGroup;
 			children = (
@@ -200,13 +390,15 @@
 		8C377EF61ED8DC9A005251A9 /* CoJam */ = {
 			isa = PBXGroup;
 			children = (
+				2092825D1F58156500EB8668 /* Tutorial */,
+				209281ED1F57EEED00EB8668 /* External Library */,
+				189A83051F46B8EF0068CF74 /* Jam */,
+				1832E8CC1F39D3C700696774 /* Common */,
+				18A018F71F38425C00990D2F /* RoomCollectionCell */,
 				8C377F251ED8DE35005251A9 /* LowLevelAudio */,
 				8C377EF71ED8DC9A005251A9 /* AppDelegate.swift */,
-				4B1EFB401F216C72001ACD25 /* Facebook */,
 				4B1EFB2F1F216C3A001ACD25 /* CodeJam.entitlements */,
 				4B1EFB301F216C3A001ACD25 /* CodeJam.swift */,
-				4B1EFB311F216C3A001ACD25 /* Configs.swift */,
-				4B1EFB321F216C3A001ACD25 /* Jam.swift */,
 				4B1EFB331F216C3A001ACD25 /* Login.swift */,
 				4B1EFB341F216C3A001ACD25 /* NewRoom.swift */,
 				4B1EFB351F216C3A001ACD25 /* Settings.swift */,
@@ -217,6 +409,7 @@
 				8C377EFB1ED8DC9A005251A9 /* Main.storyboard */,
 				8C377EFE1ED8DC9A005251A9 /* Assets.xcassets */,
 				8C377F001ED8DC9A005251A9 /* LaunchScreen.storyboard */,
+				18C35B261F4D8AA000A1B962 /* BebasNeue.otf */,
 				8C377F031ED8DC9A005251A9 /* Info.plist */,
 			);
 			path = CoJam;
@@ -255,17 +448,20 @@
 		8C6EB6701EE4D38A00A0910D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2092820A1F57F14000EB8668 /* Alamofire.framework */,
+				2092820B1F57F14000EB8668 /* AlamofireImage.framework */,
+				2092820C1F57F14000EB8668 /* Bolts.framework */,
+				2092820D1F57F14000EB8668 /* BoltsSwift.framework */,
+				2092820E1F57F14000EB8668 /* ParseLiveQuery.framework */,
+				2092820F1F57F14000EB8668 /* Starscream.framework */,
+				209282101F57F14000EB8668 /* SwiftMessages.framework */,
+				209282081F57EFD200EB8668 /* Parse.framework */,
 				4B54DC261F2263CB00781894 /* FBSDKCoreKit.framework */,
 				4B54DC241F2263C900781894 /* FBSDKLoginKit.framework */,
 				4B54DC221F2263C700781894 /* FBSDKShareKit.framework */,
 				4B1EFB461F216D1C001ACD25 /* ParseFacebookUtilsV4.framework */,
-				4B1EFB441F216CFB001ACD25 /* ParseLiveQuery.framework */,
-				4B1EFB421F216CF7001ACD25 /* Parse.framework */,
 				8C6EB6711EE4D38A00A0910D /* NotificationCenter.framework */,
-				5B20BD567DF17BC3614B56DD /* Pods_CoJam.framework */,
-				A49DBE0A1EFA3C2126DEC746 /* Pods_CoJamTests.framework */,
-				2835C5168983203445234437 /* Pods_CoJamUITests.framework */,
-				B667DC91D606E023E983D297 /* Pods_CoJamWidget.framework */,
+				90BE145F67F89C0A7276935E /* Pods_CoJam.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -390,13 +586,13 @@
 					};
 					8C377F071ED8DC9A005251A9 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 2WJ6DV6889;
+						DevelopmentTeam = Q6BCWKCPY5;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8C377EF31ED8DC9A005251A9;
 					};
 					8C377F121ED8DC9A005251A9 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 2WJ6DV6889;
+						DevelopmentTeam = Q6BCWKCPY5;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8C377EF31ED8DC9A005251A9;
 					};
@@ -436,7 +632,10 @@
 			files = (
 				8C377F021ED8DC9A005251A9 /* LaunchScreen.storyboard in Resources */,
 				8C377EFF1ED8DC9A005251A9 /* Assets.xcassets in Resources */,
-				4B1EFB411F216C72001ACD25 /* Facebook in Resources */,
+				209282631F58156500EB8668 /* panels.json in Resources */,
+				209282571F58037900EB8668 /* SRFSurfboardPanelCell.xib in Resources */,
+				18C35B271F4D8AA000A1B962 /* BebasNeue.otf in Resources */,
+				20DAC6901F584C3F008575FF /* Tutorial.xcassets in Resources */,
 				8C377EFD1ED8DC9A005251A9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,9 +671,26 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CoJam/Pods-CoJam-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/ParseLiveQuery/ParseLiveQuery.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BoltsSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParseLiveQuery.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -502,13 +718,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoJam-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -518,18 +737,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189A83041F46B7FD0068CF74 /* CustomRoomUserCell.swift in Sources */,
+				18C35B291F4DC90F00A1B962 /* Extensions.swift in Sources */,
 				4B1EFB2C1F216C1B001ACD25 /* Account.swift in Sources */,
 				4B1EFB3B1F216C3A001ACD25 /* Login.swift in Sources */,
 				4B1EFB391F216C3A001ACD25 /* Configs.swift in Sources */,
+				209282591F58037900EB8668 /* SRFSurfboardViewController.m in Sources */,
 				4B1EFB381F216C3A001ACD25 /* CodeJam.swift in Sources */,
 				8C377F2B1ED8DE53005251A9 /* AudioProcessor.m in Sources */,
 				4B1EFB3A1F216C3A001ACD25 /* Jam.swift in Sources */,
+				1832E8CE1F39D3F000696774 /* Constants.swift in Sources */,
+				209282561F58037900EB8668 /* SRFSurfboardPanelCell.m in Sources */,
 				4B1EFB3F1F216C3A001ACD25 /* Users.swift in Sources */,
 				4B1EFB3D1F216C3A001ACD25 /* Settings.swift in Sources */,
+				209282581F58037900EB8668 /* SRFSurfboardPanel.m in Sources */,
 				4B1EFB3E1F216C3A001ACD25 /* Signup.swift in Sources */,
 				4B1EFB3C1F216C3A001ACD25 /* NewRoom.swift in Sources */,
 				8C377EFA1ED8DC9A005251A9 /* ViewController.swift in Sources */,
+				1832E8D31F39D44D00696774 /* Utility.swift in Sources */,
+				18A018F91F38428B00990D2F /* RoomCollectionViewCell.swift in Sources */,
 				8C377F2C1ED8DE53005251A9 /* TPCircularBuffer.c in Sources */,
+				209282551F58037900EB8668 /* UIButton+IndexPath.m in Sources */,
 				8C377EF81ED8DC9A005251A9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,6 +858,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -708,17 +937,45 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Q6BCWKCPY5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CoJam/Facebook",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FacebookShare",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKCoreKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKLoginKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKShareKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Parse",
+					"$(PROJECT_DIR)/CoJam/Parse",
 				);
 				INFOPLIST_FILE = CoJam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AlamofireImage\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"BoltsSwift\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseLiveQuery\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"SwiftMessages\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.cojamlistening;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CoJam/CoJam-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -739,10 +996,36 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CoJam/Facebook",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FacebookShare",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKCoreKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKLoginKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKShareKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Parse",
+					"$(PROJECT_DIR)/CoJam/Parse",
 				);
 				INFOPLIST_FILE = CoJam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AlamofireImage\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"BoltsSwift\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseLiveQuery\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"SwiftMessages\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.cojamlistening;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -757,7 +1040,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 2WJ6DV6889;
+				DEVELOPMENT_TEAM = Q6BCWKCPY5;
 				INFOPLIST_FILE = CoJamTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.CoJamTests;
@@ -772,7 +1055,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 2WJ6DV6889;
+				DEVELOPMENT_TEAM = Q6BCWKCPY5;
 				INFOPLIST_FILE = CoJamTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.CoJamTests;
@@ -786,7 +1069,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 2WJ6DV6889;
+				DEVELOPMENT_TEAM = Q6BCWKCPY5;
 				INFOPLIST_FILE = CoJamUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.CoJamUITests;
@@ -800,7 +1083,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 2WJ6DV6889;
+				DEVELOPMENT_TEAM = Q6BCWKCPY5;
 				INFOPLIST_FILE = CoJamUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.CoJamUITests;
@@ -814,12 +1097,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Q6BCWKCPY5;
 				INFOPLIST_FILE = CoJamWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.cojamlistening.CoJamWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "CoJamWidget/CoJamWidget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -831,12 +1117,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Q6BCWKCPY5;
 				INFOPLIST_FILE = CoJamWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.audesis.cojamlistening.CoJamWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "CoJamWidget/CoJamWidget-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

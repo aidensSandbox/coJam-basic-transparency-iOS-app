@@ -7,4 +7,6 @@ target 'CoJam' do
 
   # Pods for CoJam
   pod 'ParseLiveQuery'
+  pod 'AlamofireImage', '~> 3.2'
+  pod 'SwiftMessages'
 end

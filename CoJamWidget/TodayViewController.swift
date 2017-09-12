@@ -17,20 +17,20 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 //    var widgetOnAwareness = false
 //    var audioProcessor : AudioProcessor? = nil
 //
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 //        audioProcessor = AudioProcessor()
 //        audioProcessor?.pauseMusic = true;
 //        audioProcessor?.surroundSound = true;
-//        
-//        // Do any additional setup after loading the view from its nib.
-//    }
-//    
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//    
+        
+        // Do any additional setup after loading the view from its nib.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+//
 //    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
 //        // Perform any setup necessary in order to update the view.
 //        

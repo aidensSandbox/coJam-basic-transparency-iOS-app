@@ -1,0 +1,31 @@
+[
+ {
+ "text" : "WELCOME TO COJAM \nThe hub where headphone users effortlessly communicate with peers & friends.",
+ "screen" : "Screen1"
+ },
+ {
+ "text" : "DO IT WITH YOUR HEADPHONES ON \nMusic is life and it’s about time we can listen to music without hurting our communication! \nWe allow you to comfortably hear the outside without taking your headphones off or even pause your music. Tap your picture and sound from the outside amplifies through your headphones.",
+ "screen" : "Screen2"
+ },
+ {
+ "text" : "COJAM WITH A GROUP \nDon’t let your headphones get in the way of your teamwork or being there for loved ones. \nCreate a group then add friends or family around that you want to interrupt or get interrupted from. Even those who don’t use headphones can use it to interrupt you.",
+ "screen" : "Screen3"
+ },
+ {
+ "text" : "TAP THEM TO CHAT \nNo more waving at people, throwing stuff at them or tapping their shoulders. Whenever you need to interrupt a headphone user, you simply click their picture and talk and they’ll hear you through their headphones even better than they do with their naked ears.",
+ "screen" : "Screen4"
+ },
+ {
+ "text" : "GO RED TO ZONE OUT \nGot a few hours before your deadline? Swipe your picture left to block out any interruption, and show everyone you’re busy. \nSwipe back right when you’re ready to be sociable again.",
+ "screen" : "Screen5"
+ },
+ {
+ "text" : "CAN’T FIND FRIENDS? \nIf you can’t find your friends on the user list, you can simply invite them to download CoJam using the “Invite Friends” button at the bottom of the user list. \nYou can email them, message them or even post it on Facebook!",
+ "screen" : "Screen6"
+ },
+ {
+ "text" : "WE’RE ONE BUTTON AWAY \nWe would love to hear your feedback, good or bad and as many times as you want. Simply go to settings and tap “Send Feedback” to pour your heart out. \nTap the “Ask for help” button and we’ll reach out to you in no time to give you 1-on-1 support with anything.",
+ "screen" : "Screen7",
+ "button" : "Done!"
+ }
+]
