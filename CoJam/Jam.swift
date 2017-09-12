@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseLiveQuery
+import PopupDialog
 
 
 class Jam: UIViewController,
@@ -65,7 +66,48 @@ class Jam: UIViewController,
         buttonCoJamAll.layer.borderColor = UIColor.black.cgColor
         
         self.setupUI();
+        
+        
+     
+        
         setupLocationManager()
+    }
+    
+    func showLocationInfo()
+    {
+        // Prepare the popup assets
+        let title = "LOCATIONS KEEP THE APP ALIVE"
+        let message = "Users can only request to talk to you while your phone is locked or sleeping, if CoJam can use your location in the background. We don't store your location or do anything with your data, we simply keep the app alive with it. We are working on a better solution, and will remove the need for location soon."
+        let image = UIImage(named: "map")
+        
+        // Create the dialog
+        let popup = PopupDialog(title: title, message: message, image: image)
+        
+       
+        
+        let buttonTwo = DefaultButton(title: "TURN ON LOCATION SERVICES") {
+            
+            self.locationManager?.requestAlwaysAuthorization()
+            self.locationManager?.startUpdatingLocation()
+        }
+        
+        buttonTwo.buttonColor = UIColor.green
+        buttonTwo.titleColor = UIColor.black
+
+        
+        let buttonThree = DefaultButton(title: "DON'T TURN ON LOCATION SERVICES") {
+        }
+        buttonThree.buttonColor = UIColor(colorLiteralRed: 175/255, green: 53/255, blue: 53/255, alpha: 1)
+        buttonThree.titleColor = UIColor.white
+
+        
+        // Add buttons to dialog
+        // Alternatively, you can use popup.addButton(buttonOne)
+        // to add a single button
+        popup.addButtons([buttonTwo, buttonThree])
+        
+        // Present dialog
+        self.present(popup, animated: true, completion: nil)
     }
     
     func setupUI()
@@ -220,8 +262,9 @@ class Jam: UIViewController,
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined:
-                locationManager?.requestAlwaysAuthorization()
-                locationManager?.startUpdatingLocation()
+                
+                self.showLocationInfo()
+                
                 break
                 
             case .restricted, .denied:

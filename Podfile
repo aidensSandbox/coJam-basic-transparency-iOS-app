@@ -9,4 +9,5 @@ target 'CoJam' do
   pod 'ParseLiveQuery'
   pod 'AlamofireImage', '~> 3.2'
   pod 'SwiftMessages'
+  pod 'PopupDialog', '~> 0.5'
 end

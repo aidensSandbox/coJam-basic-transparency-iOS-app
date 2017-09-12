@@ -70,7 +70,11 @@ class Signup: UIViewController,
         let userForSignUp = PFUser()
         userForSignUp.username = usernameTxt.text!.lowercased()
         userForSignUp.password = passwordTxt.text
-        userForSignUp.email = emailTxt.text
+        if(emailTxt.text?.isEmpty == false)
+        {
+            userForSignUp.email = emailTxt.text
+        }
+    
         userForSignUp[USER_STATUS] = STATUS_AVAILABLE
         userForSignUp[IS_LIMBO] = !Utility.isHeadphoneConnected()
         userForSignUp.signUpInBackground { (succeeded, error) -> Void in

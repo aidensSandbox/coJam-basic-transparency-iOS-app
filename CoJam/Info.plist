@@ -52,7 +52,7 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Your current location is used to get nearby CoJamers.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Awareness!</string>
+	<string>To make sure others can hear you even if you wear headphones!</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs to access Photo Library to upload images</string>
 	<key>UIAppFonts</key>
