@@ -91,8 +91,8 @@ class Jam: UIViewController,
             self.locationManager?.startUpdatingLocation()
         }
         
-        buttonTwo.buttonColor = UIColor.green
-        buttonTwo.titleColor = UIColor.black
+        buttonTwo.buttonColor = UIColor(colorLiteralRed: 48/255, green: 152/255, blue: 45/255, alpha: 1)
+        buttonTwo.titleColor = UIColor.white
 
         
         let buttonThree = DefaultButton(title: "DON'T TURN ON LOCATION SERVICES") {
