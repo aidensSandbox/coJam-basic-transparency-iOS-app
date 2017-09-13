@@ -108,9 +108,9 @@ class CodeJam: UIViewController,
             User.shared.audioProcessor?.surroundSound = UserDefaults.standard.value(forKey: kSurroundVoice) as? Bool ?? true
             User.shared.audioProcessor?.pauseMusic = UserDefaults.standard.value(forKey: kPlayMusic) as? Bool ?? true
             
-            if(User.shared.currentRoom != nil){
-                self.joinInRoom()
-            }
+//            if(User.shared.currentRoom != nil){
+//                self.joinInRoom()
+//            }
             
             subscribeToInvitation()
         }
@@ -176,8 +176,7 @@ class CodeJam: UIViewController,
         /**
          Check Headphone is plugged in or not. and setting is user is limbo.
          */
-        let limbo = !(Utility.isMicrophonePermissionEnabled() && Utility.isHeadphoneConnected())
-        saveUserLimbo(status: limbo)
+        checkAndSetUserLimbo()
     }
     
     
@@ -187,6 +186,10 @@ class CodeJam: UIViewController,
      headphone removed then IS_LIMBO = TRUE
      */
     func audioNotificationChanged(_ notification: Notification) {
+        if PFUser.current() == nil {
+            return
+        }
+        
         let audioRouteChanged = notification.userInfo![AVAudioSessionRouteChangeReasonKey] as! UInt
         switch audioRouteChanged {
         case AVAudioSessionRouteChangeReason.newDeviceAvailable.rawValue:
@@ -240,10 +243,10 @@ class CodeJam: UIViewController,
      - Parameter status: 
      */
     fileprivate func saveUserLimbo(status: Bool) {
+        User.shared.isUserStatusLimbo = status
         guard let currentUser = PFUser.current() else {
             return
         }
-        User.shared.isUserStatusLimbo = status
         setStatus()
         currentUser[IS_LIMBO] = status
         currentUser.saveInBackground(block: { (success, error) in
@@ -295,15 +298,15 @@ class CodeJam: UIViewController,
         /**
          Check Headphone is plugged in or not. and setting is user is limbo.
          */
-        let limbo = !(Utility.isMicrophonePermissionEnabled() && Utility.isHeadphoneConnected())
-        saveUserLimbo(status: limbo)
+        checkAndSetUserLimbo()
         
         if PFUser.current() != nil {
-            _ = try? PFUser.current()?.fetch()
-            User.shared.status = PFUser.current()![USER_STATUS] as? String ?? STATUS_AVAILABLE
-            print("Currentuser:", PFUser.current()!)
-            setCurrentRoom()
-            
+            //_ = try? PFUser.current()?.fetch()
+            PFUser.current()?.fetchInBackground(block: { (_, error) in
+                User.shared.status = PFUser.current()![USER_STATUS] as? String ?? STATUS_AVAILABLE
+                print("Currentuser:", PFUser.current()!)
+                //self.setCurrentRoom()
+            })
             UIApplication.shared.isIdleTimerDisabled = true
             
             let audioSession = AVAudioSession.sharedInstance()
@@ -317,12 +320,31 @@ class CodeJam: UIViewController,
         }
     }
     
+    /**
+     Method check the user headphone is connected and permission is enabled and decide limbo or not.
+     */
+    fileprivate func checkAndSetUserLimbo() {
+        let limbo = !(Utility.isMicrophonePermissionEnabled() && Utility.isHeadphoneConnected())
+        saveUserLimbo(status: limbo)
+    }
+    
     fileprivate func setCurrentRoom() {
         if let currentRoom = PFUser.current()![USER_CURRENTROOM] as? PFObject {
             let query = PFQuery(className: ROOMS_CLASS_NAME)
-            if let object = try? query.getObjectWithId(currentRoom.objectId!) {
-                User.shared.currentRoom = object
-            }
+            showHUD()
+            query.getObjectInBackground(withId: currentRoom.objectId!, block: { (object, error) in
+                self.hideHUD()
+                if error == nil {
+                    User.shared.currentRoom = object
+                    if(User.shared.currentRoom != nil){
+                        self.joinInRoom()
+                    }
+                }
+            })
+            
+//            if let object = try? query.getObjectWithId(currentRoom.objectId!) {
+//                User.shared.currentRoom = object
+//            }
         }
     }
     
@@ -550,7 +572,13 @@ class CodeJam: UIViewController,
     fileprivate func saveUserStatus(){
         let updatedUser = PFUser.current()!
         updatedUser[USER_STATUS] = User.shared.status
+        viewActivityContainer?.isHidden = false
+        activityIndicatorUserAwareness?.startAnimating()
         updatedUser.saveInBackground { (success, error) -> Void in
+            DispatchQueue.main.async {
+                self.viewActivityContainer?.isHidden = true
+                self.activityIndicatorUserAwareness?.stopAnimating()
+            }
             if error == nil {
             }
         }
@@ -581,7 +609,6 @@ class CodeJam: UIViewController,
             // send busy time if not logout else available time.
             // his/her previous state is busy.
             if let previousTime = PFUser.current()![USER_STATUS_TIME] as? Date {
-                print("STATUS_AVAILABLE_previousTime: ", previousTime)
                 let timeInterval = Date().timeIntervalSince(previousTime)
                 let data = [
                     AnalyticsParameter.time: Utility.stringFromTime(interval: timeInterval),
@@ -596,7 +623,6 @@ class CodeJam: UIViewController,
             // send available time
             // his/her previous state is available.
             if let previousTime = PFUser.current()![USER_STATUS_TIME] as? Date {
-                print("STATUS_BUSY_previousTime: ", previousTime)
                 let timeInterval = Date().timeIntervalSince(previousTime)
                 let data = [
                     AnalyticsParameter.time: Utility.stringFromTime(interval: timeInterval),
@@ -719,6 +745,14 @@ class CodeJam: UIViewController,
     fileprivate func resetUser(){
         User.shared.awarenessMode = false
         User.shared.audioProcessor?.stop()
+        
+        roomsArray.removeAll()
+        roomsCollView.reloadData()
+        
+        //reset audio settings.
+        UserDefaults.standard.set(true, forKey: kSurroundVoice)
+        UserDefaults.standard.set(true, forKey: kPlayMusic)
+        UserDefaults.standard.synchronize()
     }
     
     // MARK: - COLLECTION VIEW DELEGATES

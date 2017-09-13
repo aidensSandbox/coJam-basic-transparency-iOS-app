@@ -44,6 +44,7 @@ class Account: UIViewController,
     @IBOutlet var switchSurroundVoice: UISwitch!
     @IBOutlet var switchPlayMusic: UISwitch!
     
+    @IBOutlet weak var versionInfo: UILabel!
     
     weak var delegate: AccountDelegate?
 
@@ -68,6 +69,13 @@ class Account: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let gAppVersion:String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String? ?? "0"
+        let gAppBuild:String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String? ?? "0"
+        
+        
+        self.versionInfo.text = "version:" + gAppVersion + " build:" + gAppBuild
         
         initilize()
         checkAndUpdateMaximumGain()
@@ -283,9 +291,13 @@ class Account: UIViewController,
                 let imageData = UIImageJPEGRepresentation(avatarImage.image!, 0.5)
                 let imageFile = PFFile(name:"avatar.jpg", data:imageData!)
                 PFUser.current()![USER_AVATAR] = imageFile
+                showHUD()
                 PFUser.current()?.saveInBackground(block: { (success, error) in
                     if error == nil {
-                        //self.showUserDetails()
+                        self.informProfileUpdateSuccessfully()
+                    }
+                    else {
+                        self.showProfileUpdateFailed(error: error)
                     }
                 })
             }
@@ -293,6 +305,26 @@ class Account: UIViewController,
         dismiss(animated: true, completion: nil)
     }
     
+    /**
+     This method shows the alert when updating profile Success with the description.
+     */
+    fileprivate func informProfileUpdateSuccessfully() {
+        Utility.showAlertWith(message: "Your profile has been updated!", type: .success)
+        self.hideHUD()
+        self.delegate?.didChangeSettings()
+    }
+    
+    /**
+     This method shows the alert when updating profile Failed with the description.
+     */
+    fileprivate func showProfileUpdateFailed(error: Error?) {
+        if (error?.localizedDescription ?? "").isEmpty {
+            self.hideHUD()
+            return
+        }
+        Utility.showAlertWith(message: "\(error?.localizedDescription ?? "")")
+        self.hideHUD()
+    }
     
     // MARK: -  UPDATE PROFILE BUTTON
     
@@ -318,13 +350,9 @@ class Account: UIViewController,
         // Saving block
         updatedUser.saveInBackground { (success, error) -> Void in
             if error == nil {
-                Utility.showAlertWith(message: "Your profile has been updated!", type: .success)
-                self.hideHUD()
-                
-                self.delegate?.didChangeSettings()
+                self.informProfileUpdateSuccessfully()
             } else {
-                self.simpleAlert("\(error!.localizedDescription)")
-                self.hideHUD()
+                self.showProfileUpdateFailed(error: error)
                 self.usernameTxt.resignFirstResponder()
             }}
     }

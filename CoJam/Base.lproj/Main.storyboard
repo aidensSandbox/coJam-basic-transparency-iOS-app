@@ -370,7 +370,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type your username" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qe4-Tm-iH0">
-                                        <rect key="frame" x="80.5" y="108" width="144" height="30"/>
+                                        <rect key="frame" x="81" y="108" width="144" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Qe4-Tm-iH0" secondAttribute="height" multiplier="24:5" id="SLH-Lk-8Rk"/>
                                         </constraints>
@@ -382,7 +382,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCN-SJ-dMp" userLabel="Button Edit">
-                                        <rect key="frame" x="224.5" y="108" width="30" height="30"/>
+                                        <rect key="frame" x="225" y="108" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="IDK-6r-KrM"/>
                                             <constraint firstAttribute="width" secondItem="eCN-SJ-dMp" secondAttribute="height" multiplier="1:1" id="fe7-kz-mGt"/>
@@ -520,6 +520,12 @@
                                     <action selector="didTappedHelpButton:" destination="kDY-HA-xKH" eventType="touchUpInside" id="TaJ-1C-0cV"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ht3-Cm-GRd">
+                                <rect key="frame" x="187" y="68" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -527,6 +533,7 @@
                             <constraint firstItem="awa-cj-Cyj" firstAttribute="trailing" secondItem="czE-Sv-okx" secondAttribute="trailing" id="2RZ-Vm-N6j"/>
                             <constraint firstItem="czE-Sv-okx" firstAttribute="top" secondItem="dtk-UB-FQp" secondAttribute="bottom" constant="60" id="46J-hu-4YT"/>
                             <constraint firstItem="j3a-IW-QIQ" firstAttribute="centerY" secondItem="QLX-LL-8dB" secondAttribute="centerY" id="4iB-yX-qcq"/>
+                            <constraint firstItem="Ht3-Cm-GRd" firstAttribute="centerX" secondItem="czE-Sv-okx" secondAttribute="centerX" id="4xn-t6-oEl"/>
                             <constraint firstItem="G8f-V3-8mj" firstAttribute="centerY" secondItem="QLX-LL-8dB" secondAttribute="centerY" id="7EX-KN-QOS"/>
                             <constraint firstItem="Rot-lz-Xze" firstAttribute="leading" secondItem="WeV-af-hXb" secondAttribute="leading" constant="15" id="Cxc-xp-EWw"/>
                             <constraint firstItem="BnA-J5-WiE" firstAttribute="centerX" secondItem="WeV-af-hXb" secondAttribute="centerX" id="DIi-7k-AGz"/>
@@ -536,6 +543,7 @@
                             <constraint firstAttribute="trailing" secondItem="TAZ-Ec-im9" secondAttribute="trailing" id="HBo-mS-Uwk"/>
                             <constraint firstItem="qJn-u5-ExH" firstAttribute="top" secondItem="fb3-Eo-LVq" secondAttribute="bottom" constant="8" symbolic="YES" id="HMd-zW-uUh"/>
                             <constraint firstItem="Rot-lz-Xze" firstAttribute="top" secondItem="BnA-J5-WiE" secondAttribute="bottom" constant="20" id="LtN-dm-xYf"/>
+                            <constraint firstItem="czE-Sv-okx" firstAttribute="top" secondItem="Ht3-Cm-GRd" secondAttribute="bottom" constant="12" id="MAU-qK-mQi"/>
                             <constraint firstItem="btz-8d-Wwz" firstAttribute="top" secondItem="Rot-lz-Xze" secondAttribute="bottom" constant="10" id="MB0-wy-VUu"/>
                             <constraint firstItem="QVT-LZ-Hnx" firstAttribute="top" secondItem="awa-cj-Cyj" secondAttribute="bottom" constant="30" id="Niu-zD-oJS"/>
                             <constraint firstAttribute="trailing" secondItem="QVT-LZ-Hnx" secondAttribute="trailing" constant="35" id="NwT-QB-QYR"/>
@@ -569,6 +577,7 @@
                         <outlet property="switchSurroundVoice" destination="QLX-LL-8dB" id="ZTm-Mh-CDt"/>
                         <outlet property="userView" destination="QVT-LZ-Hnx" id="LLz-oZ-qRf"/>
                         <outlet property="usernameTxt" destination="Qe4-Tm-iH0" id="XYH-m5-Go3"/>
+                        <outlet property="versionInfo" destination="Ht3-Cm-GRd" id="OLC-9c-Itl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKb-Dc-djN" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -127,7 +127,6 @@ class Jam: UIViewController,
         
         
         let currentUser = PFUser.current()!
-        _ = try? currentUser.fetchIfNeeded()
         // Get avatar
         let imageFile = currentUser[USER_AVATAR] as? PFFile
         Utility.setImage(view: profileImg, imageFile: imageFile)
@@ -495,7 +494,13 @@ class Jam: UIViewController,
     func setUserStatus(){
         let updatedUser = PFUser.current()!
         updatedUser[USER_STATUS] = User.shared.status
+        userAwarenessUpdateActivityIndicator.startAnimating()
+        viewContainerIndicator.isHidden = false
         updatedUser.saveInBackground { (success, error) -> Void in
+            DispatchQueue.main.async {
+                self.userAwarenessUpdateActivityIndicator.stopAnimating()
+                self.viewContainerIndicator.isHidden = true
+            }
             if error == nil {
                 self.updateUser()
                 self.pushEvent(event: "refresh")
@@ -659,19 +664,26 @@ class Jam: UIViewController,
         else {
             memberAwareness = false
         }
-        _ = try? PFUser.current()?.fetchIfNeeded()
-        let userAwareness = Bool(PFUser.current()![AWARENESS] as? NSNumber ?? 0)
+        PFUser.current()?.fetchInBackground(block: { (_, error) in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            let userAwareness = Bool(PFUser.current()![AWARENESS] as? NSNumber ?? 0)
+            
+            self.roomAwarenessMode = (result || userAwareness || memberAwareness) && Utility.isHeadphoneConnected()
+            //forcefully off the user awareness, set when in CoJam All mode,
+            //user tapped on image this field is set to true. Default is false.
+            let forcedAwarenessOff = PFUser.current()![FORCED_AWARENESS_OFF] as? Bool ?? false
+            if (result && forcedAwarenessOff) && !(userAwareness || memberAwareness) {
+                self.roomAwarenessMode = false
+            }
+            
+            self.updateCoJamAll(status: result)
+            self.updateCurrentUser(force: false)
+            self.setRoomAwarenessDispaly()
+        })
         
-        self.roomAwarenessMode = (result || userAwareness || memberAwareness) && Utility.isHeadphoneConnected()
-        _ = try? PFUser.current()?.fetch()
-        let forcedAwarenessOff = PFUser.current()![FORCED_AWARENESS_OFF] as? Bool ?? false
-        if (result && forcedAwarenessOff) && !(userAwareness || memberAwareness) {
-            self.roomAwarenessMode = false
-        }
-        
-        self.updateCoJamAll(status: result)
-        self.updateCurrentUser(force: false)
-        self.setRoomAwarenessDispaly()
     }
     
     func updateCurrentUser(force:Bool)
@@ -754,14 +766,7 @@ class Jam: UIViewController,
         
         // Get avatar
         let imageFile = currentUser[USER_AVATAR] as? PFFile
-        /*imageFile?.getDataInBackground { (imageData, error) -> Void in
-            if error == nil {
-                if let imageData = imageData {
-                    
-                    self.profileImg.image = UIImage(data:imageData)
-                }}}*/
         Utility.setImage(view: profileImg, imageFile: imageFile)
-        
         
         self.pushEvent(event: "refresh")
 
@@ -877,8 +882,6 @@ class Jam: UIViewController,
      This function is used to get all the users in current room.
      */
     func loadUsers() {
-        
-        //usersArray.removeAll()
         // check if user is logged in
         if PFUser.current() == nil {
             return
@@ -888,7 +891,6 @@ class Jam: UIViewController,
         let query : PFQuery = PFUser.query()!
         query.whereKey(USER_CURRENTROOM, equalTo: codejamObj)
         query.whereKey("objectId", notEqualTo: PFUser.current()!.objectId!)
-        //query.whereKey("objectId", containedIn: fetchingmembers)
         
         query.order(byAscending: "createdAt")
         query.findObjectsInBackground { (objects, error)-> Void in
@@ -930,10 +932,12 @@ class Jam: UIViewController,
                         }
                     }
                 }
-                self.collectionView.reloadData()
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             }
             else {
-                print(error)
+                print(error?.localizedDescription ?? "")
             }
         }
     }
@@ -976,15 +980,14 @@ class Jam: UIViewController,
      Checking if current user is enabled by others or triggered any one else.
      */
     fileprivate func validateAndReleaseTriggerCurrentUserAwareness() {
-        _ = try? codejamObj.fetch()
-        let enabledMembers: [PFUser] = codejamObj[ROOM_MEMBERS_AWARENESS_ENABLED] as? [PFUser] ?? []
+        let enabledMembers: [PFUser] = self.codejamObj[ROOM_MEMBERS_AWARENESS_ENABLED] as? [PFUser] ?? []
         if !enabledMembers.contains(where: { (members) -> Bool in
             return members.objectId! == PFUser.current()!.objectId!
         }) {
             print("Can off, Not Triggered by any")
             let query = PFUser.query()
             query?.includeKey("triggeredBy")
-            query?.whereKey(USER_CURRENTROOM, equalTo: codejamObj)
+            query?.whereKey(USER_CURRENTROOM, equalTo: self.codejamObj)
             query?.whereKey("triggeredBy", equalTo: PFUser.current()!)
             query?.findObjectsInBackground(block: { (arrayUsers, error) in
                 if error != nil {
@@ -995,17 +998,22 @@ class Jam: UIViewController,
                 print("Tiggered Objects: ", arrayUsers ?? [])
                 if (arrayUsers?.count ?? 0) == 0 {
                     PFUser.current()?[AWARENESS] = false
-                    _ = try? PFUser.current()?.save()
-                    
-                    self.roomAwarenessMode = false
-                    self.updateCurrentUser(force: true)
-                    self.setRoomAwarenessDispaly()
+                    PFUser.current()?.saveInBackground(block: { (_, error) in
+                        if error == nil {
+                            self.pushEvent(event: "refresh")
+                            self.roomAwarenessMode = false
+                            self.updateCurrentUser(force: true)
+                            self.setRoomAwarenessDispaly()
+                            
+                        }
+                    })
                 }
             })
         }
         else {
             print("Cannot off Triggered by other: ", enabledMembers)
         }
+        
     }
     
     /**
@@ -1112,12 +1120,12 @@ class Jam: UIViewController,
         }
         else if usersArray.count > 0 && indexPath.row != 0 {
             let user = usersArray[(indexPath as NSIndexPath).row - 1] as! PFUser
-            user.fetchInBackground()
+            _ = user.fetchIfNeededInBackground()
             let imageFile = user[USER_AVATAR] as? PFFile
             cell.setProfile(image: imageFile)
             cell.labelUsername?.text = user.username
             
-            if !isUserEnabledInCurrentRoom(user: user) {
+            if !self.isUserEnabledInCurrentRoom(user: user) {
                 cell.userImage.layer.borderColor = UIColor.black.cgColor
             }
             else if (user[USER_STATUS] as? String ?? STATUS_AVAILABLE) == STATUS_AVAILABLE {
@@ -1126,8 +1134,9 @@ class Jam: UIViewController,
                 cell.userImage.layer.borderColor = UIColor.red.cgColor
             }
             
-            let userAwareness =  getTriggerStatus(user: user)
+            let userAwareness =  self.getTriggerStatus(user: user)
             cell.setRooom(awareness: userAwareness)
+            
         }
         return cell
     }
