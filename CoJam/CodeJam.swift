@@ -812,19 +812,20 @@ class CodeJam: UIViewController,
             showLoginController()
             return
         }
+        
+        showHUD();
+
         updatedUser[USER_CURRENTROOM] = User.shared.currentRoom
+        if !User.shared.isUserStatusLimbo {
+            updatedUser[USER_STATUS_TIME] = Date()
+        }
         updatedUser.saveInBackground { (success, error) -> Void in
             if error == nil {
                 //Send room enter analytics SOLO STATE.
                 self.sendUserStatusAnalytics(isCurrentStatus: true)
-                /*Reset the time while entering the group.*/
-                if !User.shared.isUserStatusLimbo {
-                    PFUser.current()?.setObject(Date(), forKey: USER_STATUS_TIME)
-                    PFUser.current()?.saveInBackground()
-                }
-                
                 self.joinInRoom()
             } else {
+                self.hideHUD()
                 print(error?.localizedDescription ?? "")
             }
         }
@@ -848,9 +849,14 @@ class CodeJam: UIViewController,
     func joinInRoom(){
         let jam = self.storyboard?.instantiateViewController(withIdentifier: "Jam") as! Jam
         jam.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        _ = try? User.shared.currentRoom?.fetch()
-        jam.codejamObj = User.shared.currentRoom!
-        present(jam, animated: true, completion: nil)
+        
+        User.shared.currentRoom?.fetchInBackground(block: { (object, error) in
+            
+            self.hideHUD()
+            jam.codejamObj = User.shared.currentRoom!
+            self.present(jam, animated: true, completion: nil)
+        })
+        
     }
     
     var subscription: Subscription<PFObject>?
