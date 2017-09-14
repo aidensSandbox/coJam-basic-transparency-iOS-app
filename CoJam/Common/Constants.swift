@@ -15,9 +15,12 @@ let kSpaceBetweenCell = 5
 let kSpaceBetweenCellRow = 10
 let kAwarenessIconBorderWidth = CGFloat(1.5)
 /*Audio*/
-let kDefaultAudioGain = 5
-let kMaxGainInHearVoices = 30
-let kMaxGainInHearEverything = 10
+let kDefaultAudioGain = 4
+let kMinimumGainVolume = 0
+let kMaximumGainVolume = 20
+/*Default sound when user triggers microphone (System Volume), Ranges from 0.0 to 1.0*/
+let kDefaultSystemSound = 0.9
+
 
 /*Status messages*/
 let socialInfoMessage = "Super-you mode music + team!"

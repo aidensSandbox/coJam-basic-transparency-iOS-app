@@ -143,7 +143,11 @@ class Login: UIViewController,
                 // Get data
                 let facebookID = userData["id"] as! String
                 let name = userData["name"] as! String
-                let email = userData["email"] as! String
+                var email = ""
+                if let emailString = userData["email"] as? String {
+                    email = emailString
+                }
+                
                 
                 // Get avatar
                 let currUser = PFUser.current()!
@@ -178,7 +182,10 @@ class Login: UIViewController,
                 
                 // Update user data
                 currUser.username = username
-                currUser.email = email
+                if !email.isEmpty {
+                    currUser.email = email
+                }
+                
                 currUser.saveInBackground(block: { (succ, error) in
                     if error == nil {
                         print("USER'S DATA UPDATED...")

@@ -570,6 +570,7 @@ class Jam: UIViewController,
         } else{
             User.shared.awarenessMode = true;
             User.shared.audioProcessor?.start()
+            Utility.updateSystemVolume()
         }
         
         self.roomAwarenessMode = User.shared.awarenessMode
@@ -577,8 +578,10 @@ class Jam: UIViewController,
         let updatedUser = PFUser.current()!
         updatedUser[AWARENESS] = User.shared.awarenessMode
         updatedUser.saveInBackground { (success, error) -> Void in
-            self.userAwarenessUpdateActivityIndicator.stopAnimating()
-            self.viewContainerIndicator.isHidden = true
+            DispatchQueue.main.async {
+                self.userAwarenessUpdateActivityIndicator.stopAnimating()
+                self.viewContainerIndicator.isHidden = true
+            }
             if error == nil {
                 self.updateUser()
                 self.pushEvent(event: "refresh")
@@ -697,6 +700,7 @@ class Jam: UIViewController,
             if User.shared.awarenessMode
             {
                 User.shared.audioProcessor?.start()
+                Utility.updateSystemVolume()
             }
             else
             {
@@ -716,6 +720,7 @@ class Jam: UIViewController,
             if User.shared.awarenessMode
             {
                 User.shared.audioProcessor?.start()
+                Utility.updateSystemVolume()
             }
             else
             {

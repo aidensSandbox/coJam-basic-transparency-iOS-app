@@ -153,5 +153,20 @@ class Utility: NSObject {
         ]
         Utility.sendEvent(name: event, param: params)
     }
+    
+    /**
+     Method to set the system volume. Ranges from, 0.0 to 1.0
+     */
+    class func updateSystemVolume() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            let volumeView = MPVolumeView()
+            volumeView.showsRouteButton = false
+            volumeView.showsVolumeSlider = true
+            if let view = volumeView.subviews.first as? UISlider{
+                view.value = Float(kDefaultSystemSound)
+            }
+        })
+        
+    }
 }
 

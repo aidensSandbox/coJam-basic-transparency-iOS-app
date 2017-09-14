@@ -90,6 +90,8 @@ class CodeJam: UIViewController,
                 Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(checkAndShowTutorial), userInfo: nil, repeats: false)
                 return
             }
+            let limbo = !(Utility.isMicrophonePermissionEnabled() && Utility.isHeadphoneConnected())
+            User.shared.isUserStatusLimbo = limbo
             
             showUserDetails()
             setStatus()
@@ -104,14 +106,6 @@ class CodeJam: UIViewController,
                 if error == nil {
                 }
             })
-            
-            User.shared.audioProcessor?.surroundSound = UserDefaults.standard.value(forKey: kSurroundVoice) as? Bool ?? true
-            User.shared.audioProcessor?.pauseMusic = UserDefaults.standard.value(forKey: kPlayMusic) as? Bool ?? true
-            
-//            if(User.shared.currentRoom != nil){
-//                self.joinInRoom()
-//            }
-            
             subscribeToInvitation()
         }
     }
@@ -293,7 +287,6 @@ class CodeJam: UIViewController,
         User.shared.audioProcessor?.pauseMusic = true;
         User.shared.audioProcessor?.surroundSound = true;
         User.shared.audioProcessor?.gain = Float(kDefaultAudioGain)
-        //UIApplication.shared.beginReceivingRemoteControlEvents()
         
         /**
          Check Headphone is plugged in or not. and setting is user is limbo.
@@ -341,10 +334,6 @@ class CodeJam: UIViewController,
                     }
                 }
             })
-            
-//            if let object = try? query.getObjectWithId(currentRoom.objectId!) {
-//                User.shared.currentRoom = object
-//            }
         }
     }
     
@@ -467,7 +456,9 @@ class CodeJam: UIViewController,
         } else{
             User.shared.awarenessMode = true;
             self.awarenessIcon.isHidden = false;
+            
             User.shared.audioProcessor?.start()
+            Utility.updateSystemVolume()
         }
         viewActivityContainer?.isHidden = false
         activityIndicatorUserAwareness?.startAnimating()
@@ -496,9 +487,6 @@ class CodeJam: UIViewController,
             DispatchQueue.main.async {
                 self.viewActivityContainer?.isHidden = true
                 self.activityIndicatorUserAwareness?.stopAnimating()
-            }
-            if error == nil {
-                //self.pushEvent(event: "refresh")
             }
         }
     }
@@ -560,9 +548,6 @@ class CodeJam: UIViewController,
         }
         
         //only set the USER_STATUS_TIME is null and clears when user logout.
-//        if PFUser.current()![USER_STATUS_TIME] is NSNull || PFUser.current()![USER_STATUS_TIME] == nil {
-//           PFUser.current()![USER_STATUS_TIME] = Date()
-//        }
         setUserStatusTime()
     }
     
@@ -578,8 +563,6 @@ class CodeJam: UIViewController,
             DispatchQueue.main.async {
                 self.viewActivityContainer?.isHidden = true
                 self.activityIndicatorUserAwareness?.stopAnimating()
-            }
-            if error == nil {
             }
         }
     }
@@ -748,11 +731,6 @@ class CodeJam: UIViewController,
         
         roomsArray.removeAll()
         roomsCollView.reloadData()
-        
-        //reset audio settings.
-        UserDefaults.standard.set(true, forKey: kSurroundVoice)
-        UserDefaults.standard.set(true, forKey: kPlayMusic)
-        UserDefaults.standard.synchronize()
     }
     
     // MARK: - COLLECTION VIEW DELEGATES

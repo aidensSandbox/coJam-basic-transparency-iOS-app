@@ -40,9 +40,9 @@ class Account: UIViewController,
     @IBOutlet weak var userView: UIView!
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var usernameTxt: UITextField!
-    @IBOutlet var labelTriggerValue: UILabel!
-    @IBOutlet var switchSurroundVoice: UISwitch!
-    @IBOutlet var switchPlayMusic: UISwitch!
+    @IBOutlet weak var labelTriggerValue: UILabel!
+    @IBOutlet weak var sliderMicrophoneGain: UISlider!
+    @IBOutlet weak var buttonFeedback: UIButton!
     
     @IBOutlet weak var versionInfo: UILabel!
     
@@ -51,9 +51,7 @@ class Account: UIViewController,
     fileprivate var currentMicrophoneVolume = 0
     fileprivate let minimumVolume = 0
     fileprivate var maximumVolume = 100
-    @IBOutlet var buttonGainIncrease: UIButton!
-    @IBOutlet var buttonGainDecrease: UIButton!
-    @IBOutlet weak var buttonFeedback: UIButton!
+    
     
     override func viewDidAppear(_ animated: Bool) {
         if PFUser.current() == nil {
@@ -88,30 +86,19 @@ class Account: UIViewController,
         avatarImage.layer.cornerRadius = avatarImage.bounds.size.width/2
         userView.layer.cornerRadius = 8
         
-        //Initial operations related to awareness mode.
-        if User.shared.awarenessMode {
-            switchSurroundVoice.isEnabled = false
-            switchPlayMusic.isEnabled = false
-        }
-        else {
-            switchSurroundVoice.isEnabled = true
-            switchPlayMusic.isEnabled = true
-        }
-        
-        switchSurroundVoice.isOn = (User.shared.audioProcessor?.surroundSound ?? true)
-        switchPlayMusic.isOn = (User.shared.audioProcessor?.pauseMusic ?? true)
+        //Audio gain.
+        currentMicrophoneVolume = Int(User.shared.audioProcessor?.gain ?? Float(kDefaultAudioGain))
+        sliderMicrophoneGain.value = Float(currentMicrophoneVolume)
+        sliderMicrophoneGain.maximumValue = Float(kMaximumGainVolume)
+        sliderMicrophoneGain.minimumValue = Float(kMinimumGainVolume)
+        labelTriggerValue.text = "\(currentMicrophoneVolume)"
     }
     
     /**
      This method is used to limit the maximum gain in Hear Everything and Hear Voices mode.
      */
     fileprivate func checkAndUpdateMaximumGain() {
-        if (User.shared.audioProcessor?.surroundSound)! {
-            maximumVolume = kMaxGainInHearVoices
-        }
-        else {
-            maximumVolume = kMaxGainInHearEverything
-        }
+        maximumVolume = kMaximumGainVolume
         
         if currentMicrophoneVolume >= maximumVolume {
             currentMicrophoneVolume = maximumVolume
@@ -121,39 +108,19 @@ class Account: UIViewController,
     
     
     //MARK:- ACTIONS
-    @IBAction func didTappedIncreaseVloume(_ sender: Any) {
-        if currentMicrophoneVolume >= maximumVolume {
-            currentMicrophoneVolume = maximumVolume
-            return
-        }
-        currentMicrophoneVolume += 1
+    
+    @IBAction func microphoneGainValueChanged(_ sender: Any) {
+        let micGainSlider = sender as! UISlider
+        currentMicrophoneVolume = Int(micGainSlider.value)
         updateMicroPhoneVolumeCount()
     }
     
-    @IBAction func didTappedDecreseVolume(_ sender: Any) {
-        if currentMicrophoneVolume == minimumVolume {
-            currentMicrophoneVolume = minimumVolume
-            return
-        }
-        currentMicrophoneVolume -= 1
+    @IBAction func didTappedResetMicGain(_ sender: Any) {
+        sliderMicrophoneGain.value = Float(kDefaultAudioGain)
+        currentMicrophoneVolume = kDefaultAudioGain
         updateMicroPhoneVolumeCount()
     }
     
-    @IBAction func didTappedChangeSurroundVoice(_ sender: Any) {
-        print("Surround:", switchSurroundVoice.isOn ? "On" : "Off")
-        User.shared.audioProcessor?.surroundSound = switchSurroundVoice.isOn
-        UserDefaults.standard.set(switchSurroundVoice.isOn, forKey: kSurroundVoice)
-        UserDefaults.standard.synchronize()
-        //reset the current mic gain.
-        checkAndUpdateMaximumGain()
-    }
-    
-    @IBAction func didTappedChangePlayMusic(_ sender: Any) {
-        print("Music:", switchPlayMusic.isOn ? "Play" : "Pause")
-        User.shared.audioProcessor?.pauseMusic = switchPlayMusic.isOn
-        UserDefaults.standard.set(switchPlayMusic.isOn, forKey: kPlayMusic)
-        UserDefaults.standard.synchronize()
-    }
     
     @IBAction func didTappedFeedbackButton(_ sender: Any) {
         if MFMailComposeViewController.canSendMail() {
@@ -204,11 +171,6 @@ class Account: UIViewController,
      Method to send email asking help.
      */
     fileprivate func sendHelpEmail() {
-//        guard let currentUser = PFUser.current() else {
-//            return
-//        }
-        
-        //let subject = "\(currentUser.username ?? "") requested help for \(APP_NAME)"
         let mailComposerController = MFMailComposeViewController()
         mailComposerController.mailComposeDelegate = self
         // Configure the fields of the interface.

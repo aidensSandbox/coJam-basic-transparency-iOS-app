@@ -455,7 +455,7 @@ static OSStatus playbackCallback(void *inRefCon,
     //[[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
     NSError *setCategoryError = nil;
     
-    if(pauseMusic && [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
+    if(pauseMusic){
         if (![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
                                               withOptions: 0x00 error:&setCategoryError]) {
         }
