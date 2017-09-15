@@ -68,6 +68,7 @@ class Account: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        buttonFeedback.backgroundColor = Color.green
         
         let gAppVersion:String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String? ?? "0"
         let gAppBuild:String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String? ?? "0"

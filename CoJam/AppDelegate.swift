@@ -16,7 +16,7 @@ import CoreMotion
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
     let motionMgr = CMMotionManager()
@@ -183,6 +183,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         application.applicationIconBadgeNumber = 0
         
+        requestToRegisterUserNotification()
+        
         
         // ADD 3D-TOUCH SHORTCUT ACTIONS FOR HARD-PRESS ON THE APP ICON
         if #available(iOS 9.0, *) {
@@ -275,6 +277,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFPush.handle(userInfo)
         if application.applicationState == .inactive {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(inBackground: userInfo, block: nil)
+        }
+    }
+    
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        print("UILocalNotification")
+    }
+    
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert])
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("unnotification received")
+    }
+    
+    /**
+     Register the user notification
+     */
+    func requestToRegisterUserNotification() {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
+                if !accepted {
+                    print("Notification access denied.")
+                }
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     

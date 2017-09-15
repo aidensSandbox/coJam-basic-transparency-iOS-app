@@ -46,6 +46,7 @@ class CustomRoomUserCell: UICollectionViewCell {
         self.userImage.backgroundColor = UIColor.clear
         
         self.labelBusy?.layer.cornerRadius = self.userImage.layer.cornerRadius
+        self.labelBusy?.backgroundColor = Color.red
         self.indicatorView?.layer.cornerRadius = self.userImage.layer.cornerRadius
         self.indicatorView?.isHidden = true
         

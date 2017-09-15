@@ -89,9 +89,13 @@ struct AnalyticsParameter {
     static let triggeringUsername = "tirggeredBy"
 }
 
-
-
-
-
+//MARK:- COLOR
+/**Color used in app*/
+struct Color {
+    static let red = UIColor(red: 248/255, green: 98/255, blue: 99/255, alpha: 1)
+    static let green = UIColor(red: 2/255, green: 224/255, blue: 176/255, alpha: 1)
+    static let yellow = UIColor(red:246/255, green:198/255, blue:29/255, alpha:1)
+    static let black = UIColor.black
+}
 
 		

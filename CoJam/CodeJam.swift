@@ -79,7 +79,7 @@ class CodeJam: UIViewController,
         self.awarenessIcon.layer.cornerRadius = self.awarenessIcon.frame.size.width / 2
         self.awarenessIcon.clipsToBounds = true
         self.awarenessIcon.layer.borderWidth = kAwarenessIconBorderWidth
-        self.awarenessIcon.layer.borderColor = UIColor.black.cgColor
+        self.awarenessIcon.layer.borderColor = Color.black.cgColor
         
         if PFUser.current() == nil {
             showLoginController()
@@ -510,7 +510,7 @@ class CodeJam: UIViewController,
         viewStatusInfoMessage.alpha = 0.5
         if User.shared.isUserStatusLimbo {
             DispatchQueue.main.async {
-                self.profileImg.layer.borderColor = UIColor.black.cgColor
+                self.profileImg.layer.borderColor = Color.yellow.cgColor
                 self.labelStatus.text = limboTitle.capitalized
                 self.labelStatusMessage.text = limboInfoMessage
                 self.awarenessIcon.isHidden = true
@@ -528,7 +528,7 @@ class CodeJam: UIViewController,
                 })
                 
                 self.profileImg.clipsToBounds = true
-                self.profileImg.layer.borderColor = UIColor.green.cgColor
+                self.profileImg.layer.borderColor = Color.green.cgColor
             }
             
         } else{
@@ -543,7 +543,7 @@ class CodeJam: UIViewController,
                 })
                 
                 self.profileImg.clipsToBounds = true
-                self.profileImg.layer.borderColor = UIColor.red.cgColor
+                self.profileImg.layer.borderColor = Color.red.cgColor
             }
         }
         
@@ -731,6 +731,10 @@ class CodeJam: UIViewController,
         
         roomsArray.removeAll()
         roomsCollView.reloadData()
+        
+        //Reset user last triggered.
+        UserDefaults.standard.set("", forKey: "lastTriggeredBy")
+        UserDefaults.standard.synchronize()
     }
     
     // MARK: - COLLECTION VIEW DELEGATES
@@ -748,7 +752,7 @@ class CodeJam: UIViewController,
             let imageView = cell.viewWithTag(100) as? UIImageView
             imageView?.layer.cornerRadius = (imageView?.frame.size.width)!/2
             imageView?.layer.borderWidth = 2
-            imageView?.layer.borderColor = UIColor.black.cgColor
+            imageView?.layer.borderColor = Color.black.cgColor
             
             return cell
         }

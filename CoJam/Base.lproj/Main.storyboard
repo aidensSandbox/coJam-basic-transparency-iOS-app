@@ -527,6 +527,7 @@
                     </view>
                     <connections>
                         <outlet property="avatarImage" destination="mIX-rS-rjU" id="ioD-4C-2rm"/>
+                        <outlet property="buttonFeedback" destination="czE-Sv-okx" id="0iX-lf-AuW"/>
                         <outlet property="labelTriggerValue" destination="1pB-YB-Jcc" id="7SH-dR-T4x"/>
                         <outlet property="sliderMicrophoneGain" destination="BJF-xA-uNP" id="gTq-1T-OdQ"/>
                         <outlet property="userView" destination="QVT-LZ-Hnx" id="LLz-oZ-qRf"/>
@@ -1349,6 +1350,7 @@
                             </collectionView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4O-ad-7u6">
                                 <rect key="frame" x="247" y="612" width="113" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ikF-9R-8OV"/>
                                 </constraints>

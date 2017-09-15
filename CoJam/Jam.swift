@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseLiveQuery
 import PopupDialog
+import UserNotifications
 
 
 class Jam: UIViewController,
@@ -30,11 +31,11 @@ class Jam: UIViewController,
     @IBOutlet weak var labelStatusMessage: UILabel!
     @IBOutlet weak var viewSwipeHeader: UIView!
     @IBOutlet weak var viewCircular: UIView!
-    @IBOutlet var viewProfile: UIView!
-    @IBOutlet var buttonCoJamAll: UIButton!
-    @IBOutlet var labelTitle: UILabel!
+    @IBOutlet weak var viewProfile: UIView!
+    @IBOutlet weak var buttonCoJamAll: UIButton!
+    @IBOutlet weak var labelTitle: UILabel!
     
-    @IBOutlet var userAwarenessUpdateActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var userAwarenessUpdateActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var viewContainerIndicator: UIView!
     @IBOutlet weak var activityIndicatorCoJamAll: UIActivityIndicatorView!
@@ -63,14 +64,14 @@ class Jam: UIViewController,
         buttonCoJamAll.backgroundColor = UIColor.white
 
         buttonCoJamAll.layer.borderWidth = 1.0
-        buttonCoJamAll.layer.borderColor = UIColor.black.cgColor
+        buttonCoJamAll.layer.borderColor = Color.black.cgColor
         
         self.setupUI();
         
-        
-     
-        
         setupLocationManager()
+        
+        //Check if noifiation is enabled.
+        checkAndAlertPermissionForNotification(completionHandler: nil)
     }
     
     func showLocationInfo()
@@ -135,7 +136,7 @@ class Jam: UIViewController,
         self.awarenessIcon.layer.cornerRadius = self.awarenessIcon.frame.size.width / 2;
         self.awarenessIcon.clipsToBounds = true
         self.awarenessIcon.layer.borderWidth = kAwarenessIconBorderWidth
-        self.awarenessIcon.layer.borderColor = UIColor.black.cgColor
+        self.awarenessIcon.layer.borderColor = Color.black.cgColor
         
         labelTitle.text = codejamObj[ROOMS_NAME] as? String ?? ""
         
@@ -178,11 +179,6 @@ class Jam: UIViewController,
         return .lightContent
     }
     
-    deinit {
-        subscription = nil
-        subscriptionAwareness = nil
-        subscriptionInvitation = nil
-    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
@@ -322,8 +318,8 @@ class Jam: UIViewController,
                 /* Is room awareness on and headphone connected */
                 self.roomAwarenessMode = result
                 self.validateUserTriggerStatus();
-                self.updateCoJamAll(status: result)
-                self.updateCurrentUser(force: true)
+//                self.updateCoJamAll(status: result)
+                //self.updateCurrentUser(force: true)
             }}
     }
     
@@ -334,34 +330,13 @@ class Jam: UIViewController,
         DispatchQueue.main.async {
             self.activityIndicatorCoJamAll.stopAnimating()
             if status {
-                self.buttonCoJamAll.backgroundColor = UIColor.green
+                self.buttonCoJamAll.backgroundColor = Color.green
             }
             else{
                 self.buttonCoJamAll.backgroundColor = UIColor.white
             }
         }
         
-    }
-    
-    fileprivate func updateUserWithoutAnimation() {
-        if User.shared.isUserStatusLimbo {
-            self.profileImg.layer.borderColor = UIColor.black.cgColor
-            self.labelStatus.text = limboTitle.capitalized
-            self.labelStatusMessage.text = limboInfoMessage
-        }
-        else if User.shared.status == STATUS_AVAILABLE {
-            self.profileImg.layer.borderColor = UIColor.green.cgColor
-            self.labelStatus.text = "Sociable"
-            self.labelStatusMessage.text = socialInfoMessage
-            self.labelStatusMessage.updateConstraintsIfNeeded()
-        } else{
-            self.profileImg.layer.borderColor = UIColor.red.cgColor
-            self.labelStatus.text = "Busy"
-            self.labelStatusMessage.text = busyInfoMessage
-            self.labelStatusMessage.updateConstraintsIfNeeded()
-        }
-        
-        setRoomAwarenessDispaly()
     }
     
     /**Hightlight the user awareness icon based on limbo mode and awareness*/
@@ -380,14 +355,14 @@ class Jam: UIViewController,
     func updateUser(animate: Bool = true){
         viewStatusInfoMessage.alpha = animate ? 0.5 : 1
         if User.shared.isUserStatusLimbo {
-            self.profileImg.layer.borderColor = UIColor.black.cgColor
+            self.profileImg.layer.borderColor = Color.yellow.cgColor
             self.labelStatus.text = limboTitle.capitalized
             self.labelStatusMessage.text = limboInfoMessage
         }
         else if User.shared.status == STATUS_AVAILABLE {
             currentHeaderIndex = 0
             DispatchQueue.main.async {
-                self.profileImg.layer.borderColor = UIColor.green.cgColor
+                self.profileImg.layer.borderColor = Color.green.cgColor
                 self.labelStatus.text = availableTitle.capitalized
                 self.labelStatusMessage.text = socialInfoMessage
                 self.labelStatusMessage.updateConstraintsIfNeeded()
@@ -398,12 +373,10 @@ class Jam: UIViewController,
                     })
                 }
             }
-            
-            
         } else{
             currentHeaderIndex = 1
             DispatchQueue.main.async {
-                self.profileImg.layer.borderColor = UIColor.red.cgColor
+                self.profileImg.layer.borderColor = Color.red.cgColor
                 self.labelStatus.text = busyTitle.capitalized
                 self.labelStatusMessage.text = busyInfoMessage
                 self.labelStatusMessage.updateConstraintsIfNeeded()
@@ -416,7 +389,6 @@ class Jam: UIViewController,
             }
         }
         setRoomAwarenessDispaly()
-        
     }
     
     func pushEvent(event:String){
@@ -538,7 +510,7 @@ class Jam: UIViewController,
                 PFUser.current()?.saveInBackground()
             }
             //Reset the triggeredBy user
-            PFUser.current()?["triggeredBy"] = NSNull()
+            PFUser.current()?[TRIGGERED_BY] = NSNull()
             self.updateCurrentUserAwareness()
             
             var enabledMembers: [PFUser] = self.codejamObj[ROOM_MEMBERS_AWARENESS_ENABLED] as? [PFUser] ?? []
@@ -567,6 +539,7 @@ class Jam: UIViewController,
         if User.shared.awarenessMode {
             User.shared.awarenessMode = false
             User.shared.audioProcessor?.stop()
+            self.resetLastTriggerUserId()
         } else{
             User.shared.awarenessMode = true;
             User.shared.audioProcessor?.start()
@@ -667,6 +640,7 @@ class Jam: UIViewController,
         else {
             memberAwareness = false
         }
+        
         PFUser.current()?.fetchInBackground(block: { (_, error) in
             if error != nil {
                 print(error?.localizedDescription ?? "")
@@ -806,6 +780,9 @@ class Jam: UIViewController,
         resetLocationManager()
         removeNotification()
         User.shared.currentRoom = nil
+        subscription = nil
+        subscriptionAwareness = nil
+        subscriptionInvitation = nil
         let updatedUser = PFUser.current()!
         updatedUser[USER_CURRENTROOM] = NSNull()
         updatedUser.setObject(NSNull(),forKey: USER_CURRENTROOM)
@@ -870,7 +847,38 @@ class Jam: UIViewController,
         subscriptionAwareness = liveQueryClient.subscribe(query).handle(Event.updated) { _, object in
             self.codejamObj = object
             self.validateUserTriggerStatus()
+            
+            /*Scheduling the Localnotication to alert who is talking to you.*/
+            print("******************")
+            let query = PFUser.query()
+            query?.includeKey(TRIGGERED_BY)
+            query?.whereKey("objectId", equalTo: PFUser.current()?.objectId ?? "")
+            query?.findObjectsInBackground(block: { (arrayObjects, error) in
+                if error == nil {
+                    if let currentUser = arrayObjects?.first as? PFUser {
+                        if let tiggeredByUser = currentUser[TRIGGERED_BY] as? PFUser {
+                            let lastTriggeredId: String = UserDefaults.standard.string(forKey: "lastTriggeredBy") ?? ""
+                            if lastTriggeredId.isEmpty || tiggeredByUser.objectId ?? "" != lastTriggeredId {
+                                UserDefaults.standard.set(tiggeredByUser.objectId ?? "", forKey: "lastTriggeredBy")
+                                UserDefaults.standard.synchronize()
+                                self.showNotificationFrom(user: tiggeredByUser)
+                            }
+                        }
+                        else {
+                            self.resetLastTriggerUserId()
+                        }
+                    }
+                }
+            })
         }
+    }
+    
+    /**
+     
+     */
+    fileprivate func resetLastTriggerUserId () {
+        UserDefaults.standard.set("", forKey: "lastTriggeredBy")
+        UserDefaults.standard.synchronize()
     }
     
     
@@ -991,9 +999,9 @@ class Jam: UIViewController,
         }) {
             print("Can off, Not Triggered by any")
             let query = PFUser.query()
-            query?.includeKey("triggeredBy")
+            query?.includeKey(TRIGGERED_BY)
             query?.whereKey(USER_CURRENTROOM, equalTo: self.codejamObj)
-            query?.whereKey("triggeredBy", equalTo: PFUser.current()!)
+            query?.whereKey(TRIGGERED_BY, equalTo: PFUser.current()!)
             query?.findObjectsInBackground(block: { (arrayUsers, error) in
                 if error != nil {
                     print(error?.localizedDescription ?? "")
@@ -1116,7 +1124,7 @@ class Jam: UIViewController,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserTableViewCell", for: indexPath) as! CustomRoomUserCell
         if indexPath.row == 0 {
-            cell.userImage.layer.borderColor = UIColor.black.cgColor
+            cell.userImage.layer.borderColor = Color.black.cgColor
             cell.userImage.contentMode = .center
             cell.userImage.image = UIImage(named: "plusIcon")
             cell.labelUsername?.text = "Add Member"
@@ -1131,12 +1139,11 @@ class Jam: UIViewController,
             cell.labelUsername?.text = user.username
             
             if !self.isUserEnabledInCurrentRoom(user: user) {
-                cell.userImage.layer.borderColor = UIColor.black.cgColor
-            }
+                cell.userImage.layer.borderColor = Color.yellow.cgColor            }
             else if (user[USER_STATUS] as? String ?? STATUS_AVAILABLE) == STATUS_AVAILABLE {
-                cell.userImage.layer.borderColor = UIColor.green.cgColor
+                cell.userImage.layer.borderColor = Color.green.cgColor
             } else {
-                cell.userImage.layer.borderColor = UIColor.red.cgColor
+                cell.userImage.layer.borderColor = Color.red.cgColor
             }
             
             let userAwareness =  self.getTriggerStatus(user: user)
@@ -1378,5 +1385,107 @@ extension Jam: SRFSurfboardDelegate {
     
     func surfboard(_ surfboard: SRFSurfboardViewController!, didTapButtonAt indexPath: IndexPath!) {
         surfboard.dismiss(animated: true, completion: nil)
+    }
+}
+
+//MARK:- Local Notification
+extension Jam {
+    /**
+     Method to check if permission is granted for notification and show alert to enable notification.
+     - Parameter completionHandler: with the completion block get current permission status, signature (Bool) -> Void)?
+     */
+    fileprivate func checkAndAlertPermissionForNotification(completionHandler: ((Bool) -> Void)?) {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().getNotificationSettings { (notification) in
+                switch notification.authorizationStatus {
+                case .notDetermined:
+                    (UIApplication.shared.delegate as? AppDelegate)?.requestToRegisterUserNotification()
+                    completionHandler?(false)
+                    
+                case .authorized:
+                    completionHandler?(true)
+
+                case .denied:
+                    let actionHandler: (_ action: UIAlertAction) -> Void = { (action: UIAlertAction) -> Void in
+                        if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                            UIApplication.shared.openURL(url as URL)
+                        }
+                    }
+                    self.showConfirmAlert(message: "Please open this app's settings and set Notification permission to 'Allow'.", okTitle: "Settings", completionHandler: actionHandler)
+                    completionHandler?(false)
+                }
+            }
+        } else {
+            if let notificationsettings = UIApplication.shared.currentUserNotificationSettings {
+                print("notificationType: \(notificationsettings)")
+                if !notificationsettings.types.contains([.alert, .badge, .sound]) {
+                    let actionHandler: (_ action: UIAlertAction) -> Void = { (action: UIAlertAction) -> Void in
+                        if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                            UIApplication.shared.openURL(url as URL)
+                        }
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: { 
+                        self.showConfirmAlert(message: "Please open this app's settings and set Notification permission to 'Allow'.", okTitle: "Settings", completionHandler: actionHandler)
+                    })
+                    completionHandler?(false)
+                }
+                else {
+                    completionHandler?(true)
+                }
+            }
+            
+            if !UIApplication.shared.isRegisteredForRemoteNotifications {
+                completionHandler?(false)
+            }
+            else {
+                completionHandler?(true)
+            }
+        }
+    }
+
+    
+    //show notification.
+    fileprivate func showNotificationFrom(user: PFUser) {
+        guard let userName = user.username else {
+            return
+        }
+        let bodyText = "\(userName) is talking to you 😊"
+        let date = Date(timeIntervalSinceNow: 3)
+        print("Date: \(date)")
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            let content = UNMutableNotificationContent()
+            content.title = APP_NAME
+            content.body = bodyText
+            content.badge = NSNumber(integerLiteral: 1)
+            content.sound = UNNotificationSound.default()
+            
+            var comp = Calendar.current.dateComponents([.hour, .minute, .second], from: date)
+            comp.timeZone = TimeZone.current
+            let trigger = UNCalendarNotificationTrigger(dateMatching: comp, repeats: false)
+            
+            let identifier = "UserTiggerLocalNotification"
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+            center.add(request, withCompletionHandler: { (error) in
+                if error != nil {
+                    print(error?.localizedDescription ?? "")
+                }
+            })
+            
+        } else {
+            if UIApplication.shared.applicationState != .active {
+                let notification = UILocalNotification()
+                notification.fireDate = date
+                notification.alertTitle = APP_NAME
+                notification.alertBody = bodyText
+                
+                notification.soundName = UILocalNotificationDefaultSoundName
+                UIApplication.shared.scheduleLocalNotification(notification)
+            }
+            else {
+                Utility.showAlertWith(message: bodyText, type: .success)
+            }
+            
+        }
     }
 }

@@ -98,6 +98,8 @@ let USER_STATUS = "status"
 let USER_STATUS_TIME = "userStatusTime"
 let IS_LIMBO = "isLimbo"
 let FORCED_AWARENESS_OFF = "forcedAwarenessOff"
+let TRIGGERED_BY = "triggeredBy"
+
 
 
 let CHAT_CLASS_NAME = "ChatRooms"

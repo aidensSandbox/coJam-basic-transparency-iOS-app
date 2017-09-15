@@ -62,14 +62,9 @@ class Login: UIViewController,
             (user, error) -> Void in
             print(user)
             if user != nil { // Login successfull
-                //self.dismiss(animated: true, completion: nil)
-                let signupVC = self.storyboard?.instantiateViewController(withIdentifier: "CodeJam") as! CodeJam
-                signupVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                self.present(signupVC, animated: true, completion: nil)
-                
+
                 self.hideHUD()
-                
-                self.checkAndShowWirelessAlert()
+                self.dismiss(animated: true, completion: nil)
                 
             } else { // Login failed. Try again or SignUp
                 let alert = UIAlertView(title: APP_NAME,
@@ -166,7 +161,7 @@ class Login: UIViewController,
                             self.hideHUD()
                             self.dismiss(animated: true, completion: nil)
                             
-                            self.checkAndShowWirelessAlert()
+//                            self.checkAndShowWirelessAlert()
                         })
                     } else {
                         self.simpleAlert("\(error!.localizedDescription)")
