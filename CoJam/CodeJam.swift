@@ -693,6 +693,8 @@ class CodeJam: UIViewController,
             self.sendUserStatusAnalytics(isCurrentStatus: true)
             self.removeNotification()
             self.resetUser()
+            self.subscriptionInvitation = nil
+            self.subscription = nil
             // reset the new time
             guard let updateUser = PFUser.current() else {
                 self.showLoginController()
