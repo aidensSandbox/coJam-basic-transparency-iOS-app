@@ -15,11 +15,11 @@ let kSpaceBetweenCell = 5
 let kSpaceBetweenCellRow = 10
 let kAwarenessIconBorderWidth = CGFloat(1.5)
 /*Audio*/
-let kDefaultAudioGain = 4
+let kDefaultAudioGain = 4 //HV = 4, HE = 2
 let kMinimumGainVolume = 0
-let kMaximumGainVolume = 20
+let kMaximumGainVolume = 20 //HV = 20, HE = 5
 /*Default sound when user triggers microphone (System Volume), Ranges from 0.0 to 1.0*/
-let kDefaultSystemSound = 0.9
+let kDefaultSystemSound = 0.1  //HV = 0.9, HE = 0.7, HVSafeOption = 0.1
 
 
 /*Status messages*/

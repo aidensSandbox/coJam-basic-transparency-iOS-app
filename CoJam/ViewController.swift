@@ -342,6 +342,7 @@ class ViewController: UIViewController {
         self.awarenessBtn.setTitleColor(UIColor.red, for: UIControlState.normal)
         self.surroundSound.isEnabled = false;
         self.pauseMusic.isEnabled = false;
+        print("USER TOUCHED BUTTON")
         audioProcessor!.start()
     }
     

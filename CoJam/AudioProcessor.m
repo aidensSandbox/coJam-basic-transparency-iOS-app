@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AudioProcessor.h"
 #import <UIKit/UIGestureRecognizerSubclass.h>
+//#import <MediaPlayer/MediaPlayer.h> //Temporary fix for mic auto-volume 9/17/17
 
 #pragma mark Recording callback
 
@@ -334,6 +335,10 @@ static OSStatus playbackCallback(void *inRefCon,
                                   sizeof(flag));
     [self hasError:status:__FILE__:__LINE__];
     
+    
+    /*THIS IS WHERE WE CAN CONTROL THE SYSTEM VOLUME AT THE AUDIO UNIT LEVEL
+    status = AudioUnitSetParameter(audioUnit, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, busId, volume, 0 );
+    
     /*
      We need to specifie our format on which we want to work.
      We use Linear PCM cause its uncompressed and we work on raw data.
@@ -464,8 +469,27 @@ static OSStatus playbackCallback(void *inRefCon,
                                               withOptions: AVAudioSessionCategoryOptionAllowBluetooth| AVAudioSessionCategoryOptionMixWithOthers |AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError]) {
         }
     }
+    
     if(surroundSound){
+        //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeVoiceChat error:nil];
+        
+        //****Temporary fix to inability to control VoiceChat Mode system volume
+        //Solution 1:
+        //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
+        
+        //Solution 2:
         [[AVAudioSession sharedInstance] setMode:AVAudioSessionModeVoiceChat error:nil];
+        
+        /*
+        //Solution 2B: for Auto vol control 9/17/17
+        MPVolumeView *myVolumeView = [[MPVolumeView alloc] initWithFrame: CGRectMake(0, 0, 100, 80)];
+        myVolumeView.showsVolumeSlider = YES;
+        myVolumeView.showsRouteButton = NO;
+        UISlider *slider = [[myVolumeView subviews] firstObject];
+        slider.value = 0.7;
+        /////////////
+        */
+        
     }else{
         [[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
     }
@@ -537,11 +561,12 @@ static OSStatus playbackCallback(void *inRefCon,
                                          error:&setCategoryError]) {
     }
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    
     // start the audio unit. You should hear something, hopefully :)
     OSStatus status = AudioOutputUnitStart(audioUnit);
+
     [self hasError:status:__FILE__:__LINE__];
 
-    
 }
 -(void)stop;
 {

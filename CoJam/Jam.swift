@@ -694,6 +694,7 @@ class Jam: UIViewController,
             if User.shared.awarenessMode
             {
                 User.shared.audioProcessor?.start()
+                
                 Utility.updateSystemVolume()
             }
             else
