@@ -458,7 +458,7 @@ class CodeJam: UIViewController,
             self.awarenessIcon.isHidden = false;
             
             User.shared.audioProcessor?.start()
-            Utility.updateSystemVolume()
+            //Utility.updateSystemVolume()
         }
         viewActivityContainer?.isHidden = false
         activityIndicatorUserAwareness?.startAnimating()

@@ -101,7 +101,7 @@
     NSArray* arrayStrings = [text componentsSeparatedByString:@"\n"];
     NSMutableAttributedString* attributedTitle = [[NSMutableAttributedString alloc] initWithString:text];
     NSInteger titleLength = [[arrayStrings firstObject] length];
-    [attributedTitle addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Avenir-Heavy" size:17] range:NSMakeRange(0, titleLength)];
+    [attributedTitle addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Lato-Bold" size:17] range:NSMakeRange(0, titleLength)];
     
     return attributedTitle;
 }

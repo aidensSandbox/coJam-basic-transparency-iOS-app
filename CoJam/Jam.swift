@@ -78,7 +78,8 @@ class Jam: UIViewController,
     {
         // Prepare the popup assets
         let title = "LOCATIONS KEEP THE APP ALIVE"
-        let message = "Users can only request to talk to you while your phone is locked or sleeping, if CoJam can use your location in the background. We don't store your location or do anything with your data, we simply keep the app alive with it. We are working on a better solution, and will remove the need for location soon."
+        let message = "For others to access you while your phone is locked, we need to use location services. We DON'T store your location."
+        //let message = "Users can only request to talk to you while your phone is locked or sleeping, if CoJam can use your location in the background. We don't store your location or do anything with your data, we simply keep the app alive with it. We are working on a better solution, and will remove the need for location soon."
         let image = UIImage(named: "map")
         
         // Create the dialog
@@ -86,20 +87,22 @@ class Jam: UIViewController,
         
        
         
-        let buttonTwo = DefaultButton(title: "TURN ON LOCATION SERVICES") {
+        let buttonTwo = DefaultButton(title: "Sure, I'll Turn On Location Services") {
             
             self.locationManager?.requestAlwaysAuthorization()
             self.locationManager?.startUpdatingLocation()
         }
         
-        buttonTwo.buttonColor = UIColor(colorLiteralRed: 48/255, green: 152/255, blue: 45/255, alpha: 1)
+        buttonTwo.buttonColor = UIColor(red: 2/255, green: 244/255, blue: 176/255, alpha: 0.9)
         buttonTwo.titleColor = UIColor.white
 
         
-        let buttonThree = DefaultButton(title: "DON'T TURN ON LOCATION SERVICES") {
+        let buttonThree = DefaultButton(title: "I don't want others to reach me easily...") {
         }
-        buttonThree.buttonColor = UIColor(colorLiteralRed: 175/255, green: 53/255, blue: 53/255, alpha: 1)
-        buttonThree.titleColor = UIColor.white
+        buttonThree.buttonColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9)
+        buttonThree.titleColor = UIColor(red: 248/255, green: 98/255, blue: 99/255, alpha: 0.9)
+        buttonThree.layer.borderWidth = 3.0
+        buttonThree.layer.borderColor = Color.red.cgColor
 
         
         // Add buttons to dialog
@@ -1129,7 +1132,7 @@ class Jam: UIViewController,
             cell.userImage.contentMode = .center
             cell.userImage.image = UIImage(named: "plusIcon")
             cell.labelUsername?.text = "Add Member"
-            cell.labelUsername?.font = UIFont.boldSystemFont(ofSize: 15)
+            cell.labelUsername?.font = UIFont(name: "Lato-Light", size: 16)
             return cell
         }
         else if usersArray.count > 0 && indexPath.row != 0 {
@@ -1138,6 +1141,7 @@ class Jam: UIViewController,
             let imageFile = user[USER_AVATAR] as? PFFile
             cell.setProfile(image: imageFile)
             cell.labelUsername?.text = user.username
+            cell.labelUsername?.font = UIFont(name: "Lato-Light", size: 16)
             
             if !self.isUserEnabledInCurrentRoom(user: user) {
                 cell.userImage.layer.borderColor = Color.yellow.cgColor            }
@@ -1365,7 +1369,7 @@ extension Jam {
 //MARK:- LOCATION MANAGER DELEGATE
 extension Jam: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("failed updateing location: ", error)
+        print("failed updating location: ", error)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
