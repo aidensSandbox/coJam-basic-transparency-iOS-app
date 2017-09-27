@@ -42,7 +42,7 @@ class CustomRoomUserCell: UICollectionViewCell {
         self.userImage.image = nil
         self.userImage.layer.cornerRadius =  self.userImage.frame.size.height / 2;
         self.userImage.clipsToBounds = true
-        self.userImage.layer.borderWidth = 3.0
+        self.userImage.layer.borderWidth = 6.0     //default 4.0
         self.userImage.backgroundColor = UIColor.clear
         
         self.labelBusy?.layer.cornerRadius = self.userImage.layer.cornerRadius

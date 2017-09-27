@@ -57,7 +57,7 @@
 	<string>This app needs to access Photo Library to upload images</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>BebasNeue.otf</string>
+		<string>Lato-Light.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

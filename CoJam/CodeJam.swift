@@ -265,7 +265,7 @@ class CodeJam: UIViewController,
         
         self.profileImg.layer.cornerRadius = self.profileImg.frame.size.width / 2
         self.profileImg.clipsToBounds = true
-        self.profileImg.layer.borderWidth = 4.0
+        self.profileImg.layer.borderWidth = 6.0 //4.0
         self.profileImg.layer.masksToBounds = true
         
         viewActivityContainer?.layer.cornerRadius = profileImg.layer.cornerRadius

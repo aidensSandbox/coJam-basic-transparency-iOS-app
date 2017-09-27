@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Screen4.jpg",
+      "filename" : "FriendsCojamin.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Screen4@2x.jpg",
+      "filename" : "FriendsCojamin-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Screen4@3x.jpg",
+      "filename" : "FriendsCojamin-2.png",
       "scale" : "3x"
     }
   ],

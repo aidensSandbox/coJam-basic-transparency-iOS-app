@@ -117,7 +117,7 @@ class Jam: UIViewController,
         viewContainerIndicator.isHidden = true
         self.profileImg.layer.cornerRadius = self.profileImg.frame.size.width / 2;
         self.profileImg.clipsToBounds = true
-        self.profileImg.layer.borderWidth = 4.0
+        self.profileImg.layer.borderWidth = 6.0     //default 4.0
         self.profileImg.layer.borderColor = UIColor.clear.cgColor
         
         viewContainerIndicator.layer.cornerRadius = self.profileImg.layer.cornerRadius
@@ -543,7 +543,7 @@ class Jam: UIViewController,
         } else{
             User.shared.awarenessMode = true;
             User.shared.audioProcessor?.start()
-            Utility.updateSystemVolume()
+            //Utility.updateSystemVolume()
         }
         
         self.roomAwarenessMode = User.shared.awarenessMode
@@ -674,7 +674,7 @@ class Jam: UIViewController,
             if User.shared.awarenessMode
             {
                 User.shared.audioProcessor?.start()
-                Utility.updateSystemVolume()
+                //Utility.updateSystemVolume()
             }
             else
             {
@@ -695,7 +695,7 @@ class Jam: UIViewController,
             {
                 User.shared.audioProcessor?.start()
                 
-                Utility.updateSystemVolume()
+                //Utility.updateSystemVolume()
             }
             else
             {

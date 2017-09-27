@@ -40,8 +40,8 @@ class Account: UIViewController,
     @IBOutlet weak var userView: UIView!
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var usernameTxt: UITextField!
-    @IBOutlet weak var labelTriggerValue: UILabel!
-    @IBOutlet weak var sliderMicrophoneGain: UISlider!
+    //@IBOutlet weak var labelTriggerValue: UILabel!
+    //@IBOutlet weak var sliderMicrophoneGain: UISlider!
     @IBOutlet weak var buttonFeedback: UIButton!
     
     @IBOutlet weak var versionInfo: UILabel!
@@ -60,8 +60,8 @@ class Account: UIViewController,
         } else {
             // Call query
             showUserDetails()
-            currentMicrophoneVolume = Int(User.shared.audioProcessor?.gain ?? 0)
-            updateMicroPhoneVolumeCount()
+            //currentMicrophoneVolume = Int(User.shared.audioProcessor?.gain ?? 0)
+            //updateMicroPhoneVolumeCount()
         }
     }
     
@@ -77,7 +77,7 @@ class Account: UIViewController,
         self.versionInfo.text = "version:" + gAppVersion + " build:" + gAppBuild
         
         initilize()
-        checkAndUpdateMaximumGain()
+        //checkAndUpdateMaximumGain()
         // Init ad banners
         //initAdMobBanner()
     }
@@ -88,13 +88,14 @@ class Account: UIViewController,
         userView.layer.cornerRadius = 8
         
         //Audio gain.
-        currentMicrophoneVolume = Int(User.shared.audioProcessor?.gain ?? Float(kDefaultAudioGain))
-        sliderMicrophoneGain.value = Float(currentMicrophoneVolume)
-        sliderMicrophoneGain.maximumValue = Float(kMaximumGainVolume)
-        sliderMicrophoneGain.minimumValue = Float(kMinimumGainVolume)
-        labelTriggerValue.text = "\(currentMicrophoneVolume)"
+        //currentMicrophoneVolume = Int(User.shared.audioProcessor?.gain ?? Float(kDefaultAudioGain))
+        //sliderMicrophoneGain.value = Float(currentMicrophoneVolume)
+        //sliderMicrophoneGain.maximumValue = Float(kMaximumGainVolume)
+        //sliderMicrophoneGain.minimumValue = Float(kMinimumGainVolume)
+        //labelTriggerValue.text = "\(currentMicrophoneVolume)"
     }
-    
+
+/*
     /**
      This method is used to limit the maximum gain in Hear Everything and Hear Voices mode.
      */
@@ -106,8 +107,7 @@ class Account: UIViewController,
             updateMicroPhoneVolumeCount()
         }
     }
-    
-    
+     
     //MARK:- ACTIONS
     
     @IBAction func microphoneGainValueChanged(_ sender: Any) {
@@ -116,11 +116,13 @@ class Account: UIViewController,
         updateMicroPhoneVolumeCount()
     }
     
+
     @IBAction func didTappedResetMicGain(_ sender: Any) {
         sliderMicrophoneGain.value = Float(kDefaultAudioGain)
         currentMicrophoneVolume = kDefaultAudioGain
         updateMicroPhoneVolumeCount()
     }
+    */
     
     
     @IBAction func didTappedFeedbackButton(_ sender: Any) {
@@ -184,11 +186,13 @@ class Account: UIViewController,
     
     /**
      This method is used to udpate the microphone volume.
-     */
+     
     fileprivate func updateMicroPhoneVolumeCount() {
         labelTriggerValue.text = "\(currentMicrophoneVolume)"
         User.shared.audioProcessor?.gain = Float(currentMicrophoneVolume)
     }
+ 
+      */
     
     // MARK: - SHOW CURRENT USER DETAILS
     func showUserDetails() {

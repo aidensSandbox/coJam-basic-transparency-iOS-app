@@ -92,10 +92,11 @@ struct AnalyticsParameter {
 //MARK:- COLOR
 /**Color used in app*/
 struct Color {
-    static let red = UIColor(red: 248/255, green: 98/255, blue: 99/255, alpha: 1)
-    static let green = UIColor(red: 2/255, green: 224/255, blue: 176/255, alpha: 1)
-    static let yellow = UIColor(red:246/255, green:198/255, blue:29/255, alpha:1)
-    static let black = UIColor.black
+    static let red = UIColor(red: 248/255, green: 98/255, blue: 99/255, alpha: 0.9)
+    static let green = UIColor(red: 2/255, green: 244/255, blue: 176/255, alpha: 0.9)
+    //static let yellow = UIColor(red:246/255, green:198/255, blue:29/255, alpha:1)
+    static let yellow = UIColor(red:255/255, green:255/255, blue:255/255, alpha:0.7) //temporarily using Yellow the constant for the new color
+    static let black = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.9)
 }
 
 		
