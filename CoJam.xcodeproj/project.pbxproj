@@ -44,11 +44,6 @@
 		4B1EFB3E1F216C3A001ACD25 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB361F216C3A001ACD25 /* Signup.swift */; };
 		4B1EFB3F1F216C3A001ACD25 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EFB371F216C3A001ACD25 /* Users.swift */; };
 		4B1EFB471F216D1C001ACD25 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1EFB461F216D1C001ACD25 /* ParseFacebookUtilsV4.framework */; };
-		8C26BC7F1F7BA1FB00B9B1B5 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C26BC7E1F7BA1FA00B9B1B5 /* Lato-Light.ttf */; };
-		8C26BC841F7BA36400B9B1B5 /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C26BC801F7BA35600B9B1B5 /* Lato-Heavy.ttf */; };
-		8C26BC851F7BA36400B9B1B5 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C26BC811F7BA35A00B9B1B5 /* OFL.txt */; };
-		8C26BC861F7BA36400B9B1B5 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C26BC821F7BA35B00B9B1B5 /* Lato-Black.ttf */; };
-		8C26BC871F7BA36400B9B1B5 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C26BC831F7BA36300B9B1B5 /* Lato-Bold.ttf */; };
 		8C377EF81ED8DC9A005251A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C377EF71ED8DC9A005251A9 /* AppDelegate.swift */; };
 		8C377EFA1ED8DC9A005251A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C377EF91ED8DC9A005251A9 /* ViewController.swift */; };
 		8C377EFD1ED8DC9A005251A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C377EFB1ED8DC9A005251A9 /* Main.storyboard */; };
@@ -64,6 +59,12 @@
 		8C6EB67C1EE4D38A00A0910D /* CoJamWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C6EB66F1EE4D38A00A0910D /* CoJamWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8CB7D28C1EE4ED7900F55896 /* AudioProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7D2881EE4ED7900F55896 /* AudioProcessor.m */; };
 		8CB7D28D1EE4ED7900F55896 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7D28A1EE4ED7900F55896 /* TPCircularBuffer.c */; };
+		8CE5BDDA1F8C5BCE000B99FB /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CE5BDD41F8C5BC5000B99FB /* Lato-Bold.ttf */; };
+		8CE5BDDB1F8C5BCE000B99FB /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CE5BDD51F8C5BC7000B99FB /* Lato-Heavy.ttf */; };
+		8CE5BDDC1F8C5BCE000B99FB /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8CE5BDD61F8C5BC8000B99FB /* OFL.txt */; };
+		8CE5BDDD1F8C5BCE000B99FB /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CE5BDD71F8C5BC9000B99FB /* Lato-Black.ttf */; };
+		8CE5BDDE1F8C5BCE000B99FB /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CE5BDD81F8C5BCA000B99FB /* Lato-Light.ttf */; };
+		8CE5BDDF1F8C5BCE000B99FB /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CE5BDD91F8C5BCC000B99FB /* Lato-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,11 +155,6 @@
 		4B54DC221F2263C700781894 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = CoJam/Facebook/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		4B54DC241F2263C900781894 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = CoJam/Facebook/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		4B54DC261F2263CB00781894 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = CoJam/Facebook/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		8C26BC7E1F7BA1FA00B9B1B5 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../../../../../Downloads/Lato2OFL/Lato-Light.ttf"; sourceTree = "<group>"; };
-		8C26BC801F7BA35600B9B1B5 /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Heavy.ttf"; path = "../../../../../Downloads/Lato2OFL/Lato-Heavy.ttf"; sourceTree = "<group>"; };
-		8C26BC811F7BA35A00B9B1B5 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = ../../../../../Downloads/Lato2OFL/OFL.txt; sourceTree = "<group>"; };
-		8C26BC821F7BA35B00B9B1B5 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "../../../../../Downloads/Lato2OFL/Lato-Black.ttf"; sourceTree = "<group>"; };
-		8C26BC831F7BA36300B9B1B5 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../../../../../Downloads/Lato2OFL/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		8C377EF41ED8DC9A005251A9 /* CoJam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoJam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C377EF71ED8DC9A005251A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C377EF91ED8DC9A005251A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +183,12 @@
 		8CB7D28A1EE4ED7900F55896 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
 		8CB7D28B1EE4ED7900F55896 /* AudioProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioProcessor.h; sourceTree = "<group>"; };
 		8CB7D28E1EE4EDCD00F55896 /* CoJamWidget-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoJamWidget-Bridging-Header.h"; sourceTree = "<group>"; };
+		8CE5BDD41F8C5BC5000B99FB /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "Fonts/Lato-Bold.ttf"; sourceTree = SOURCE_ROOT; };
+		8CE5BDD51F8C5BC7000B99FB /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Heavy.ttf"; path = "Fonts/Lato-Heavy.ttf"; sourceTree = SOURCE_ROOT; };
+		8CE5BDD61F8C5BC8000B99FB /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = Fonts/OFL.txt; sourceTree = SOURCE_ROOT; };
+		8CE5BDD71F8C5BC9000B99FB /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "Fonts/Lato-Black.ttf"; sourceTree = SOURCE_ROOT; };
+		8CE5BDD81F8C5BCA000B99FB /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "Fonts/Lato-Light.ttf"; sourceTree = SOURCE_ROOT; };
+		8CE5BDD91F8C5BCC000B99FB /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Medium.ttf"; path = "Fonts/Lato-Medium.ttf"; sourceTree = SOURCE_ROOT; };
 		90BE145F67F89C0A7276935E /* Pods_CoJam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoJam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A231F8653C23138AFC9038 /* Pods-CoJam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoJam.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoJam/Pods-CoJam.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -400,6 +402,7 @@
 		8C377EF61ED8DC9A005251A9 /* CoJam */ = {
 			isa = PBXGroup;
 			children = (
+				8CE5BDD31F8C5BA7000B99FB /* Fonts */,
 				2092825D1F58156500EB8668 /* Tutorial */,
 				209281ED1F57EEED00EB8668 /* External Library */,
 				189A83051F46B8EF0068CF74 /* Jam */,
@@ -417,15 +420,10 @@
 				4B1EFB2B1F216C1B001ACD25 /* Account.swift */,
 				8C377EF91ED8DC9A005251A9 /* ViewController.swift */,
 				8C377EFB1ED8DC9A005251A9 /* Main.storyboard */,
-				8C26BC821F7BA35B00B9B1B5 /* Lato-Black.ttf */,
-				8C26BC831F7BA36300B9B1B5 /* Lato-Bold.ttf */,
-				8C26BC801F7BA35600B9B1B5 /* Lato-Heavy.ttf */,
-				8C26BC811F7BA35A00B9B1B5 /* OFL.txt */,
 				8C377EFE1ED8DC9A005251A9 /* Assets.xcassets */,
 				8C377F001ED8DC9A005251A9 /* LaunchScreen.storyboard */,
 				18C35B261F4D8AA000A1B962 /* BebasNeue.otf */,
 				8C377F031ED8DC9A005251A9 /* Info.plist */,
-				8C26BC7E1F7BA1FA00B9B1B5 /* Lato-Light.ttf */,
 			);
 			path = CoJam;
 			sourceTree = "<group>";
@@ -495,6 +493,19 @@
 			);
 			path = CoJamWidget;
 			sourceTree = SOURCE_ROOT;
+		};
+		8CE5BDD31F8C5BA7000B99FB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8CE5BDD71F8C5BC9000B99FB /* Lato-Black.ttf */,
+				8CE5BDD41F8C5BC5000B99FB /* Lato-Bold.ttf */,
+				8CE5BDD51F8C5BC7000B99FB /* Lato-Heavy.ttf */,
+				8CE5BDD81F8C5BCA000B99FB /* Lato-Light.ttf */,
+				8CE5BDD91F8C5BCC000B99FB /* Lato-Medium.ttf */,
+				8CE5BDD61F8C5BC8000B99FB /* OFL.txt */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
 		};
 		C45FF5F7C29BD9331BFE41E2 /* Pods */ = {
 			isa = PBXGroup;
@@ -645,18 +656,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C26BC851F7BA36400B9B1B5 /* OFL.txt in Resources */,
+				8CE5BDDC1F8C5BCE000B99FB /* OFL.txt in Resources */,
+				8CE5BDDF1F8C5BCE000B99FB /* Lato-Medium.ttf in Resources */,
 				8C377F021ED8DC9A005251A9 /* LaunchScreen.storyboard in Resources */,
 				8C377EFF1ED8DC9A005251A9 /* Assets.xcassets in Resources */,
+				8CE5BDDE1F8C5BCE000B99FB /* Lato-Light.ttf in Resources */,
 				209282631F58156500EB8668 /* panels.json in Resources */,
 				209282571F58037900EB8668 /* SRFSurfboardPanelCell.xib in Resources */,
 				18C35B271F4D8AA000A1B962 /* BebasNeue.otf in Resources */,
-				8C26BC861F7BA36400B9B1B5 /* Lato-Black.ttf in Resources */,
-				8C26BC871F7BA36400B9B1B5 /* Lato-Bold.ttf in Resources */,
+				8CE5BDDD1F8C5BCE000B99FB /* Lato-Black.ttf in Resources */,
 				20DAC6901F584C3F008575FF /* Tutorial.xcassets in Resources */,
-				8C26BC841F7BA36400B9B1B5 /* Lato-Heavy.ttf in Resources */,
+				8CE5BDDB1F8C5BCE000B99FB /* Lato-Heavy.ttf in Resources */,
 				8C377EFD1ED8DC9A005251A9 /* Main.storyboard in Resources */,
-				8C26BC7F1F7BA1FB00B9B1B5 /* Lato-Light.ttf in Resources */,
+				8CE5BDDA1F8C5BCE000B99FB /* Lato-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +710,7 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 				"${BUILT_PRODUCTS_DIR}/ParseLiveQuery/ParseLiveQuery.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 			);
@@ -709,6 +722,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParseLiveQuery.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 			);
@@ -747,7 +761,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
