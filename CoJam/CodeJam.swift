@@ -14,23 +14,15 @@ import ParseLiveQuery
 import AVFoundation
 import CoreMotion
 
-// MARK: - CUSTOM ROOMS CELL
-class RoomCell: UICollectionViewCell {
-    /* Views */
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var addNew: UIImageView!
-    
-}
-
 class User{
     // Can't init is singleton
     private init() { }
     // MARK: Shared Instance
     static let shared = User()
     var status = STATUS_AVAILABLE
+    var currentRoom:PFObject?
     var awarenessMode = false
     var imageFile = UIImage(named: "logo")
-    var currentRoom:PFObject?
     var audioProcessor : AudioProcessor? = nil
     var isUserStatusLimbo = false
 }
@@ -38,16 +30,12 @@ class User{
 
 // MARK:- ROOMS CONTROLLER
 class CodeJam: UIViewController,
-    UICollectionViewDataSource,
     UICollectionViewDelegate,
     UICollectionViewDelegateFlowLayout,
     UISearchBarDelegate
 {
     
     /* Views */
-    @IBOutlet weak var roomsCollView: UICollectionView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var newRoomButton: UIBarButtonItem!
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var awarenessIcon: UIImageView!
     
@@ -62,8 +50,6 @@ class CodeJam: UIViewController,
     
    
     /* Variables */
-    var roomsArray = [PFObject]()
-    
     var knocked = false
     var onAwareness = false
     var audioProcessor : AudioProcessor? = nil
@@ -95,8 +81,6 @@ class CodeJam: UIViewController,
             
             showUserDetails()
             setStatus()
-            queryRooms()
-            setCurrentRoom()
             
             // Associate the device with a user for Push Notifications
             let installation = PFInstallation.current()
@@ -106,7 +90,7 @@ class CodeJam: UIViewController,
                 if error == nil {
                 }
             })
-            subscribeToInvitation()
+            //subscribeToInvitation()
         }
     }
     
@@ -115,11 +99,7 @@ class CodeJam: UIViewController,
         super.viewDidLoad()
         registerNotification()
         initilize()
-        customizeHeader()
-        addSwipeGestureToHeader()
-        subscribeTo()
-        subscribeToNewGroups()
-        
+        //customizeHeader()
     }
     
     /**
@@ -140,11 +120,7 @@ class CodeJam: UIViewController,
         NotificationCenter.default.removeObserver(self, name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
     }
     
-    deinit {
-        subscriptionInvitation = nil
-        subscription = nil
-    }
-    
+
     /**
      Overriding var to change the status-bar color.
      */
@@ -259,7 +235,6 @@ class CodeJam: UIViewController,
     //MARK:- Initialize
     
     fileprivate func initilize() {
-        searchBar.backgroundImage = UIImage()
         labelStatus.text = ""
         labelStatusMessage.text  = ""
         
@@ -271,7 +246,6 @@ class CodeJam: UIViewController,
         viewActivityContainer?.layer.cornerRadius = profileImg.layer.cornerRadius
         
         UIApplication.shared.applicationIconBadgeNumber = 0
-        roomsCollView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0)
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         profileImg.isUserInteractionEnabled = true
@@ -298,7 +272,6 @@ class CodeJam: UIViewController,
             PFUser.current()?.fetchInBackground(block: { (_, error) in
                 User.shared.status = PFUser.current()![USER_STATUS] as? String ?? STATUS_AVAILABLE
                 print("Currentuser:", PFUser.current()!)
-                //self.setCurrentRoom()
             })
             UIApplication.shared.isIdleTimerDisabled = true
             
@@ -321,88 +294,11 @@ class CodeJam: UIViewController,
         saveUserLimbo(status: limbo)
     }
     
-    fileprivate func setCurrentRoom() {
-        if let currentRoom = PFUser.current()![USER_CURRENTROOM] as? PFObject {
-            let query = PFQuery(className: ROOMS_CLASS_NAME)
-            showHUD()
-            query.getObjectInBackground(withId: currentRoom.objectId!, block: { (object, error) in
-                self.hideHUD()
-                if error == nil {
-                    User.shared.currentRoom = object
-                    if(User.shared.currentRoom != nil){
-                        self.joinInRoom()
-                    }
-                }
-            })
-        }
-    }
     
     
     fileprivate func showLoginController() {
         let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! Login
         present(loginVC, animated: true, completion: nil)
-    }
-    
-    fileprivate func invitationAcceptFor(room: PFObject) {
-        if let currentUser = PFUser.current() {
-            room.add(currentUser, forKey: ROOM_MEMBERS)
-            room.saveInBackground()
-        }
-    }
-    
-    /*
-    func showInvite(room:PFObject){
-        let alert = UIAlertController(title: APP_NAME,
-                                      message: "You have been invited to join in CodeJam \(room[ROOMS_NAME] ?? "")",
-            preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Accept", style: .default, handler: { (action) -> Void in
-            //setting the new 
-            self.invitationAcceptFor(room: room)
-            User.shared.currentRoom = room
-            self.updateCurrentRoom()
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in })
-        alert.addAction(ok); alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
-    }
-    */
-    
-    var subscriptionInvitation: Subscription<PFObject>?
-    func subscribeToInvitation(){
-        let query: PFQuery<PFObject> = PFQuery(className:CODEJAM_INVITE_CLASS_NAME)
-        query.whereKey(CODEJAM_INVITE_USER_POINTER, equalTo: PFUser.current()!)
-        subscriptionInvitation = liveQueryClient.subscribe(query).handle(Event.created) { _, object in
-            let room = object[CODEJAM_INVITE_ROOM_POINTER] as! PFObject;
-            let query = PFQuery(className: ROOMS_CLASS_NAME)
-            query.whereKey("objectId", equalTo: room.objectId ?? "")
-            query.findObjectsInBackground { (objects, error)-> Void in
-                if error == nil {
-                    var rObj = PFObject(className: ROOMS_CLASS_NAME)
-                    rObj = objects![0]
-                    //self.showInvite(room:rObj)
-                    self.invitationAcceptFor(room: rObj)
-                    do{
-                        try rObj.fetchIfNeeded()
-                    }
-                    catch {
-                        print("fetching_room_error", error)
-                    }
-                    
-                    User.shared.currentRoom = rObj
-                    self.updateCurrentRoom()
-                }}
-        }
-    }
-    
-    var subscriptionNewInvitaions: Subscription<PFObject>?
-    func subscribeToNewGroups() {
-        if let currentUser = PFUser.current() {
-            let query: PFQuery<PFObject> = PFQuery(className:CODEJAM_INVITE_CLASS_NAME)
-            query.whereKey(CODEJAM_INVITE_USER_POINTER, equalTo: currentUser)
-            subscriptionNewInvitaions = liveQueryClient.subscribe(query).handle(Event.entered){ _, object in
-                print("Event.entered")
-            }
-        }
     }
     
     /**
@@ -633,8 +529,8 @@ class CodeJam: UIViewController,
                     AnalyticsParameter.time: Utility.stringFromTime(interval: timeInterval),
                     AnalyticsParameter.username: PFUser.current()!.username ?? ""
                 ]
-                let event = User.shared.currentRoom == nil ? AnalyticsEvent.soloAvailableTime : AnalyticsEvent.groupAvailableTime
-                Utility.sendEvent(name: event, value: timeInterval/60, param: data)
+                //let event = User.shared.currentRoom == nil ? AnalyticsEvent.soloAvailableTime : AnalyticsEvent.groupAvailableTime
+                //Utility.sendEvent(name: event, value: timeInterval/60, param: data)
             }
         }
         else{
@@ -644,8 +540,8 @@ class CodeJam: UIViewController,
                     AnalyticsParameter.time: Utility.stringFromTime(interval: timeInterval),
                     AnalyticsParameter.username: PFUser.current()!.username ?? ""
                 ]
-                let event = User.shared.currentRoom == nil ? AnalyticsEvent.soloBusyTime : AnalyticsEvent.groupBusyTime
-                Utility.sendEvent(name: event, value: timeInterval/60, param: data)
+                //let event = User.shared.currentRoom == nil ? AnalyticsEvent.soloBusyTime : AnalyticsEvent.groupBusyTime
+                //Utility.sendEvent(name: event, value: timeInterval/60, param: data)
             }
         }
         
@@ -654,33 +550,9 @@ class CodeJam: UIViewController,
         PFUser.current()?.saveInBackground()
     }
     
-    
     fileprivate func customizeHeader() {
         viewCircular.layer.cornerRadius = viewCircular.frame.size.width/2.0
     }
-    
-    // MARK: - QUERY ROOMS
-    func queryRooms() {
-        showHUD()
-        roomsArray.removeAll()
-        let searchString = (searchBar.text ?? "").uppercased()
-        let query = PFQuery(className: ROOMS_CLASS_NAME)
-        query.whereKey(ROOMS_NAME, contains: searchString)
-        query.order(byDescending: "createdAt")
-        query.includeKey(ROOM_MEMBERS)
-        query.whereKey("roomMembersArray.objectId", equalTo: PFUser.current()!.objectId ?? "")
-        query.findObjectsInBackground { (objects, error)-> Void in
-            if error == nil {
-                self.roomsArray = objects ?? []
-                self.roomsCollView.reloadData()
-                self.hideHUD()
-            } else {
-                self.simpleAlert("\(error!.localizedDescription)")
-                self.hideHUD()
-            }
-        }
-    }
-    
     
     @IBAction func closeButt(_ sender: AnyObject) {
     
@@ -693,8 +565,6 @@ class CodeJam: UIViewController,
             self.sendUserStatusAnalytics(isCurrentStatus: true)
             self.removeNotification()
             self.resetUser()
-            self.subscriptionInvitation = nil
-            self.subscription = nil
             // reset the new time
             guard let updateUser = PFUser.current() else {
                 self.showLoginController()
@@ -731,73 +601,10 @@ class CodeJam: UIViewController,
         User.shared.awarenessMode = false
         User.shared.audioProcessor?.stop()
         
-        roomsArray.removeAll()
-        roomsCollView.reloadData()
-        
         //Reset user last triggered.
         UserDefaults.standard.set("", forKey: "lastTriggeredBy")
         UserDefaults.standard.synchronize()
     }
-    
-    // MARK: - COLLECTION VIEW DELEGATES
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return roomsArray.count + 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if indexPath.row == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newRoomCell", for: indexPath)
-            let imageView = cell.viewWithTag(100) as? UIImageView
-            imageView?.layer.cornerRadius = (imageView?.frame.size.width)!/2
-            imageView?.layer.borderWidth = 2
-            imageView?.layer.borderColor = Color.black.cgColor
-            
-            return cell
-        }
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomCell", for: indexPath) as! RoomCollectionViewCell
-        if roomsArray.count > 0 {
-            let roomClass = roomsArray[indexPath.row - 1]
-            cell.labelName?.text = "\(roomClass[ROOMS_NAME] ?? "")"
-            cell.labelSubscript?.text = ""
-        }
-        
-        return cell
-    }
-    
-    // MARK: - TAP ON A CELL -> ENTER A JAM ROOM
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            let jam = self.storyboard?.instantiateViewController(withIdentifier: "NewRoom") as! NewRoom
-            jam.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            present(jam, animated: true, completion: nil)
-        }
-        else if roomsArray.count > 0 {
-            
-            var roomsClass = PFObject(className: ROOMS_CLASS_NAME)
-            roomsClass = roomsArray[indexPath.row - 1]
-            User.shared.currentRoom = roomsClass
-            updateCurrentRoom()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let columnWidth = (collectionView.frame.size.width / CGFloat(kGroupColumnCount)) - CGFloat(kSpaceBetweenCell)
-        return CGSize(width: columnWidth, height: columnWidth)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(kSpaceBetweenCellRow)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(kSpaceBetweenCell)
-    }
-    
     
     //Settings
     @IBAction func onAccountBtn(_ sender: UIButton) {
@@ -808,141 +615,17 @@ class CodeJam: UIViewController,
     
     }
     
-    // MARK: - SEARCH BAR DELEGATES
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        queryRooms()
-        searchBar.showsCancelButton = false
+    //Invite Friend
+    @IBAction func inviteButtonTapped(_ sender: Any) {
+        let activityController = UIActivityViewController(activityItems: [kMessageInviteText], applicationActivities: nil)
+        activityController.popoverPresentationController?.sourceView = self.view
+        activityController.excludedActivityTypes = [.airDrop]
+        present(activityController, animated: true, completion: nil)
     }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
-    }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        searchBar.showsCancelButton = false
-        searchBar.text = ""
-        queryRooms()
-    }
-    
-    func updateCurrentRoom(){
-        guard let updatedUser = PFUser.current() else {
-            showLoginController()
-            return
-        }
-        
-        showHUD();
-
-        updatedUser[USER_CURRENTROOM] = User.shared.currentRoom
-        if !User.shared.isUserStatusLimbo {
-            updatedUser[USER_STATUS_TIME] = Date()
-        }
-        updatedUser.saveInBackground { (success, error) -> Void in
-            if error == nil {
-                //Send room enter analytics SOLO STATE.
-                self.sendUserStatusAnalytics(isCurrentStatus: true)
-                self.joinInRoom()
-            } else {
-                self.hideHUD()
-                print(error?.localizedDescription ?? "")
-            }
-        }
-    }
-   
-    func removeCurrentRoom(){
-        guard let updatedUser = PFUser.current() else {
-            showLoginController()
-            return
-        }
-        updatedUser[USER_CURRENTROOM] = NSNull()
-        updatedUser.setObject(NSNull(),forKey: USER_CURRENTROOM)
-        updatedUser.saveInBackground { (success, error) -> Void in
-            if error == nil {
-            } else {
-                print(error?.localizedDescription ?? "")
-            }
-        }
-    }
-
-    func joinInRoom(){
-        let jam = self.storyboard?.instantiateViewController(withIdentifier: "Jam") as! Jam
-        jam.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        
-        User.shared.currentRoom?.fetchInBackground(block: { (object, error) in
-            
-            self.hideHUD()
-            jam.codejamObj = User.shared.currentRoom!
-            self.present(jam, animated: true, completion: nil)
-        })
-        
-    }
-    
-    var subscription: Subscription<PFObject>?
-    func subscribeTo(){
-        if let currentUser =  PFUser.current(){
-            let query: PFQuery<PFObject> = PFQuery(className:USERCODEJAM_CLASS_NAME)
-            query.whereKey(USERCODEJAM_USER_POINTER, equalTo: currentUser)
-            query.whereKey(USERCODEJAM_USER_STATUS, equalTo: "invited")
-            subscription = liveQueryClient.subscribe(query).handle(Event.created) { _, object in
-                User.shared.currentRoom = object[CHAT_ROOM_POINTER] as? PFObject
-                self.updateCurrentRoom()
-            }
-        }
-        
-    }
-    
-    // MARK: - REFRESH ROOMS BUTTON
-    /*@IBAction func refreshButt(_ sender: AnyObject) {
-        searchBar.text = ""
-        searchBar.resignFirstResponder()
-        searchBar.showsCancelButton = false
-        
-        // Call query
-        if PFUser.current() != nil { queryRooms() }
-    }*/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-}
-
-//MARK:- Swipe Gesture
-extension CodeJam {
-    fileprivate func addSwipeGestureToHeader() {
-        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeLeft(_:)))
-        swipeLeftGesture.direction = .left
-        viewSwipeHeader.addGestureRecognizer(swipeLeftGesture)
-        
-        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(_:)))
-        swipeRightGesture.direction = .right
-        viewSwipeHeader.addGestureRecognizer(swipeRightGesture)
-    }
-    
-    @objc fileprivate func didSwipeLeft(_ gesture: UISwipeGestureRecognizer) {
-        if User.shared.isUserStatusLimbo || currentHeaderIndex == 1 {
-            return
-        }
-        currentHeaderIndex = 1
-        User.shared.status = STATUS_BUSY
-        setStatus()
-        saveUserStatus()
-        sendUserStatusAnalytics()
-        UIView.transition(with: viewProfile, duration: TimeInterval(0.5), options: .transitionFlipFromRight, animations: {
-        }, completion: nil)
-    }
-    
-    @objc fileprivate func didSwipeRight(_ gesture: UISwipeGestureRecognizer) {
-        if User.shared.isUserStatusLimbo || currentHeaderIndex == 0 {
-            return
-        }
-        currentHeaderIndex = 0
-        User.shared.status = STATUS_AVAILABLE
-        setStatus()
-        saveUserStatus()
-        sendUserStatusAnalytics()
-        UIView.transition(with: viewProfile, duration: TimeInterval(0.5), options: .transitionFlipFromLeft, animations: {
-        }, completion: nil)
     }
 }
 
