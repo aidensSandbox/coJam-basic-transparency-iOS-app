@@ -100,6 +100,7 @@ class CodeJam: UIViewController,
         registerNotification()
         initilize()
         //customizeHeader()
+        addSwipeGestureToHeader()
     }
     
     /**
@@ -475,6 +476,7 @@ class CodeJam: UIViewController,
         }
     }
     
+    
     //MARK:- ANALYTICS
     /**
      This function is used to send the user available and busy state time
@@ -626,6 +628,45 @@ class CodeJam: UIViewController,
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+//MARK:- Swipe Gesture
+extension CodeJam {
+    fileprivate func addSwipeGestureToHeader() {
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeLeft(_:)))
+        swipeLeftGesture.direction = .left
+        viewSwipeHeader.addGestureRecognizer(swipeLeftGesture)
+        
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeRight(_:)))
+        swipeRightGesture.direction = .right
+        viewSwipeHeader.addGestureRecognizer(swipeRightGesture)
+    }
+    // Swipe Left
+    @objc fileprivate func didSwipeLeft(_ gesture: UISwipeGestureRecognizer) {
+        if User.shared.isUserStatusLimbo || currentHeaderIndex == 1 {
+            return
+        }
+        currentHeaderIndex = 1
+        //User.shared.status = STATUS_BUSY
+        //setStatus()
+        //saveUserStatus()
+        //sendUserStatusAnalytics()
+        UIView.transition(with: viewProfile, duration: TimeInterval(0.5), options: .transitionFlipFromRight, animations: {
+        }, completion: nil)
+    }
+    // Swipe Right
+    @objc fileprivate func didSwipeRight(_ gesture: UISwipeGestureRecognizer) {
+        if User.shared.isUserStatusLimbo || currentHeaderIndex == 0 {
+            return
+        }
+        currentHeaderIndex = 0
+        //User.shared.status = STATUS_AVAILABLE
+        //setStatus()
+        //saveUserStatus()
+        //sendUserStatusAnalytics()
+        UIView.transition(with: viewProfile, duration: TimeInterval(0.5), options: .transitionFlipFromLeft, animations: {
+        }, completion: nil)
     }
 }
 

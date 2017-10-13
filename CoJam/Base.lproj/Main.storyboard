@@ -480,7 +480,127 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+<<<<<<< HEAD
                             </stackView>
+=======
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="TfZ-1x-RhJ" firstAttribute="height" secondItem="mIX-rS-rjU" secondAttribute="height" id="0vc-bL-xux"/>
+                                    <constraint firstItem="eCN-SJ-dMp" firstAttribute="centerY" secondItem="Qe4-Tm-iH0" secondAttribute="centerY" id="1qo-Gj-Ql7"/>
+                                    <constraint firstItem="Qe4-Tm-iH0" firstAttribute="centerX" secondItem="QVT-LZ-Hnx" secondAttribute="centerX" id="4Ir-AH-rrR"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qe4-Tm-iH0" secondAttribute="trailing" constant="40" id="9Bd-km-QLz"/>
+                                    <constraint firstItem="TfZ-1x-RhJ" firstAttribute="centerY" secondItem="mIX-rS-rjU" secondAttribute="centerY" id="DBt-Tl-EhF"/>
+                                    <constraint firstItem="mIX-rS-rjU" firstAttribute="top" secondItem="QVT-LZ-Hnx" secondAttribute="top" id="DzQ-6y-IXe"/>
+                                    <constraint firstItem="mIX-rS-rjU" firstAttribute="centerX" secondItem="QVT-LZ-Hnx" secondAttribute="centerX" id="JcX-xK-xci"/>
+                                    <constraint firstItem="TfZ-1x-RhJ" firstAttribute="centerX" secondItem="mIX-rS-rjU" secondAttribute="centerX" id="KJL-Zg-L0J"/>
+                                    <constraint firstItem="Qe4-Tm-iH0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QVT-LZ-Hnx" secondAttribute="leading" constant="20" id="KgA-vH-BbX"/>
+                                    <constraint firstItem="eCN-SJ-dMp" firstAttribute="height" secondItem="Qe4-Tm-iH0" secondAttribute="height" id="dHh-9P-wW7"/>
+                                    <constraint firstItem="TfZ-1x-RhJ" firstAttribute="width" secondItem="mIX-rS-rjU" secondAttribute="width" id="dd1-kg-Ehk"/>
+                                    <constraint firstItem="Qe4-Tm-iH0" firstAttribute="top" secondItem="TfZ-1x-RhJ" secondAttribute="bottom" constant="8" symbolic="YES" id="hOe-Hn-owp"/>
+                                    <constraint firstItem="eCN-SJ-dMp" firstAttribute="leading" secondItem="Qe4-Tm-iH0" secondAttribute="trailing" id="ohZ-rj-7eP"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qe4-Tm-iH0" secondAttribute="bottom" id="pVw-iv-Oxx"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To adjust your microphone please click the help icon on the main screen and follow the instructions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rot-lz-Xze">
+                                <rect key="frame" x="15" y="386" width="345" height="28"/>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="12"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czE-Sv-okx">
+                                <rect key="frame" x="35" y="110" width="305" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="czE-Sv-okx" secondAttribute="height" multiplier="305:40" id="CmV-zf-1cm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
+                                <state key="normal" title="SEND FEEDBACK">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTappedFeedbackButton:" destination="kDY-HA-xKH" eventType="touchUpInside" id="IDe-SO-cMU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awa-cj-Cyj">
+                                <rect key="frame" x="35" y="158" width="305" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="awa-cj-Cyj" secondAttribute="height" multiplier="305:40" id="Y73-SU-Z7T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
+                                <state key="normal" title="NEED HELP ?">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTappedHelpButton:" destination="kDY-HA-xKH" eventType="touchUpInside" id="TaJ-1C-0cV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ht3-Cm-GRd">
+                                <rect key="frame" x="187.5" y="30" width="0.0" height="68"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoJam by Audesis Inc." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPd-dd-11y">
+                                <rect key="frame" x="120" y="40" width="134.5" height="16"/>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-hM-4Qa">
+                                <rect key="frame" x="224" y="423" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Enhance Voices" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFm-mi-j2X">
+                                <rect key="frame" x="54" y="428" width="114" height="21"/>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="17"/>
+                                <color key="textColor" red="0.39461016409999999" green="0.39461016409999999" blue="0.39461016409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="ysn-zZ-P9Z">
+                                <rect key="frame" x="23" y="477" width="269" height="26"/>
+                                <color key="tintColor" red="0.0078431372550000003" green="0.87843137250000003" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="3x0-sE-bmB"/>
+                                    <constraint firstAttribute="width" constant="265" id="LEs-UN-wGW"/>
+                                </constraints>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viD-ex-vH5">
+                                <rect key="frame" x="241" y="520" width="36" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="viD-ex-vH5" secondAttribute="height" multiplier="78:4" id="Zzo-Jp-mig"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="13"/>
+                                <state key="normal" title="00">
+                                    <color key="titleColor" red="0.39461016409999999" green="0.39461016409999999" blue="0.39461016409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZO-1y-8wg">
+                                <rect key="frame" x="304" y="469" width="62" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NZO-1y-8wg" secondAttribute="height" multiplier="305:40" id="371-eL-fei"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
+                                <state key="normal" title="RESET">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTappedHelpButton:" destination="kDY-HA-xKH" eventType="touchUpInside" id="IBP-Qk-stx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tt6-oI-vei">
+                                <rect key="frame" x="64" y="520" width="144" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tt6-oI-vei" secondAttribute="height" multiplier="78:4" id="Ga8-Xn-Fri"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="13"/>
+                                <state key="normal" title="Microphone Volume:">
+                                    <color key="titleColor" red="0.39461016409999999" green="0.39461016409999999" blue="0.39461016409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+>>>>>>> 079ca28c755664ad5cca5cc959e3924d57df7459
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -523,7 +643,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="480.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COJAM" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCv-1S-Qvp">
+<<<<<<< HEAD
                                                 <rect key="frame" x="15" y="148" width="290" height="25.5"/>
+=======
+                                                <rect key="frame" x="15" y="148" width="345" height="24.5"/>
+>>>>>>> 079ca28c755664ad5cca5cc959e3924d57df7459
                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="21"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -677,7 +801,11 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do More With Your Headphones On." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-2H-fuQ">
+<<<<<<< HEAD
                                                 <rect key="frame" x="15" y="178.5" width="290" height="20"/>
+=======
+                                                <rect key="frame" x="15" y="177.5" width="345" height="20"/>
+>>>>>>> 079ca28c755664ad5cca5cc959e3924d57df7459
                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="17"/>
                                                 <color key="textColor" red="0.39461016409999999" green="0.39461016409999999" blue="0.39461016409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1308,7 +1436,11 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4O-ad-7u6">
+<<<<<<< HEAD
                                 <rect key="frame" x="180" y="425" width="125" height="40"/>
+=======
+                                <rect key="frame" x="228" y="612" width="132" height="40"/>
+>>>>>>> 079ca28c755664ad5cca5cc959e3924d57df7459
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ikF-9R-8OV"/>
@@ -1324,11 +1456,19 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mkf-cw-eO1">
+<<<<<<< HEAD
                                 <rect key="frame" x="232" y="435" width="20" height="20"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRh-kx-vXV">
                                 <rect key="frame" x="55" y="177" width="210" height="25.5"/>
+=======
+                                <rect key="frame" x="283.5" y="622" width="20" height="20"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRh-kx-vXV">
+                                <rect key="frame" x="55" y="177" width="265" height="24.5"/>
+>>>>>>> 079ca28c755664ad5cca5cc959e3924d57df7459
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="21"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1483,7 +1623,11 @@
                 <navigationController storyboardIdentifier="UsersNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3tf-0L-DBI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Szr-1w-Sz8">
+<<<<<<< HEAD
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+=======
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
+>>>>>>> 079ca28c755664ad5cca5cc959e3924d57df7459
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

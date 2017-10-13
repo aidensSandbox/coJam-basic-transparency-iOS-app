@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-import AlamofireImage
+//import AlamofireImage
 
 class CustomRoomUserCell: UICollectionViewCell {
     @IBOutlet weak var userImage: UIImageView!
