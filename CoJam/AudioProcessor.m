@@ -475,10 +475,10 @@ static OSStatus playbackCallback(void *inRefCon,
         
         //****Temporary fix to inability to control VoiceChat Mode system volume
         //Solution 1:
-        //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
+        [[AVAudioSession sharedInstance] setMode:AVAudioSessionModeDefault error:nil];
         
         //Solution 2:
-        [[AVAudioSession sharedInstance] setMode:AVAudioSessionModeVoiceChat error:nil];
+        //[[AVAudioSession sharedInstance] setMode:AVAudioSessionModeVoiceChat error:nil];
         
         /*
         //Solution 2B: for Auto vol control 9/17/17
