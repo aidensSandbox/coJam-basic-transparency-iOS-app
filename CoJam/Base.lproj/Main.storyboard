@@ -38,6 +38,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_mountainsandstars" translatesAutoresizingMaskIntoConstraints="NO" id="ZXl-KL-IPS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0Q-9t-cq5">
                                 <rect key="frame" x="26" y="35" width="40" height="40"/>
                                 <constraints>
@@ -189,14 +192,18 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZXl-KL-IPS" secondAttribute="trailing" id="0UJ-vQ-6u8"/>
+                            <constraint firstItem="ZXl-KL-IPS" firstAttribute="leading" secondItem="1N7-f8-wQL" secondAttribute="leading" id="1sV-gt-h4x"/>
                             <constraint firstItem="eAJ-Vd-FvD" firstAttribute="centerY" secondItem="1N7-f8-wQL" secondAttribute="centerY" id="2TJ-vN-JWF"/>
                             <constraint firstItem="eAJ-Vd-FvD" firstAttribute="leading" secondItem="1N7-f8-wQL" secondAttribute="leadingMargin" constant="20" id="7CG-4d-Jw1"/>
                             <constraint firstItem="9gG-Ye-zzQ" firstAttribute="leading" secondItem="1N7-f8-wQL" secondAttribute="leadingMargin" constant="10" id="Ery-I5-zU4"/>
                             <constraint firstItem="l0Q-9t-cq5" firstAttribute="top" secondItem="ehb-PI-cbl" secondAttribute="bottom" constant="15" id="Y4g-Z2-9Mj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9gG-Ye-zzQ" secondAttribute="trailing" constant="10" id="Zv8-Xq-Zww"/>
                             <constraint firstItem="l0Q-9t-cq5" firstAttribute="leading" secondItem="1N7-f8-wQL" secondAttribute="leadingMargin" constant="10" id="aOZ-GF-2Sf"/>
+                            <constraint firstItem="gbN-4S-SqV" firstAttribute="top" secondItem="ZXl-KL-IPS" secondAttribute="bottom" id="b69-Wi-mNx"/>
+                            <constraint firstItem="ZXl-KL-IPS" firstAttribute="top" secondItem="1N7-f8-wQL" secondAttribute="top" id="cbf-cX-sAV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eAJ-Vd-FvD" secondAttribute="trailing" constant="20" id="gLl-9v-TLM"/>
                             <constraint firstItem="gbN-4S-SqV" firstAttribute="top" secondItem="9gG-Ye-zzQ" secondAttribute="bottom" constant="20" id="gfs-Uf-yy8"/>
                         </constraints>
@@ -221,7 +228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6MA-3g-Ye0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-188" y="686"/>
+            <point key="canvasLocation" x="-188.5" y="685.5"/>
         </scene>
         <!--Account-->
         <scene sceneID="qCP-o5-GAf">
@@ -1487,7 +1494,7 @@
                 <navigationController storyboardIdentifier="UsersNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3tf-0L-DBI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Szr-1w-Sz8">
-                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1502,6 +1509,7 @@
     </scenes>
     <resources>
         <image name="ShareIcon" width="64" height="64"/>
+        <image name="background_mountainsandstars" width="199" height="355"/>
         <image name="cancelIcon" width="25" height="25"/>
         <image name="editIcon" width="15" height="15"/>
         <image name="facebook" width="22" height="22"/>

@@ -652,6 +652,14 @@ extension CodeJam {
         //setStatus()
         //saveUserStatus()
         //sendUserStatusAnalytics()
+        
+        //Temporarily fix status to always available, and keep action active
+        currentHeaderIndex = 0
+        User.shared.status = STATUS_AVAILABLE
+        setStatus()
+        saveUserStatus()
+        
+        
         UIView.transition(with: viewProfile, duration: TimeInterval(0.5), options: .transitionFlipFromRight, animations: {
         }, completion: nil)
     }
@@ -661,9 +669,9 @@ extension CodeJam {
             return
         }
         currentHeaderIndex = 0
-        //User.shared.status = STATUS_AVAILABLE
-        //setStatus()
-        //saveUserStatus()
+        User.shared.status = STATUS_AVAILABLE
+        setStatus()
+        saveUserStatus()
         //sendUserStatusAnalytics()
         UIView.transition(with: viewProfile, duration: TimeInterval(0.5), options: .transitionFlipFromLeft, animations: {
         }, completion: nil)
