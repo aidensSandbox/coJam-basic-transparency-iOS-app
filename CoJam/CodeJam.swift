@@ -67,6 +67,11 @@ class CodeJam: UIViewController,
         self.awarenessIcon.layer.borderWidth = kAwarenessIconBorderWidth
         self.awarenessIcon.layer.borderColor = Color.black.cgColor
         
+        //self.awarenessIcon.layer.shadowColor = Color.black.cgColor
+        //self.awarenessIcon.layer.shadowOffset = CGSize(width: 2, height: 2)
+        //self.awarenessIcon.layer.shadowRadius = 1.7
+        //self.awarenessIcon.layer.shadowOpacity = 0.5
+        
         if PFUser.current() == nil {
             showLoginController()
             
@@ -242,9 +247,23 @@ class CodeJam: UIViewController,
         self.profileImg.layer.cornerRadius = self.profileImg.frame.size.width / 2
         self.profileImg.clipsToBounds = true
         self.profileImg.layer.borderWidth = 6.0 //4.0
-        self.profileImg.layer.masksToBounds = true
         
         viewActivityContainer?.layer.cornerRadius = profileImg.layer.cornerRadius
+        
+        //self.profileImg.layer.shadowColor = Color.black.cgColor
+        //self.profileImg.layer.shadowOffset = CGSize(width: 2, height: 2)
+        //self.profileImg.layer.shadowRadius = 1.7
+        //self.profileImg.layer.shadowOpacity = 0.5
+        //self.profileImg.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        //self.profileImg.layer.shouldRasterize = true
+        //self.profileImg.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+        
+
+
+        
+        //Add Shadow
+       
+        
         
         UIApplication.shared.applicationIconBadgeNumber = 0
         
