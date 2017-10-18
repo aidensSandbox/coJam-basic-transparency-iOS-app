@@ -259,10 +259,10 @@ class CodeJam: UIViewController,
         print("Setup Audio")
         print("@@@@@@@@@@@@@@@@")
         User.shared.audioProcessor = AudioProcessor()
-        User.shared.audioProcessor?.pauseMusic = true;
+        User.shared.audioProcessor?.pauseMusic = false;
         User.shared.audioProcessor?.surroundSound = true;
         User.shared.audioProcessor?.gain = Float(kDefaultAudioGain)
-        
+     
         /**
          Check Headphone is plugged in or not. and setting is user is limbo.
          */

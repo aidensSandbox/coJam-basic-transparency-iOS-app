@@ -10,34 +10,64 @@
  "screen" : "Screen2"
  },
  {
- "title" : "TUNE YOUR MICROPHONE TO START",
- "text" : "\nTap your picture and you should see a microphone icon appear beside it.\n\nWith the microphone symbol on, wear your headphones and increase the volume using the side buttons on your iPhone all the way up to 90%, or whatever volume you find most effective to hear the outside.\n\nRepeat this process whenever you need to adjust the microphone volume.",
+ "title" : "FIND YOUR PERFECT SOUND MIX",
+ "text" : "\n Easily adjust the music to outside sound volume to find your perfect mix.\n\n1.Use the volume buttons on the side of the phone to adjust how low you want the music to be.\n\n2. Use the slide bar in SETTINGS to adjust how loud you want to hear the world around you. That's it!",
  "screen" : "Screen3"
  },
  {
- "title" : "LET OTHERS GRAB YOUR ATTENTION",
- "text" : "\nNo more “what?”, “Sorry?” or “Say that again...” when you have headphones on at the office or around your friends! They simply tap your picture on their CoJam app to lower your music and make you hear the outside to talk to you.\n\nYou’ll spare them all the waving, awkward shoulder tapping and throwing stuff at you. Win for everyone!",
- "screen" : "Screen4"
- },
- {
- "title" : "CREATE OR JOIN A GROUP TO START",
- "text" : "\nCreate a group to allow people around to talk to you when you have headphones on.\n\nYou can also add those who don’t use headphones to the group.",
- "screen" : "Screen5"
- },
- {
- "title" : "GO RED TO ZONE OUT",
- "text" : "\nGot a few hours before your deadline? Swipe left on your picture to let others know you can't chat now.\n\nSwipe right to go social and indicate you're ready to interact again.\n\nA transparent ring around others means they're in Limbo, they're either offline or not wearing headphones while using the app.",
- "screen" : "Screen6"
- },
- {
  "title" : "EASILY INVITE OTHERS TO COJAM",
- "text" : "\nThe more CoJam users around you the longer you can keep your headphones on without hurting your communication.\n\nInvite your friends and peers to CoJam directly from the app by email, message, or a post on Facebook!",
+ "text" : "\n Does CoJam make you use your headphones better and longer throughout your day?\n\n Click the share button straight from the main screen and spread the love.\n\nInvite your friends and peers to CoJam directly by email, message, or a post on Facebook!",
  "screen" : "Screen7"
  },
  {
  "title" : "TELL US WHAT TO ADD OR FIX",
  "text" : "\nAs a beta tester, you will be shaping this app with every comment and feedback you give. We placed an instant feedback button in the settings for you. \n\nAlso, tap the “Ask for help” button and we’ll reach out to you shortly to give you 1-on-1 support with any issues.",
- "screen" : "Screen8",
+ "screen" : "Screen5",
  "button" : "Done!"
  }
 ]
+ 
+ /*
+  {
+  "title" : "WELCOME TO COJAM",
+  "text" : "\nWe let headphone users easily communicate with peers & friends and vise versa.\n\n Music & podcasts enhance you life and it’s about time we listen to them without hurting our communication!",
+  "screen" : "Screen1"
+  },
+  {
+  "title" : "HEAR THE OUTSIDE WITH HEADPHONES ON",
+  "text" : "\nTap your picture and sound from the outside amplifies through your headphones.\n\nYou’ll comfortably hear the outside without taking your headphones off or pausing your music, and you'll hear much clearer than you would with your naked ear.",
+  "screen" : "Screen2"
+  },
+  {
+  "title" : "TUNE YOUR MICROPHONE TO START",
+  "text" : "\nTap your picture and you should see a microphone icon appear beside it.\n\nWith the microphone symbol on, wear your headphones and increase the volume using the side buttons on your iPhone all the way up to 90%, or whatever volume you find most effective to hear the outside.\n\nRepeat this process whenever you need to adjust the microphone volume.",
+  "screen" : "Screen3"
+  },
+  {
+  "title" : "LET OTHERS GRAB YOUR ATTENTION",
+  "text" : "\nNo more “what?”, “Sorry?” or “Say that again...” when you have headphones on at the office or around your friends! They simply tap your picture on their CoJam app to lower your music and make you hear the outside to talk to you.\n\nYou’ll spare them all the waving, awkward shoulder tapping and throwing stuff at you. Win for everyone!",
+  "screen" : "Screen4"
+  },
+  {
+  "title" : "CREATE OR JOIN A GROUP TO START",
+  "text" : "\nCreate a group to allow people around to talk to you when you have headphones on.\n\nYou can also add those who don’t use headphones to the group.",
+  "screen" : "Screen5"
+  },
+  {
+  "title" : "GO RED TO ZONE OUT",
+  "text" : "\nGot a few hours before your deadline? Swipe left on your picture to let others know you can't chat now.\n\nSwipe right to go social and indicate you're ready to interact again.\n\nA transparent ring around others means they're in Limbo, they're either offline or not wearing headphones while using the app.",
+  "screen" : "Screen6"
+  },
+  {
+  "title" : "EASILY INVITE OTHERS TO COJAM",
+  "text" : "\nThe more CoJam users around you the longer you can keep your headphones on without hurting your communication.\n\nInvite your friends and peers to CoJam directly from the app by email, message, or a post on Facebook!",
+  "screen" : "Screen7"
+  },
+  {
+  "title" : "TELL US WHAT TO ADD OR FIX",
+  "text" : "\nAs a beta tester, you will be shaping this app with every comment and feedback you give. We placed an instant feedback button in the settings for you. \n\nAlso, tap the “Ask for help” button and we’ll reach out to you shortly to give you 1-on-1 support with any issues.",
+  "screen" : "Screen8",
+  "button" : "Done!"
+  }
+  */
+
