@@ -445,6 +445,14 @@ class CodeJam: UIViewController,
                 
                 self.profileImg.clipsToBounds = true
                 self.profileImg.layer.borderColor = Color.green.cgColor
+                //try shadow here
+                //self.profileImg.layer.shadowColor = Color.black.cgColor
+                //self.profileImg.layer.shadowOffset = CGSize(width: 2, height: 2)
+                //self.profileImg.layer.shadowRadius = 1.7
+                //self.profileImg.layer.shadowOpacity = 1
+                //self.profileImg.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+                //self.profileImg.layer.shouldRasterize = true
+                //self.profileImg.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
             }
             
         } else{
