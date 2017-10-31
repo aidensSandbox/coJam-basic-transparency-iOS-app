@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment version="4096" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,7 +38,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_mountainsandstars" translatesAutoresizingMaskIntoConstraints="NO" id="ZXl-KL-IPS">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_poster5" translatesAutoresizingMaskIntoConstraints="NO" id="ZXl-KL-IPS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0Q-9t-cq5">
@@ -110,13 +110,13 @@
                                         <rect key="frame" x="0.0" y="122" width="104" height="55"/>
                                         <subviews>
                                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7u-vg-rqA">
-                                                <rect key="frame" x="0.0" y="8" width="104" height="20"/>
+                                                <rect key="frame" x="0.0" y="8" width="104" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gU-F7-4Np">
-                                                <rect key="frame" x="10" y="31" width="94" height="24"/>
+                                                <rect key="frame" x="10" y="31.5" width="94" height="23.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -264,13 +264,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoJam by Audesis Inc." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPd-dd-11y">
-                                                <rect key="frame" x="30" y="13" width="315" height="15.5"/>
+                                                <rect key="frame" x="30" y="12" width="315" height="16"/>
                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version: x.x build: xx" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLp-EZ-pYq" userLabel="versionInfo">
-                                                <rect key="frame" x="30" y="28.5" width="315" height="10.5"/>
+                                                <rect key="frame" x="30" y="28" width="315" height="11"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="versionInfo" label="versionInfo"/>
                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="9"/>
                                                 <nil key="textColor"/>
@@ -529,7 +529,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COJAM" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCv-1S-Qvp">
-                                                <rect key="frame" x="15" y="148" width="345" height="24.5"/>
+                                                <rect key="frame" x="15" y="148" width="345" height="25.5"/>
                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="21"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -683,7 +683,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do More With Your Headphones On." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-2H-fuQ">
-                                                <rect key="frame" x="15" y="177.5" width="345" height="20"/>
+                                                <rect key="frame" x="15" y="178.5" width="345" height="20"/>
                                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="17"/>
                                                 <color key="textColor" red="0.39461016409999999" green="0.39461016409999999" blue="0.39461016409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1314,7 +1314,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4O-ad-7u6">
-                                <rect key="frame" x="228" y="612" width="132" height="40"/>
+                                <rect key="frame" x="235" y="612" width="125" height="40"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ikF-9R-8OV"/>
@@ -1330,11 +1330,11 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mkf-cw-eO1">
-                                <rect key="frame" x="284" y="622" width="20" height="20"/>
+                                <rect key="frame" x="288" y="622" width="20" height="20"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRh-kx-vXV">
-                                <rect key="frame" x="55" y="177" width="265" height="24.5"/>
+                                <rect key="frame" x="55" y="177" width="265" height="25.5"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="21"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1504,11 +1504,11 @@
     </scenes>
     <resources>
         <image name="ShareIcon" width="64" height="64"/>
-        <image name="background_mountainsandstars" width="200" height="356"/>
         <image name="caReplay" width="44" height="44"/>
         <image name="cancelIcon" width="25" height="25"/>
         <image name="editIcon" width="15" height="15"/>
         <image name="facebook" width="22" height="22"/>
+        <image name="halloween_poster5" width="375" height="667"/>
         <image name="helpIcon" width="25" height="25"/>
         <image name="lockIcon" width="22" height="22"/>
         <image name="logo" width="100" height="100"/>
