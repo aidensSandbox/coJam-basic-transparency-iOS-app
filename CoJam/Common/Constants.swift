@@ -59,7 +59,7 @@ let kHelpMailBody = "Tell us what the problem is and we will contact you shortly
 
 //MARK:- Invite
 //let kMessageInviteText = "Hey, join me on the chat group I created on CoJam App and never let headphones hurt your communication with others again. Download the free app from their website \(APP_INVITE_URL). "
-let kMessageInviteText = "Hey, join me on the chat group I created on CoJam App and never let headphones hurt your communication with others again. Download the free app from their website \(APP_INVITE_URL). "
+let kMessageInviteText = "Hey, join me on CoJam App, hear your outside better, keep your jam on for longer and never let headphones hurt your communication with others again. Download the free app from their website \(APP_INVITE_URL). "
 
 //MARK:- Analytics
 /**

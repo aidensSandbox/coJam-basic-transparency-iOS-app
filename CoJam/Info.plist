@@ -28,7 +28,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>23</string>
+	<string>25</string>
 	<key>FacebookAppID</key>
 	<string>163507237553116</string>
 	<key>FacebookDisplayName</key>
@@ -49,8 +49,6 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs to access Camera to upload your images</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your current location is used to get nearby CoJamers.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>To make sure others can hear you even if you wear headphones!</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -63,7 +61,6 @@
 	<array>
 		<string>audio</string>
 		<string>fetch</string>
-		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
