@@ -183,8 +183,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         application.registerForRemoteNotifications()
         application.applicationIconBadgeNumber = 0
         
-        requestToRegisterUserNotification()
-        
+       requestToRegisterUserNotification()
+
         
         // ADD 3D-TOUCH SHORTCUT ACTIONS FOR HARD-PRESS ON THE APP ICON
         if #available(iOS 9.0, *) {
@@ -310,7 +310,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // Fallback on earlier versions
         }
     }
-    
     
     
     // MARK: - DELEGATES FOR FACEBOOK LOGIN
