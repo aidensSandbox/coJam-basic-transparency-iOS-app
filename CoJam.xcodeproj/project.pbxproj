@@ -173,6 +173,8 @@
 		8C377F281ED8DE53005251A9 /* AudioProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioProcessor.m; sourceTree = "<group>"; };
 		8C377F291ED8DE53005251A9 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
 		8C377F2A1ED8DE53005251A9 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
+		8C6E5A361FAE76EF0076E90C /* CoJamWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoJamWidget.entitlements; sourceTree = "<group>"; };
+		8C6E5A371FAE77660076E90C /* CoJam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoJam.entitlements; sourceTree = "<group>"; };
 		8C6EB66F1EE4D38A00A0910D /* CoJamWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CoJamWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6EB6711EE4D38A00A0910D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		8C6EB6741EE4D38A00A0910D /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodayViewController.swift; path = CoJamWidget/TodayViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -402,6 +404,7 @@
 		8C377EF61ED8DC9A005251A9 /* CoJam */ = {
 			isa = PBXGroup;
 			children = (
+				8C6E5A371FAE77660076E90C /* CoJam.entitlements */,
 				8CE5BDD31F8C5BA7000B99FB /* Fonts */,
 				2092825D1F58156500EB8668 /* Tutorial */,
 				209281ED1F57EEED00EB8668 /* External Library */,
@@ -482,6 +485,7 @@
 		8C6EB6731EE4D38A00A0910D /* CoJamWidget */ = {
 			isa = PBXGroup;
 			children = (
+				8C6E5A361FAE76EF0076E90C /* CoJamWidget.entitlements */,
 				8CB7D2881EE4ED7900F55896 /* AudioProcessor.m */,
 				8CB7D2891EE4ED7900F55896 /* TPCircularBuffer.h */,
 				8CB7D28A1EE4ED7900F55896 /* TPCircularBuffer.c */,
@@ -609,6 +613,11 @@
 						DevelopmentTeam = Q6BCWKCPY5;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					8C377F071ED8DC9A005251A9 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -627,6 +636,11 @@
 						DevelopmentTeam = Q6BCWKCPY5;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -971,6 +985,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CoJam/CoJam.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Q6BCWKCPY5;
@@ -1025,6 +1040,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CoJam/CoJam.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Q6BCWKCPY5;
 				FRAMEWORK_SEARCH_PATHS = (
